@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.Property;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
@@ -27,6 +28,7 @@ public class ProgressPhotoView extends ImageView implements Animatable {
     private float mCurrentGlobalAngle;
     private float mCurrentSweepAngle;
     private float mRadius;
+    private float currentGlobalProgress = -1f;
     private int mProgressColor;
     private int mCurrentGlobalAngleOffset;
     private int mBackgroundColor;
@@ -36,6 +38,7 @@ public class ProgressPhotoView extends ImageView implements Animatable {
     private Paint mPaint;
     private ObjectAnimator mAngleObjectAnimator;
     private ObjectAnimator mSweepObjectAnimator;
+    private Animator mProgressObjectAnimator;
 
     private Property<ProgressPhotoView, Float> mSweepProperty = new Property<ProgressPhotoView, Float>(Float.class, "sweep") {
         @Override
@@ -58,6 +61,17 @@ public class ProgressPhotoView extends ImageView implements Animatable {
         @Override
         public void set(ProgressPhotoView object, Float value) {
             object.setCurrentGlobalAngle(value);
+        }
+    };
+    private Property<ProgressPhotoView, Float> mProgressProperty = new Property<ProgressPhotoView, Float>(Float.class, "progress") {
+        @Override
+        public Float get(ProgressPhotoView object) {
+            return object.getCurrentGlobalProgress();
+        }
+
+        @Override
+        public void set(ProgressPhotoView object, Float value) {
+            object.setCurrentGlobalProgress(value);
         }
     };
 
@@ -98,7 +112,54 @@ public class ProgressPhotoView extends ImageView implements Animatable {
         mAngleObjectAnimator.setInterpolator(mAngleInterpolator);
         mAngleObjectAnimator.setDuration(2000);
         mAngleObjectAnimator.setRepeatMode(ValueAnimator.RESTART);
-        mAngleObjectAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        mAngleObjectAnimator.setRepeatCount(8);
+        mAngleObjectAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                mSweepObjectAnimator.cancel();
+                mProgressObjectAnimator.start();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        mProgressObjectAnimator = ObjectAnimator.ofFloat(this, mProgressProperty, 360f);
+        mProgressObjectAnimator.setInterpolator(mAngleInterpolator);
+        mProgressObjectAnimator.setDuration(3000);
+        mProgressObjectAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                Log.d("PhotoProgressView", "animation has started");
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
 
         mSweepObjectAnimator = ObjectAnimator.ofFloat(this, mSweepProperty, 360f - MIN_SWEEP_ANGLE * 2);
         mSweepObjectAnimator.setInterpolator(mSweepInterpolator);
@@ -151,7 +212,12 @@ public class ProgressPhotoView extends ImageView implements Animatable {
         mPaint.setColor(mBackgroundColor);
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, mRadius, mPaint);
         mPaint.setColor(mProgressColor);
-        canvas.drawArc(mBounds, startAngle, sweepAngle, false, mPaint);
+        if(currentGlobalProgress < 0) {
+            canvas.drawArc(mBounds, startAngle, sweepAngle, false, mPaint);
+        } else {
+            Log.d("ProgressPhotoView", "currentGlobalProgress: " + currentGlobalProgress);
+            canvas.drawArc(mBounds, 0, currentGlobalProgress, false, mPaint);
+        }
     }
 
     @Override
@@ -204,5 +270,13 @@ public class ProgressPhotoView extends ImageView implements Animatable {
 
     public float getCurrentSweepAngle() {
         return mCurrentSweepAngle;
+    }
+
+    public float getCurrentGlobalProgress() {
+        return currentGlobalProgress;
+    }
+
+    public void setCurrentGlobalProgress(float currentGlobalProgress) {
+        this.currentGlobalProgress = currentGlobalProgress;
     }
 }
