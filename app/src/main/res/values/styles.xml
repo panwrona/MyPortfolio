@@ -5,4 +5,11 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <declare-styleable name="ProgressPhotoView">
+        <attr name="strokeThickness" format="dimension"/>
+        <attr name="progressColor" format="color" />
+        <attr name="radius" format="dimension" />
+        <attr name="backgroundColor" format="color" />
+    </declare-styleable>
+
 </resources>
