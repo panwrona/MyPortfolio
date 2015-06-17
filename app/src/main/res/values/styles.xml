@@ -13,4 +13,9 @@
         <attr name="imageSrc" format="reference" />
     </declare-styleable>
 
+    <declare-styleable name="SpellingTextView">
+        <attr name="text" format="string" />
+        <attr name="animationLength" format="integer" />
+    </declare-styleable>
+
 </resources>

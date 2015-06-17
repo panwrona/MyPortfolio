@@ -7,6 +7,7 @@ import android.view.MenuItem;
 
 import com.panwrona.myportfolio.R;
 import com.panwrona.myportfolio.customviews.ProgressPhotoView;
+import com.panwrona.myportfolio.customviews.SpellingTextView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -17,6 +18,8 @@ public class MainActivity extends ActionBarActivity implements IMainActivityView
     IMainPresenter mPresenter;
     @InjectView(R.id.ppv)
     ProgressPhotoView mProgressPhotoView;
+    @InjectView(R.id.stv)
+    SpellingTextView mSpellingTextView;
 
 
     @Override
@@ -32,6 +35,7 @@ public class MainActivity extends ActionBarActivity implements IMainActivityView
 
     @OnClick(R.id.click)
     public void onClick() {
+        mSpellingTextView.start();
         mProgressPhotoView.start();
     }
 
