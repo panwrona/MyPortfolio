@@ -10,6 +10,7 @@
         <attr name="progressColor" format="color" />
         <attr name="radius" format="dimension" />
         <attr name="backgroundColor" format="color" />
+        <attr name="imageSrc" format="reference" />
     </declare-styleable>
 
 </resources>

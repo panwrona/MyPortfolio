@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:orientation='vertical'
     android:layout_height="match_parent"
+    android:background="@color/primary_color"
    >
 
     <com.panwrona.myportfolio.customviews.ProgressPhotoView
@@ -11,10 +12,11 @@
         android:layout_gravity="center"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        ppv:radius="30dp"
-        ppv:strokeThickness="4dp"
-        ppv:progressColor="@color/white"
-        ppv:backgroundColor="@android:color/white"/>
+        android:layout_margin="16dp"
+        ppv:radius="48dp"
+        ppv:strokeThickness="2dp"
+        ppv:progressColor="@color/accent_color"
+        ppv:backgroundColor="@color/light_primary_color"/>
 
     <TextView
         android:id="@+id/click"

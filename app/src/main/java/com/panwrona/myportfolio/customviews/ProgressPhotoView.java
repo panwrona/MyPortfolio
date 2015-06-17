@@ -5,8 +5,12 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
 import android.util.AttributeSet;
@@ -18,9 +22,13 @@ import android.widget.ImageView;
 
 import com.panwrona.myportfolio.R;
 
+import java.io.File;
+import java.nio.MappedByteBuffer;
+
 public class ProgressPhotoView extends ImageView implements Animatable {
 
     private final static int MIN_SWEEP_ANGLE = 30;
+    private static final String TAG = ProgressPhotoView.class.getSimpleName();
     private final LinearInterpolator mAngleInterpolator = new LinearInterpolator();
     private final DecelerateInterpolator mSweepInterpolator = new DecelerateInterpolator();
     private final RectF mBounds = new RectF();
@@ -35,10 +43,12 @@ public class ProgressPhotoView extends ImageView implements Animatable {
     private boolean mRunning;
     private boolean mModeAppearing;
 
+    private Bitmap mPhotoBitmap;
+
     private Paint mPaint;
     private ObjectAnimator mAngleObjectAnimator;
     private ObjectAnimator mSweepObjectAnimator;
-    private Animator mProgressObjectAnimator;
+    private ValueAnimator mProgressValueAnimator;
 
     private Property<ProgressPhotoView, Float> mSweepProperty = new Property<ProgressPhotoView, Float>(Float.class, "sweep") {
         @Override
@@ -74,6 +84,7 @@ public class ProgressPhotoView extends ImageView implements Animatable {
             object.setCurrentGlobalProgress(value);
         }
     };
+    private boolean isBitmapSet = false;
 
     public ProgressPhotoView(Context context) {
         super(context);
@@ -92,7 +103,6 @@ public class ProgressPhotoView extends ImageView implements Animatable {
             mProgressColor = array.getColor(R.styleable.ProgressPhotoView_progressColor, 0);
             mBackgroundColor = array.getColor(R.styleable.ProgressPhotoView_backgroundColor, 0);
             mRadius = array.getDimension(R.styleable.ProgressPhotoView_radius, 0);
-
         } finally {
             array.recycle();
         }
@@ -104,15 +114,16 @@ public class ProgressPhotoView extends ImageView implements Animatable {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(mStrokeThickness);
         mPaint.setColor(mProgressColor);
+        mPhotoBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.portoflio);
         setupAnimations();
     }
 
     private void setupAnimations() {
         mAngleObjectAnimator = ObjectAnimator.ofFloat(this, mAngleProperty, 360f);
         mAngleObjectAnimator.setInterpolator(mAngleInterpolator);
-        mAngleObjectAnimator.setDuration(2000);
+        mAngleObjectAnimator.setDuration(1800);
         mAngleObjectAnimator.setRepeatMode(ValueAnimator.RESTART);
-        mAngleObjectAnimator.setRepeatCount(8);
+        mAngleObjectAnimator.setRepeatCount(1);
         mAngleObjectAnimator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
@@ -122,7 +133,7 @@ public class ProgressPhotoView extends ImageView implements Animatable {
             @Override
             public void onAnimationEnd(Animator animation) {
                 mSweepObjectAnimator.cancel();
-                mProgressObjectAnimator.start();
+                mProgressValueAnimator.start();
             }
 
             @Override
@@ -136,27 +147,34 @@ public class ProgressPhotoView extends ImageView implements Animatable {
             }
         });
 
-        mProgressObjectAnimator = ObjectAnimator.ofFloat(this, mProgressProperty, 360f);
-        mProgressObjectAnimator.setInterpolator(mAngleInterpolator);
-        mProgressObjectAnimator.setDuration(3000);
-        mProgressObjectAnimator.addListener(new Animator.AnimatorListener() {
+        mProgressValueAnimator = ValueAnimator.ofInt(0, 360);
+        mProgressValueAnimator.setInterpolator(mAngleInterpolator);
+        mProgressValueAnimator.setDuration(1800);
+        mProgressValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public void onAnimationStart(Animator animation) {
-                Log.d("PhotoProgressView", "animation has started");
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                currentGlobalProgress = (int) valueAnimator.getAnimatedValue();
+                invalidate();
+            }
+        });
+        mProgressValueAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animator) {
+
             }
 
             @Override
-            public void onAnimationEnd(Animator animation) {
+            public void onAnimationEnd(Animator animator) {
+                setImageBitmap(transformBitmapIntoCircle(mPhotoBitmap));
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
 
             }
 
             @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
+            public void onAnimationRepeat(Animator animator) {
 
             }
         });
@@ -214,20 +232,25 @@ public class ProgressPhotoView extends ImageView implements Animatable {
         mPaint.setColor(mProgressColor);
         if(currentGlobalProgress < 0) {
             canvas.drawArc(mBounds, startAngle, sweepAngle, false, mPaint);
+        } else if(currentGlobalProgress == 360) {
+            canvas.drawArc(mBounds, 0, 360, false, mPaint);
         } else {
-            Log.d("ProgressPhotoView", "currentGlobalProgress: " + currentGlobalProgress);
-            canvas.drawArc(mBounds, 0, currentGlobalProgress, false, mPaint);
+            canvas.drawArc(mBounds, -120, MIN_SWEEP_ANGLE, false, mPaint);
+            canvas.drawArc(mBounds, -90, currentGlobalProgress, false, mPaint);
         }
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mBounds.left = w / 2 - mRadius + .5f;
-        mBounds.right = w - mRadius  / 2f - mStrokeThickness - 2f;
-        mBounds.top = h / 2 - mRadius + .5f;
-        mBounds.bottom = h - mRadius / 2f - mStrokeThickness - 2f;
+        mBounds.top = h / 2f  - mRadius;
+        mBounds.left = w / 2f - mRadius;
+        mBounds.bottom =  h/2f + mRadius;
+        mBounds.right = w / 2f + mRadius;
+
     }
+
+
 
     @Override
     public void start() {
@@ -258,6 +281,33 @@ public class ProgressPhotoView extends ImageView implements Animatable {
         mCurrentGlobalAngle = currentGlobalAngle;
         invalidate();
     }
+
+    private Bitmap transformBitmapIntoCircle(Bitmap source) {
+        int size = Math.min(source.getWidth(), source.getHeight());
+
+        int x = (source.getWidth() - size) / 2;
+        int y = (source.getHeight() - size) / 2;
+
+        Bitmap squaredBitmap = Bitmap.createBitmap(source, x, y, size, size);
+        if (squaredBitmap != source) {
+            source.recycle();
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(size, size, source.getConfig());
+
+        Canvas canvas = new Canvas(bitmap);
+        Paint paint = new Paint();
+        BitmapShader shader = new BitmapShader(squaredBitmap,
+                BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);
+        paint.setShader(shader);
+        paint.setAntiAlias(true);
+
+        float r = size / 2f;
+        canvas.drawCircle(r, r, r - mStrokeThickness*2, paint);
+
+        squaredBitmap.recycle();
+        return bitmap;
+    };
 
     public float getCurrentGlobalAngle() {
         return mCurrentGlobalAngle;
