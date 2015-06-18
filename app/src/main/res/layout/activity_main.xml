@@ -26,12 +26,19 @@
         android:text="Click!"
         android:textSize="16sp"/>
 
-    <com.panwrona.myportfolio.customviews.SpellingTextView
-        android:id="@+id/stv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/light_primary_color"
-        stv:text="abcdefghijkl"
-        />
+    <!--<com.panwrona.myportfolio.customviews.SpellingTextView-->
+        <!--android:id="@+id/stv"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:textColor="@color/light_primary_color"-->
+        <!--stv:text="abcdefghijkl"-->
+        <!--/>-->
 
+    <com.panwrona.myportfolio.customviews.DownloadProgressView
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="16dp"
+        ppv:circleRadius="48dp"
+        ppv:strokeWidth="2dp"/>
 </LinearLayout>

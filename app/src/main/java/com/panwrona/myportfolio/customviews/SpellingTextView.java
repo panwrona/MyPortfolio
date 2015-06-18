@@ -1,18 +1,14 @@
 package com.panwrona.myportfolio.customviews;
 
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.TextView;
 
 import com.panwrona.myportfolio.R;
-
-import java.lang.reflect.Type;
 
 public class SpellingTextView extends TextView {
 

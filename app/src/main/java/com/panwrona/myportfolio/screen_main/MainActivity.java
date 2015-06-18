@@ -18,8 +18,8 @@ public class MainActivity extends ActionBarActivity implements IMainActivityView
     IMainPresenter mPresenter;
     @InjectView(R.id.ppv)
     ProgressPhotoView mProgressPhotoView;
-    @InjectView(R.id.stv)
-    SpellingTextView mSpellingTextView;
+//    @InjectView(R.id.stv)
+//    SpellingTextView mSpellingTextView;
 
 
     @Override
@@ -35,7 +35,7 @@ public class MainActivity extends ActionBarActivity implements IMainActivityView
 
     @OnClick(R.id.click)
     public void onClick() {
-        mSpellingTextView.start();
+        //mSpellingTextView.start();
         mProgressPhotoView.start();
     }
 
