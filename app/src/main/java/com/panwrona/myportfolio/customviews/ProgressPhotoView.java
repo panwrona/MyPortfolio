@@ -245,7 +245,7 @@ public class ProgressPhotoView extends ImageView implements Animatable {
         super.onSizeChanged(w, h, oldw, oldh);
         mBounds.top = h / 2f  - mRadius;
         mBounds.left = w / 2f - mRadius;
-        mBounds.bottom =  h/2f + mRadius;
+        mBounds.bottom = h / 2f + mRadius;
         mBounds.right = w / 2f + mRadius;
 
     }

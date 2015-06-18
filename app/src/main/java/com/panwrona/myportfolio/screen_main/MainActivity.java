@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.panwrona.myportfolio.R;
+import com.panwrona.myportfolio.customviews.DownloadProgressView;
 import com.panwrona.myportfolio.customviews.ProgressPhotoView;
 import com.panwrona.myportfolio.customviews.SpellingTextView;
 
@@ -18,6 +19,8 @@ public class MainActivity extends ActionBarActivity implements IMainActivityView
     IMainPresenter mPresenter;
     @InjectView(R.id.ppv)
     ProgressPhotoView mProgressPhotoView;
+    @InjectView(R.id.dpv)
+    DownloadProgressView mDownloadProgressView;
 //    @InjectView(R.id.stv)
 //    SpellingTextView mSpellingTextView;
 
@@ -37,6 +40,8 @@ public class MainActivity extends ActionBarActivity implements IMainActivityView
     public void onClick() {
         //mSpellingTextView.start();
         mProgressPhotoView.start();
+        mDownloadProgressView.play();
+
     }
 
 }

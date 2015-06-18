@@ -35,10 +35,11 @@
         <!--/>-->
 
     <com.panwrona.myportfolio.customviews.DownloadProgressView
+        android:id="@+id/dpv"
         android:layout_gravity="center"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="16dp"
-        ppv:circleRadius="48dp"
+        ppv:circleRadius="40dp"
         ppv:strokeWidth="2dp"/>
 </LinearLayout>
