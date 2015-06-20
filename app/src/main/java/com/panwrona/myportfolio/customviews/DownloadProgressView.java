@@ -2,7 +2,6 @@ package com.panwrona.myportfolio.customviews;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
-import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,9 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.renderscript.Sampler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
@@ -36,7 +33,7 @@ public class DownloadProgressView extends View {
     private boolean isAnimationInitialized = false;
     private AnimatorSet mArrowToLineAnimatorSet;
     private boolean hasArrowLineToDotEnded = false;
-    private OvershootInterpolator mOvershootInterpolator = new OvershootInterpolator(3f);
+    private OvershootInterpolator mOvershootInterpolator = new OvershootInterpolator(2.5f);
     private ValueAnimator mDotToProgressAnimation;
     private RectF mCircleBounds;
     private float mCurrentGlobalProgressValue;
@@ -47,6 +44,7 @@ public class DownloadProgressView extends View {
     private ValueAnimator mSuccessAnimation;
     private float mSuccessValue;
     private Paint mProgressPaint;
+    private Paint mProgressBackgroundPaint;
 
     private enum State {ANIMATING, ANIMATING_TO_DOT, IDLE, ANIMATING_SUCCESS, ANIMATING_ERROR, ANIMATING_PROGRESS}
     private State mState;
@@ -80,13 +78,17 @@ public class DownloadProgressView extends View {
         mDrawingPaint.setStrokeWidth(mStrokeWidth);
 
         mTextPaint = new Paint();
-        mTextPaint.setColor(getResources().getColor(R.color.text_icon_color));
+        mTextPaint.setColor(getResources().getColor(R.color.dark_primary_color));
         mTextPaint.setTextSize(getResources().getDimension(R.dimen.textSize));
         mTextPaint.setTextAlign(Paint.Align.CENTER);
 
         mProgressPaint = new Paint();
-        mProgressPaint.setColor(getResources().getColor(R.color.light_primary_color));
+        mProgressPaint.setColor(getResources().getColor(R.color.text_icon_color));
         mProgressPaint.setStyle(Paint.Style.FILL);
+
+        mProgressBackgroundPaint = new Paint();
+        mProgressBackgroundPaint.setColor(getResources().getColor(R.color.light_primary_color));
+        mProgressBackgroundPaint.setStyle(Paint.Style.FILL);
 
         mSinePath = new Path();
         mState = State.IDLE;
@@ -226,9 +228,10 @@ public class DownloadProgressView extends View {
         });
         mProgressAnimation.setDuration(1000);
 
-        mSuccessAnimation = ValueAnimator.ofFloat(0 , mRadius / 4);
-        mSuccessAnimation.setDuration(1000);
+        mSuccessAnimation = ValueAnimator.ofFloat(0, mRadius / 4);
+        mSuccessAnimation.setDuration(600);
         mSuccessAnimation.setStartDelay(500);
+        mSuccessAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
         mSuccessAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -274,24 +277,6 @@ public class DownloadProgressView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-//        canvas.drawCircle(getWidth() / 2, getHeight() / 2, mRadius, mCirclePaint);
-//        if(mState == State.IDLE) {
-//            canvas.drawLine(getWidth() / 2, getHeight() / 4, getWidth() / 2, getHeight() - getHeight() / 4, mDrawingPaint);
-//            canvas.drawLine(getWidth() / 4, getHeight() / 2, getWidth() / 2, getHeight() - getHeight() / 4, mDrawingPaint);
-//            canvas.drawLine(getWidth() / 2, getHeight() - getHeight() / 4, getWidth() - getWidth() / 4, getHeight() / 2, mDrawingPaint);
-//        } else if(mState == State.ANIMATING) {
-//            canvas.drawLine(getWidth() / 2, getHeight() / 4 + mArrowLineToDotAnimatedValue - mStrokeWidth, getWidth() / 2, getHeight() - getHeight() / 4 - mArrowLineToDotAnimatedValue, mDrawingPaint);
-//            canvas.drawLine(getWidth() / 4 - mArrowLineToHorizontalLineAnimatedValue / 2, getHeight() / 2, getWidth() / 2, getHeight() - getHeight() / 4 - mArrowLineToHorizontalLineAnimatedValue, mDrawingPaint);
-//            canvas.drawLine(getWidth() / 2, getHeight() - getHeight() / 4 - mArrowLineToHorizontalLineAnimatedValue, getWidth() - getWidth() / 4 + mArrowLineToHorizontalLineAnimatedValue / 2, getHeight() / 2, mDrawingPaint);
-//            Log.d(TAG, "current val: " + (getHeight() / 2 - mArrowLineToDotAnimatedValue) + ", overshoot interpolation: " + (getHeight() / 2 - mOvershootInterpolator.getInterpolation(3f)));
-//            if(getHeight() / 2 - mArrowLineToHorizontalLineAnimatedValue < getHeight() / 2 - mOvershootInterpolator.getInterpolation(3f)) {
-//                mDotToProgressAnimation.start();
-//            }
-//        }
-//        if(mDotToProgressAnimatedValue > 0) {
-//            canvas.drawLine(getWidth() / 2 - mStrokeWidth / 2, getHeight() / 2 - mDotToProgressAnimatedValue - mStrokeWidth, getWidth() / 2 + mStrokeWidth / 2, getHeight() / 2 - mDotToProgressAnimatedValue, mDrawingPaint);
-//        }
-
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, mRadius, mCirclePaint);
         if(mState == State.IDLE) {
             canvas.drawLine(getWidth() / 2, getHeight() / 2 - mRadius / 2, getWidth() / 2, getHeight() / 2 + mRadius / 2, mDrawingPaint);
@@ -304,18 +289,19 @@ public class DownloadProgressView extends View {
             canvas.drawLine(getWidth() / 2 - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2, getHeight() / 2, getWidth() / 2, getHeight() / 2 + mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue, mDrawingPaint);
             canvas.drawLine(getWidth() / 2, getHeight() / 2 + mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue, getWidth() / 2 + mRadius / 2 + mArrowLineToHorizontalLineAnimatedValue / 2, getHeight() / 2, mDrawingPaint);
         } else if(mState == State.ANIMATING_PROGRESS) {
-            float progress = ((getWidth() / 2f + mRadius + 12) - (getWidth() / 2f - mRadius + 12)) / mProgressAnimation.getDuration();
+            float progress = ((getWidth() / 2 + mRadius / 2 + mArrowLineToHorizontalLineAnimatedValue / 2) - (getWidth() / 2 - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2)) / 360f;
             canvas.drawArc(mCircleBounds, -90, mCurrentGlobalProgressValue, false, mDrawingPaint);
+            canvas.drawRect(getWidth() / 2 - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2, getHeight() / 2 - mRadius / 4f, getWidth() / 2 + mRadius / 2 + mArrowLineToHorizontalLineAnimatedValue / 2, getHeight() / 2 + mRadius /4f, mProgressBackgroundPaint);
+            canvas.drawRect(getWidth() / 2 - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2, getHeight() / 2 - mRadius / 4f, getWidth() / 2 - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2 + progress*mCurrentGlobalProgressValue, getHeight() / 2 + mRadius / 4f, mProgressPaint);
             canvas.drawText(mProgressAnimation.getCurrentPlayTime() % 1000 + "." + mProgressAnimation.getCurrentPlayTime() % 100, getWidth() / 2, getHeight() / 2 + mTextPaint.getTextSize() / 2, mTextPaint);
-            canvas.drawRect(getWidth() / 2 - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2, getHeight() / 2 - mRadius / 4f, getWidth() / 2 - mRadius / 2 + progress * mCurrentGlobalProgressValue, getHeight() / 2 + mRadius / 4f, mProgressPaint);
-
 
         } else if(mState == State.ANIMATING_SUCCESS) {
             canvas.drawArc(mCircleBounds, 0, 360, false, mDrawingPaint);
-            canvas.drawLine(getWidth() / 2 - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2 + mSuccessValue * 2, getHeight() / 2, getWidth() / 2, getHeight() / 2 + mSuccessValue * (3/2), mDrawingPaint);
-            canvas.drawLine(getWidth() / 2 + mRadius / 2 + mArrowLineToHorizontalLineAnimatedValue / 2 - mSuccessValue * 3, getHeight() / 2 + mSuccessValue * (3/2), getWidth() / 2 + mSuccessValue * 2, getHeight() / 2 - mSuccessValue, mDrawingPaint);
+            canvas.drawLine(getWidth() / 2 - (3*mRadius/4) + mSuccessValue, getHeight() / 2, getWidth() / 2 - mSuccessValue / 2, getHeight() / 2 + mSuccessValue * 2, mDrawingPaint);
+            canvas.drawLine(getWidth() / 2 + (3*mRadius/4) - mSuccessValue * 3.5f, getHeight() / 2 + mSuccessValue * 2, getWidth() / 2 + mSuccessValue * 2, getHeight() / 2 - mSuccessValue*2, mDrawingPaint);
         } else if(mState == State.ANIMATING_ERROR) {
             canvas.drawArc(mCircleBounds, 0, 360, false, mDrawingPaint);
+
 
         }
 
