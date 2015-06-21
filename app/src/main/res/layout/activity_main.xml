@@ -14,6 +14,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="16dp"
+        android:visibility="gone"
         ppv:radius="48dp"
         ppv:strokeThickness="2dp"
         ppv:progressColor="@color/accent_color"
@@ -37,9 +38,8 @@
     <com.panwrona.myportfolio.customviews.DownloadProgressView
         android:id="@+id/dpv"
         android:layout_gravity="center"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="16dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         ppv:circleRadius="40dp"
         ppv:strokeWidth="2dp"/>
 </LinearLayout>
