@@ -277,7 +277,7 @@ public class DownloadProgressView extends View {
         });
         mProgressAnimation.setDuration(1000);
 
-        mExpandAnimation = ValueAnimator.ofFloat(0 , mRadius / 4);
+        mExpandAnimation = ValueAnimator.ofFloat(0 , mRadius / 6);
         mExpandAnimation.setDuration(300);
         mExpandAnimation.setInterpolator(new DecelerateInterpolator());
         mExpandAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -288,7 +288,7 @@ public class DownloadProgressView extends View {
             }
         });
 
-        mCollapseAnimation = ValueAnimator.ofFloat(mRadius / 4, mStrokeWidth / 2);
+        mCollapseAnimation = ValueAnimator.ofFloat(mRadius / 6, mStrokeWidth / 2);
         mCollapseAnimation.setDuration(300);
         mCollapseAnimation.setStartDelay(300);
         mCollapseAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -371,7 +371,7 @@ public class DownloadProgressView extends View {
         mSuccessAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                mSuccessValue = (float) valueAnimator.getAnimatedValue();
+                mSuccessValue = (float)valueAnimator.getAnimatedValue();
                 invalidate();
             }
         });
@@ -449,45 +449,37 @@ public class DownloadProgressView extends View {
             case ANIMATING_PROGRESS:
                 float progress = ((mCenterX + mRadius / 2 + mArrowLineToHorizontalLineAnimatedValue / 2) - (mCenterX - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2)) / 360f;
                 canvas.drawArc(mCircleBounds, -90, mCurrentGlobalProgressValue, false, mDrawingPaint);
-                canvas.drawRect(
+                canvas.drawRoundRect(
                         mCenterX - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2,
                         mCenterY - mExpandCollapseValue,
                         mCenterX + mRadius / 2 + mArrowLineToHorizontalLineAnimatedValue / 2,
-                        mCenterY + mExpandCollapseValue,
+                        mCenterY + mExpandCollapseValue,45,45,
                         mProgressBackgroundPaint
                 );
-                canvas.drawRect(
+                canvas.drawRoundRect(
                         mCenterX - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2,
                         mCenterY - mExpandCollapseValue,
                         mCenterX - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2 + progress * mCurrentGlobalProgressValue,
-                        mCenterY + mExpandCollapseValue,
+                        mCenterY + mExpandCollapseValue,45,45,
                         mProgressPaint
                 );
-                if(mProgressAnimation.isRunning()) {
-                    canvas.drawText(
-                            mProgressText,
-                            mCenterX,
-                            mCenterY + mTextPaint.getTextSize() / 3f,
-                            mTextPaint
-                    );
-                }
                 break;
             case ANIMATING_SUCCESS:
                 canvas.drawArc(mCircleBounds, 0, 360, false, mDrawingPaint);
                 canvas.drawLine(
                         mCenterX - mRadius / 2 + mSuccessValue * 2 - mSuccessValue / (float)Math.sqrt(2f) / 2,
-                        mCenterY - mRadius / 2 + mSuccessValue * 2 + mSuccessValue,
+                        mCenterY + mSuccessValue,
                         mCenterX + mSuccessValue * 2 - mSuccessValue / (float)Math.sqrt(2f) / 2,
-                        mCenterY - mSuccessValue * 2 + mSuccessValue,
+                        mCenterY - mSuccessValue,
                         mDrawingPaint
-                );
+                        );
                 canvas.drawLine(
                         mCenterX - mSuccessValue - 2*mSuccessValue / (float)Math.sqrt(2f) / 2,
-                        mCenterY - mSuccessValue + mSuccessValue,
+                        mCenterY,
                         mCenterX + mRadius / 2 - mSuccessValue * 2 - mSuccessValue / (float)Math.sqrt(2f) / 2,
-                        mCenterY + mRadius /2 - mSuccessValue * 2 + mSuccessValue,
+                        mCenterY + mSuccessValue,
                         mDrawingPaint
-                );
+                        );
                 break;
             case ANIMATING_ERROR:
                 canvas.drawArc(mCircleBounds, 0, 360, false, mDrawingPaint);
