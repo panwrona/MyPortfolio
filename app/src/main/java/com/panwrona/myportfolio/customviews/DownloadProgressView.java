@@ -7,8 +7,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.RectF;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -22,49 +24,61 @@ import com.panwrona.myportfolio.R;
 public class DownloadProgressView extends View {
 
     private static final String TAG = DownloadProgressView.class.getSimpleName();
+    private static final int DEFAULT_PROGRESS_DURATION = 1000;
+    private static final int DEFAULT_RESULT_DURATION = 1000;
+    private static final float DEFAULT_OVERSHOOT_VALUE = 2.5f;
+
     private Paint mCirclePaint;
     private Paint mDrawingPaint;
+    private Paint mProgressPaint;
+    private Paint mProgressBackgroundPaint;
 
     private float mRadius;
     private float mStrokeWidth;
+    private float mLineWidth;
     private float mArrowLineToDotAnimatedValue;
     private float mArrowLineToHorizontalLineAnimatedValue;
     private float mDotToProgressAnimatedValue;
+    private float mCurrentGlobalProgressValue;
+    private float mSuccessValue;
+    private float mExpandCollapseValue;
+    private float mErrorValue;
+    private float mOvershootValue;
 
     private float mCenterX;
     private float mCenterY;
     private float mPaddingX;
     private float mPaddingY;
 
-    private boolean isAnimationInitialized = false;
+    private int mCircleBackgroundColor;
+    private int mDrawingColor;
+    private int mProgressBackgroundColor;
+    private int mProgressColor;
+    private int mProgressDuration;
+    private int mResultDuration;
+
     private AnimatorSet mArrowToLineAnimatorSet;
-    private boolean hasArrowLineToDotEnded = false;
-    private OvershootInterpolator mOvershootInterpolator;
-    private ValueAnimator mDotToProgressAnimation;
-    private RectF mCircleBounds;
-    private float mCurrentGlobalProgressValue;
-    private ValueAnimator mProgressAnimation;
-    private Paint mTextPaint;
-    private ValueAnimator mSuccessAnimation;
-    private float mSuccessValue;
-    private Paint mProgressPaint;
-    private Paint mProgressBackgroundPaint;
-    private ValueAnimator mExpandAnimation;
-    private float mExpandCollapseValue;
     private AnimatorSet mProgressAnimationSet;
+
+    private OvershootInterpolator mOvershootInterpolator;
+
+    private ValueAnimator mDotToProgressAnimation;
+    private ValueAnimator mProgressAnimation;
+    private ValueAnimator mSuccessAnimation;
+    private ValueAnimator mExpandAnimation;
     private ValueAnimator mCollapseAnimation;
-    private float mErrorValue;
     private ValueAnimator mErrorAnimation;
-    private String mProgressText = "Progress Text";
-    private OnProgressUpdateListener mOnProgressUpdateListener;
-
-    private enum State {ANIMATING, ANIMATING_TO_DOT, IDLE, ANIMATING_SUCCESS, ANIMATING_ERROR, ANIMATING_PROGRESS}
-
-    private State mState;
-
     private ValueAnimator mArrowLineToDot;
     private ValueAnimator mArrowLineToHorizontalLine;
 
+    private RectF mCircleBounds;
+
+    private OnProgressUpdateListener mOnProgressUpdateListener;
+
+    private enum State {ANIMATING_LINE_TO_DOT, IDLE, ANIMATING_SUCCESS, ANIMATING_ERROR, ANIMATING_PROGRESS}
+
+    private State mState;
+    private State mResultState;
 
     public DownloadProgressView(Context context) {
         super(context);
@@ -73,7 +87,7 @@ public class DownloadProgressView extends View {
     public DownloadProgressView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initAttrs(context, attrs);
-        init(context);
+        init();
     }
 
     private void initAttrs(Context context, AttributeSet attrs) {
@@ -81,42 +95,44 @@ public class DownloadProgressView extends View {
         try {
             mRadius = array.getDimension(R.styleable.DownloadProgressView_circleRadius, 0);
             mStrokeWidth = array.getDimension(R.styleable.DownloadProgressView_strokeWidth, 0);
+            mLineWidth = array.getDimension(R.styleable.DownloadProgressView_lineWidth, 0);
+            mProgressDuration = array.getInteger(R.styleable.DownloadProgressView_progressDuration, DEFAULT_PROGRESS_DURATION);
+            mResultDuration = array.getInteger(R.styleable.DownloadProgressView_resultDuration, DEFAULT_RESULT_DURATION);
+            mProgressBackgroundColor = array.getColor(R.styleable.DownloadProgressView_progressBackgroundColor, 0);
+            mDrawingColor = array.getColor(R.styleable.DownloadProgressView_drawingColor, 0);
+            mProgressColor = array.getColor(R.styleable.DownloadProgressView_progressColor, 0);
+            mCircleBackgroundColor = array.getColor(R.styleable.DownloadProgressView_circleBackgroundColor, 0);
+            mOvershootValue = array.getFloat(R.styleable.DownloadProgressView_overshootValue, DEFAULT_OVERSHOOT_VALUE);
         } finally {
             array.recycle();
         }
     }
 
-    private void init(Context context) {
+    private void init() {
         mCirclePaint = new Paint();
         mCirclePaint.setFlags(Paint.ANTI_ALIAS_FLAG);
         mCirclePaint.setStyle(Paint.Style.STROKE);
-        mCirclePaint.setColor(getColor(R.color.progress_background));
+        mCirclePaint.setColor(mCircleBackgroundColor);
         mCirclePaint.setStrokeWidth(mStrokeWidth);
 
         mDrawingPaint = new Paint();
         mDrawingPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
         mDrawingPaint.setStyle(Paint.Style.STROKE);
-        mDrawingPaint.setColor(getColor(R.color.text_icon_color));
-        mDrawingPaint.setStrokeWidth(mStrokeWidth);
-
-        mTextPaint = new Paint();
-        mTextPaint.setColor(getColor(R.color.dark_primary_color));
-        mTextPaint.setTextSize(getResources().getDimension(R.dimen.textSize));
-        mTextPaint.setTextAlign(Paint.Align.CENTER);
+        mDrawingPaint.setColor(mDrawingColor);
+        mDrawingPaint.setStrokeWidth(mLineWidth);
 
         mProgressPaint = new Paint();
-        mProgressPaint.setColor(getColor(R.color.text_icon_color));
+        mProgressPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        mProgressPaint.setColor(mProgressColor);
         mProgressPaint.setStyle(Paint.Style.FILL);
 
         mProgressBackgroundPaint = new Paint();
-        mProgressBackgroundPaint.setColor(getColor(R.color.light_primary_color));
+        mProgressBackgroundPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        mProgressBackgroundPaint.setColor(mProgressBackgroundColor);
         mProgressBackgroundPaint.setStyle(Paint.Style.FILL);
 
         mState = State.IDLE;
-    }
-
-    private int getColor(int resourceId) {
-        return getResources().getColor(resourceId);
+        setupAnimations();
     }
 
     @Override
@@ -133,14 +149,10 @@ public class DownloadProgressView extends View {
         mCircleBounds.left = mPaddingX;
         mCircleBounds.bottom = h / 2f + mRadius;
         mCircleBounds.right = w / 2f + mRadius;
-        if (!isAnimationInitialized) {
-            setupAnimations();
-            isAnimationInitialized = true;
-        }
     }
 
     private void setupAnimations() {
-        mOvershootInterpolator  = new OvershootInterpolator(2.5f);
+        mOvershootInterpolator = new OvershootInterpolator(mOvershootValue);
         mArrowLineToDot = ValueAnimator.ofFloat(0, mRadius / 4);
         mArrowLineToDot.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -153,7 +165,10 @@ public class DownloadProgressView extends View {
         mArrowLineToDot.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animator) {
-                mState = State.ANIMATING;
+                mState = State.ANIMATING_LINE_TO_DOT;
+                if (mOnProgressUpdateListener != null) {
+                    mOnProgressUpdateListener.onAnimationStarted();
+                }
             }
 
             @Override
@@ -189,7 +204,6 @@ public class DownloadProgressView extends View {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                mState = State.ANIMATING_TO_DOT;
             }
 
             @Override
@@ -225,7 +239,6 @@ public class DownloadProgressView extends View {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                hasArrowLineToDotEnded = true;
                 mProgressAnimationSet.start();
                 mState = State.ANIMATING_PROGRESS;
 
@@ -242,6 +255,9 @@ public class DownloadProgressView extends View {
             }
         });
 
+        mArrowToLineAnimatorSet = new AnimatorSet();
+        mArrowToLineAnimatorSet.playTogether(mArrowLineToDot, mArrowLineToHorizontalLine, mDotToProgressAnimation);
+
         mProgressAnimation = ValueAnimator.ofFloat(0, 360f);
         mProgressAnimation.setStartDelay(500);
         mProgressAnimation.setInterpolator(new LinearInterpolator());
@@ -249,7 +265,7 @@ public class DownloadProgressView extends View {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
                 mCurrentGlobalProgressValue = (float) valueAnimator.getAnimatedValue();
-                if(mOnProgressUpdateListener != null) {
+                if (mOnProgressUpdateListener != null) {
                     mOnProgressUpdateListener.onProgressUpdate(mCurrentGlobalProgressValue);
                 }
                 invalidate();
@@ -275,9 +291,9 @@ public class DownloadProgressView extends View {
 
             }
         });
-        mProgressAnimation.setDuration(1000);
+        mProgressAnimation.setDuration(mProgressDuration);
 
-        mExpandAnimation = ValueAnimator.ofFloat(0 , mRadius / 6);
+        mExpandAnimation = ValueAnimator.ofFloat(0, mRadius / 6);
         mExpandAnimation.setDuration(300);
         mExpandAnimation.setInterpolator(new DecelerateInterpolator());
         mExpandAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -309,7 +325,11 @@ public class DownloadProgressView extends View {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                mSuccessAnimation.start();
+                if (mResultState == State.ANIMATING_ERROR) {
+                    mErrorAnimation.start();
+                } else if (mResultState == State.ANIMATING_SUCCESS) {
+                    mSuccessAnimation.start();
+                }
             }
 
             @Override
@@ -339,10 +359,17 @@ public class DownloadProgressView extends View {
             @Override
             public void onAnimationStart(Animator animator) {
                 mState = State.ANIMATING_ERROR;
+                if (mOnProgressUpdateListener != null) {
+                    mOnProgressUpdateListener.onAnimationError();
+                }
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
+                if (mOnProgressUpdateListener != null) {
+                    mOnProgressUpdateListener.onAnimationEnded();
+                }
+
                 postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -350,7 +377,7 @@ public class DownloadProgressView extends View {
                         resetValues();
                         invalidate();
                     }
-                }, 500);
+                }, mResultDuration);
             }
 
             @Override
@@ -371,7 +398,7 @@ public class DownloadProgressView extends View {
         mSuccessAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                mSuccessValue = (float)valueAnimator.getAnimatedValue();
+                mSuccessValue = (float) valueAnimator.getAnimatedValue();
                 invalidate();
             }
         });
@@ -379,10 +406,16 @@ public class DownloadProgressView extends View {
             @Override
             public void onAnimationStart(Animator animator) {
                 mState = State.ANIMATING_SUCCESS;
+                if (mOnProgressUpdateListener != null) {
+                    mOnProgressUpdateListener.onAnimationSuccess();
+                }
             }
 
             @Override
             public void onAnimationEnd(Animator animator) {
+                if (mOnProgressUpdateListener != null) {
+                    mOnProgressUpdateListener.onAnimationEnded();
+                }
                 postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -390,7 +423,7 @@ public class DownloadProgressView extends View {
                         resetValues();
                         invalidate();
                     }
-                }, 500);
+                }, mResultDuration);
             }
 
             @Override
@@ -403,8 +436,7 @@ public class DownloadProgressView extends View {
 
             }
         });
-        mArrowToLineAnimatorSet = new AnimatorSet();
-        mArrowToLineAnimatorSet.playTogether(mArrowLineToDot, mArrowLineToHorizontalLine, mDotToProgressAnimation);
+
     }
 
     private void resetValues() {
@@ -421,7 +453,7 @@ public class DownloadProgressView extends View {
                 canvas.drawLine(mCenterX - mRadius / 2, mCenterY, mCenterX, mCenterY + mRadius / 2, mDrawingPaint);
                 canvas.drawLine(mCenterX, mCenterY + mRadius / 2, mCenterX + mRadius / 2, mCenterY, mDrawingPaint);
                 break;
-            case ANIMATING:
+            case ANIMATING_LINE_TO_DOT:
                 if (!mDotToProgressAnimation.isRunning()) {
                     canvas.drawLine(
                             mCenterX,
@@ -448,40 +480,43 @@ public class DownloadProgressView extends View {
                 break;
             case ANIMATING_PROGRESS:
                 float progress = ((mCenterX + mRadius / 2 + mArrowLineToHorizontalLineAnimatedValue / 2) - (mCenterX - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2)) / 360f;
+                mDrawingPaint.setStrokeWidth(mStrokeWidth);
                 canvas.drawArc(mCircleBounds, -90, mCurrentGlobalProgressValue, false, mDrawingPaint);
                 canvas.drawRoundRect(
                         mCenterX - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2,
                         mCenterY - mExpandCollapseValue,
                         mCenterX + mRadius / 2 + mArrowLineToHorizontalLineAnimatedValue / 2,
-                        mCenterY + mExpandCollapseValue,45,45,
+                        mCenterY + mExpandCollapseValue, 45, 45,
                         mProgressBackgroundPaint
                 );
                 canvas.drawRoundRect(
                         mCenterX - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2,
                         mCenterY - mExpandCollapseValue,
                         mCenterX - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2 + progress * mCurrentGlobalProgressValue,
-                        mCenterY + mExpandCollapseValue,45,45,
+                        mCenterY + mExpandCollapseValue, 45, 45,
                         mProgressPaint
                 );
                 break;
             case ANIMATING_SUCCESS:
+                mDrawingPaint.setStrokeWidth(mLineWidth);
                 canvas.drawArc(mCircleBounds, 0, 360, false, mDrawingPaint);
                 canvas.drawLine(
-                        mCenterX - mRadius / 2 + mSuccessValue * 2 - mSuccessValue / (float)Math.sqrt(2f) / 2,
+                        mCenterX - mRadius / 2 + mSuccessValue * 2 - mSuccessValue / (float) Math.sqrt(2f) / 2,
                         mCenterY + mSuccessValue,
-                        mCenterX + mSuccessValue * 2 - mSuccessValue / (float)Math.sqrt(2f) / 2,
+                        mCenterX + mSuccessValue * 2 - mSuccessValue / (float) Math.sqrt(2f) / 2,
                         mCenterY - mSuccessValue,
                         mDrawingPaint
-                        );
+                );
                 canvas.drawLine(
-                        mCenterX - mSuccessValue - 2*mSuccessValue / (float)Math.sqrt(2f) / 2,
+                        mCenterX - mSuccessValue - 2 * mSuccessValue / (float) Math.sqrt(2f) / 2,
                         mCenterY,
-                        mCenterX + mRadius / 2 - mSuccessValue * 2 - mSuccessValue / (float)Math.sqrt(2f) / 2,
+                        mCenterX + mRadius / 2 - mSuccessValue * 2 - mSuccessValue / (float) Math.sqrt(2f) / 2,
                         mCenterY + mSuccessValue,
                         mDrawingPaint
-                        );
+                );
                 break;
             case ANIMATING_ERROR:
+                mDrawingPaint.setStrokeWidth(mLineWidth);
                 canvas.drawArc(mCircleBounds, 0, 360, false, mDrawingPaint);
 
                 canvas.drawLine(
@@ -527,20 +562,150 @@ public class DownloadProgressView extends View {
         drawing(canvas);
     }
 
-    public void play() {
+    public void playToSuccess() {
+        mResultState = State.ANIMATING_SUCCESS;
+        mArrowToLineAnimatorSet.start();
+        invalidate();
+    }
+
+    public void playToError() {
+        mResultState = State.ANIMATING_ERROR;
         mArrowToLineAnimatorSet.start();
         invalidate();
     }
 
     public interface OnProgressUpdateListener {
         void onProgressUpdate(float currentPlayTime);
+
+        void onAnimationStarted();
+
+        void onAnimationEnded();
+
+        void onAnimationSuccess();
+
+        void onAnimationError();
     }
 
     public void setOnProgressUpdateListener(OnProgressUpdateListener listener) {
         mOnProgressUpdateListener = listener;
     }
 
-    public void setProgressText(String progressText) {
-        mProgressText = progressText;
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Parcelable superState = super.onSaveInstanceState();
+        SavedState savedState = new SavedState(superState);
+        savedState.mState = mState;
+        savedState.mmCurrentPlayTime = getCurrentPlayTimeByState(mState);
+        return savedState;
+    }
+
+    private long[] getCurrentPlayTimeByState(State mState) {
+        long[] tab = new long[3];
+        switch (mState) {
+            case ANIMATING_LINE_TO_DOT:
+                for (int i = 0; i < mArrowToLineAnimatorSet.getChildAnimations().size(); i++) {
+                    tab[i] = ((ValueAnimator) mArrowToLineAnimatorSet.getChildAnimations().get(i)).getCurrentPlayTime();
+                }
+                mArrowToLineAnimatorSet.cancel();
+                break;
+            case ANIMATING_PROGRESS:
+                for (int i = 0; i < mProgressAnimationSet.getChildAnimations().size(); i++) {
+                    tab[i] = ((ValueAnimator) mProgressAnimationSet.getChildAnimations().get(i)).getCurrentPlayTime();
+                }
+                mProgressAnimationSet.cancel();
+                break;
+            case ANIMATING_ERROR:
+                tab[0] = mErrorAnimation.getCurrentPlayTime();
+                mErrorAnimation.cancel();
+                break;
+            case ANIMATING_SUCCESS:
+                tab[0] = mSuccessAnimation.getCurrentPlayTime();
+                mSuccessAnimation.cancel();
+                break;
+        }
+        return tab;
+    }
+
+    private void setCurrentPlayTimeByStateAndPlay(long[] tab, State mState) {
+        switch (mState) {
+            case ANIMATING_LINE_TO_DOT:
+                mArrowToLineAnimatorSet.start();
+                for (int i = 0; i < mArrowToLineAnimatorSet.getChildAnimations().size(); i++) {
+                    ((ValueAnimator) mArrowToLineAnimatorSet.getChildAnimations().get(i)).setCurrentPlayTime(tab[i]);
+                }
+                break;
+            case ANIMATING_PROGRESS:
+                mProgressAnimationSet.start();
+                for (int i = 0; i < mProgressAnimationSet.getChildAnimations().size(); i++) {
+                    ((ValueAnimator) mProgressAnimationSet.getChildAnimations().get(i)).setCurrentPlayTime(tab[i]);
+                }
+                break;
+            case ANIMATING_ERROR:
+                mErrorAnimation.start();
+                mErrorAnimation.setCurrentPlayTime(tab[0]);
+                break;
+            case ANIMATING_SUCCESS:
+                mSuccessAnimation.start();
+                mSuccessAnimation.setCurrentPlayTime(tab[0]);
+                break;
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        if (state instanceof SavedState) {
+            SavedState savedState = (SavedState) state;
+            mState = savedState.mState;
+            super.onRestoreInstanceState(savedState.getSuperState());
+            if (mState != State.IDLE) {
+                continueAnimation(mState, savedState.mmCurrentPlayTime);
+            }
+        } else {
+            super.onRestoreInstanceState(state);
+        }
+    }
+
+    private void continueAnimation(State mState, long[] mmCurrentPlayTime) {
+        setCurrentPlayTimeByStateAndPlay(mmCurrentPlayTime, mState);
+    }
+
+    static class SavedState extends BaseSavedState {
+
+        private boolean isFlashing;
+        private boolean isConfigurationChanged;
+        private long[] mmCurrentPlayTime;
+        private State mState;
+
+        public SavedState(Parcel source) {
+            super(source);
+            isFlashing = source.readInt() == 1;
+            isConfigurationChanged = source.readInt() == 1;
+            mmCurrentPlayTime = source.createLongArray();
+        }
+
+        public SavedState(Parcelable superState) {
+            super(superState);
+        }
+
+        @Override
+        public void writeToParcel(@NonNull Parcel dest, int flags) {
+            super.writeToParcel(dest, flags);
+            dest.writeInt(isFlashing ? 1 : 0);
+            dest.writeInt(isConfigurationChanged ? 1 : 0);
+            dest.writeLongArray(mmCurrentPlayTime);
+        }
+
+        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
+
+            @Override
+            public SavedState createFromParcel(Parcel source) {
+                return new SavedState(source);
+            }
+
+            @Override
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
     }
 }

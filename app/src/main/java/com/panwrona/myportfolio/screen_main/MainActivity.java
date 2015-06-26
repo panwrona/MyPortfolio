@@ -21,6 +21,10 @@ public class MainActivity extends ActionBarActivity implements IMainActivityView
     ProgressPhotoView mProgressPhotoView;
     @InjectView(R.id.dpv)
     DownloadProgressView mDownloadProgressView;
+    @InjectView(R.id.dpv2)
+    DownloadProgressView mDownloadProgressView2;
+    @InjectView(R.id.dpv3)
+    DownloadProgressView mDownloadProgressView3;
 //    @InjectView(R.id.stv)
 //    SpellingTextView mSpellingTextView;
 
@@ -40,7 +44,10 @@ public class MainActivity extends ActionBarActivity implements IMainActivityView
     public void onClick() {
         //mSpellingTextView.start();
         mProgressPhotoView.start();
-        mDownloadProgressView.play();
+        mDownloadProgressView.playToSuccess();
+        mDownloadProgressView2.playToError();
+        mDownloadProgressView3.playToSuccess();
+
 
     }
 

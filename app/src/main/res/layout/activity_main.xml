@@ -17,7 +17,7 @@
         android:visibility="gone"
         ppv:radius="48dp"
         ppv:strokeThickness="2dp"
-        ppv:progressColor="@color/accent_color"
+        ppv:progresssColor="@color/accent_color"
         ppv:backgroundColor="@color/light_primary_color"/>
 
     <TextView
@@ -41,5 +41,36 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         ppv:circleRadius="40dp"
-        ppv:strokeWidth="2dp"/>
+        ppv:strokeWidth="2dp"
+        ppv:progressBackgroundColor="@color/progress_background"
+        ppv:progressColor="@color/text_icon_color"
+        ppv:drawingColor="@color/text_icon_color"
+        ppv:circleBackgroundColor="@color/light_primary_color"
+        ppv:lineWidth="1dp"/>
+
+    <com.panwrona.myportfolio.customviews.DownloadProgressView
+        android:id="@+id/dpv2"
+        android:layout_gravity="center"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        ppv:circleRadius="40dp"
+        ppv:strokeWidth="2dp"
+        ppv:progressBackgroundColor="@color/progress_background"
+        ppv:progressColor="@color/text_icon_color"
+        ppv:drawingColor="@color/text_icon_color"
+        ppv:circleBackgroundColor="@color/light_primary_color"
+        ppv:lineWidth="1dp"/>
+
+    <com.panwrona.myportfolio.customviews.DownloadProgressView
+        android:id="@+id/dpv3"
+        android:layout_gravity="center"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        ppv:circleRadius="12dp"
+        ppv:strokeWidth="2dp"
+        ppv:progressBackgroundColor="@color/progress_background"
+        ppv:progressColor="@color/text_icon_color"
+        ppv:drawingColor="@color/text_icon_color"
+        ppv:circleBackgroundColor="@color/light_primary_color"
+        ppv:lineWidth="1dp"/>
 </LinearLayout>
