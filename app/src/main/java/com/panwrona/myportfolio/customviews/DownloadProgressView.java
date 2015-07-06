@@ -9,6 +9,9 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -453,14 +456,14 @@ public class DownloadProgressView extends View {
                         mCenterX - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2,
                         mCenterY - mExpandCollapseValue,
                         mCenterX + mRadius / 2 + mArrowLineToHorizontalLineAnimatedValue / 2,
-                        mCenterY + mExpandCollapseValue,45,45,
+                        mCenterY + mExpandCollapseValue, 45, 45,
                         mProgressBackgroundPaint
                 );
                 canvas.drawRoundRect(
                         mCenterX - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2,
                         mCenterY - mExpandCollapseValue,
                         mCenterX - mRadius / 2 - mArrowLineToHorizontalLineAnimatedValue / 2 + progress * mCurrentGlobalProgressValue,
-                        mCenterY + mExpandCollapseValue,45,45,
+                        mCenterY + mExpandCollapseValue, 45, 45,
                         mProgressPaint
                 );
                 break;
@@ -543,4 +546,46 @@ public class DownloadProgressView extends View {
     public void setProgressText(String progressText) {
         mProgressText = progressText;
     }
+
+    static class SavedState extends BaseSavedState {
+
+        private boolean isFlashing;
+        private boolean isConfigurationChanged;
+        private long mmCurrentPlayTime;
+        private int mmCurrentAnimation;
+
+        public SavedState(Parcel source) {
+            super(source);
+            isFlashing = source.readInt() == 1;
+            isConfigurationChanged = source.readInt() == 1;
+            mmCurrentPlayTime = source.readLong();
+            mmCurrentAnimation = source.readInt();
+        }
+
+        public SavedState(Parcelable superState) {
+            super(superState);
+        }
+
+        @Override
+        public void writeToParcel(@NonNull Parcel dest, int flags) {
+            super.writeToParcel(dest, flags);
+            dest.writeInt(isFlashing ? 1 : 0);
+            dest.writeInt(isConfigurationChanged ? 1 : 0);
+            dest.writeLong(mmCurrentPlayTime);
+        }
+
+        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
+
+            @Override
+            public SavedState createFromParcel(Parcel source) {
+                return new SavedState(source);
+            }
+
+            @Override
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
+    }
+
 }

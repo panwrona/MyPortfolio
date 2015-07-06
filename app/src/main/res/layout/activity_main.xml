@@ -1,45 +1,25 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ppv="http://schemas.android.com/apk/res-auto"
-    xmlns:stv="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation='vertical'
     android:layout_height="match_parent"
-    android:background="@color/primary_color"
-   >
+    android:orientation="vertical">
 
-    <com.panwrona.myportfolio.customviews.ProgressPhotoView
-        android:id="@+id/ppv"
-        android:layout_gravity="center"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="16dp"
-        android:visibility="gone"
-        ppv:radius="48dp"
-        ppv:strokeThickness="2dp"
-        ppv:progressColor="@color/accent_color"
-        ppv:backgroundColor="@color/light_primary_color"/>
-
-    <TextView
-        android:id="@+id/click"
+    <Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Click!"
-        android:textSize="16sp"/>
-
-    <!--<com.panwrona.myportfolio.customviews.SpellingTextView-->
-        <!--android:id="@+id/stv"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:textColor="@color/light_primary_color"-->
-        <!--stv:text="abcdefghijkl"-->
-        <!--/>-->
-
-    <com.panwrona.myportfolio.customviews.DownloadProgressView
-        android:id="@+id/dpv"
-        android:layout_gravity="center"
-        android:layout_width="200dp"
         android:layout_height="200dp"
-        ppv:circleRadius="40dp"
-        ppv:strokeWidth="2dp"/>
+        android:background="@color/blue_primary_color">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:transitionName="title"
+                android:textColor="@color/text_icon_color"
+                android:textSize="20sp" />
+
+
+    </Toolbar>
+
 </LinearLayout>

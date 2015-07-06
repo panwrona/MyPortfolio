@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
 import com.panwrona.myportfolio.R;
@@ -59,15 +60,12 @@ public class SpellingTextView extends TextView {
             }
         });
 
-        mShowingLettersAnimator = ValueAnimator.ofInt(1, mText.length());
+        mShowingLettersAnimator = ValueAnimator.ofInt(0, mText.length());
+        mShowingLettersAnimator.setInterpolator(new LinearInterpolator());
         mShowingLettersAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                if((int)valueAnimator.getAnimatedValue() == 0) {
-                    setText(mText.substring(0, (int)valueAnimator.getAnimatedValue()));
-                } else {
-                    setText(mText.substring(0, (int)valueAnimator.getAnimatedValue() - 1));
-                }
+                setText(mText.substring(0, (int)valueAnimator.getAnimatedValue()));
                 in.start();
             }
         });

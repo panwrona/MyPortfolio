@@ -85,6 +85,7 @@ public class ProgressPhotoView extends ImageView implements Animatable {
         }
     };
     private boolean isBitmapSet = false;
+    private OnAnimationListener listener;
 
     public ProgressPhotoView(Context context) {
         super(context);
@@ -149,7 +150,7 @@ public class ProgressPhotoView extends ImageView implements Animatable {
 
         mProgressValueAnimator = ValueAnimator.ofInt(0, 360);
         mProgressValueAnimator.setInterpolator(mAngleInterpolator);
-        mProgressValueAnimator.setDuration(1800);
+        mProgressValueAnimator.setDuration(3000);
         mProgressValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -166,6 +167,9 @@ public class ProgressPhotoView extends ImageView implements Animatable {
             @Override
             public void onAnimationEnd(Animator animator) {
                 setImageBitmap(transformBitmapIntoCircle(mPhotoBitmap));
+                if(listener != null) {
+                    listener.onAnimationEnded();
+                }
             }
 
             @Override
@@ -328,5 +332,9 @@ public class ProgressPhotoView extends ImageView implements Animatable {
 
     public void setCurrentGlobalProgress(float currentGlobalProgress) {
         this.currentGlobalProgress = currentGlobalProgress;
+    }
+
+    public void setAnimationListener(OnAnimationListener listener) {
+        this.listener = listener;
     }
 }
