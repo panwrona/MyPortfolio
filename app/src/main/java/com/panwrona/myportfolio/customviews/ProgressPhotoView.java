@@ -101,7 +101,7 @@ public class ProgressPhotoView extends ImageView implements Animatable {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.ProgressPhotoView, 0, 0);
         try {
             mStrokeThickness = array.getDimension(R.styleable.ProgressPhotoView_strokeThickness, 0);
-            mProgressColor = array.getColor(R.styleable.ProgressPhotoView_progressColor, 0);
+            mProgressColor = array.getColor(R.styleable.ProgressPhotoView_progresssColor, 0);
             mBackgroundColor = array.getColor(R.styleable.ProgressPhotoView_backgroundColor, 0);
             mRadius = array.getDimension(R.styleable.ProgressPhotoView_radius, 0);
         } finally {
