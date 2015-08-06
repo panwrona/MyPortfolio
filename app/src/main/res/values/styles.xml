@@ -5,11 +5,21 @@
         <!-- Customize your theme here. -->
     </style>
 
+
+    <style name="TextAppearance.LobsterBold" parent="android:TextAppearance">
+        <item name="fontPath">fonts/lobster-bold.ttf</item>
+    </style>
+
+    <style name="TextAppearance.LobsterRegular" parent="android:TextAppearance">
+        <item name="fontPath">fonts/lobster-regular.ttf</item>
+    </style>
+
+    <!-- CUSTOM VIEWS -->
     <declare-styleable name="ProgressPhotoView">
         <attr name="strokeThickness" format="dimension"/>
         <attr name="progresssColor" format="color" />
-        <attr name="radius" format="dimension" />
-        <attr name="backgroundColor" format="color" />
+        <!--<attr name="backgroundColor" format="color" />-->
+        <!--<attr name="radius" format="dimension" />-->
         <attr name="imageSrc" format="reference" />
     </declare-styleable>
 
@@ -18,17 +28,18 @@
         <attr name="animationLength" format="integer" />
     </declare-styleable>
 
-    <declare-styleable name="DownloadProgressView">
-        <attr name="circleRadius" format="dimension" />
-        <attr name="strokeWidth" format="dimension" />
-        <attr name="lineWidth" format="dimension" />
-        <attr name="progressDuration" format="integer" />
-        <attr name="resultDuration" format="integer" />
-        <attr name="progressBackgroundColor" format="color"/>
-        <attr name="drawingColor" format="color" />
-        <attr name="progressColor" format="color" />
-        <attr name="circleBackgroundColor" format="color" />
-        <attr name="overshootValue" format="float" />
+    <declare-styleable name="SkillsLevelView">
+        <attr name="backgroundColor" format="color" />
+        <attr name="foregroundColor" format="color" />
+        <attr name="radius" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="skillScale" format="integer" />
     </declare-styleable>
 
+    <declare-styleable name="CircularImageView">
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="strokeColor" format="color" />
+        <attr name="circularRadius" format="dimension" />
+    </declare-styleable>
 </resources>

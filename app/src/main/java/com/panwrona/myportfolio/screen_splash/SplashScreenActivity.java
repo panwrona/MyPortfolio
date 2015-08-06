@@ -1,13 +1,22 @@
 package com.panwrona.myportfolio.screen_splash;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
+import android.transition.TransitionManager;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -33,12 +42,7 @@ public class SplashScreenActivity extends MvpActivity<SplashScreenView, SplashSc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.inject(this);
-        Typeface robotoFont = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf");
-        Typeface lobsterFont = Typeface.createFromAsset(getAssets(), "fonts/LobsterTwo-Bold.ttf");
-        mAuthor.setTypeface(robotoFont);
-        mTitle.setTypeface(lobsterFont);
 
-        final Activity activity = this;
         Animation fadeIn = new AlphaAnimation(0, 1);
         fadeIn.setInterpolator(new DecelerateInterpolator());
         fadeIn.setDuration(1800);
@@ -50,9 +54,14 @@ public class SplashScreenActivity extends MvpActivity<SplashScreenView, SplashSc
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                ActivityOptionsCompat compat = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,
-                        new Pair<View, String>(mTitle, "title"));
-                activity.startActivity(new Intent(SplashScreenActivity.this, MainActivity.class), compat.toBundle());
+                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                    @Override public void run() {
+                        ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(SplashScreenActivity.this);
+                        startActivity(new Intent(SplashScreenActivity.this, MainActivity.class),
+                            activityOptions.toBundle());
+                        finishAfterTransition();
+                    }
+                }, 1500);
             }
 
             @Override
@@ -67,6 +76,22 @@ public class SplashScreenActivity extends MvpActivity<SplashScreenView, SplashSc
     @Override
     protected SplashScreenPresenter createPresenter() {
         return new SplashScreenPresenterImpl();
+    }
+
+    @Override protected Transition getEnterTransition() {
+        return null;
+    }
+
+    @Override protected Transition getExitTransition() {
+       return null;
+    }
+
+    @Override protected Transition getReturnTransition() {
+        return null;
+    }
+
+    @Override protected Transition getReenterTransition() {
+        return null;
     }
 
     @Override

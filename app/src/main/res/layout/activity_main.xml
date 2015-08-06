@@ -1,23 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ppv="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:civ="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    >
 
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/blue_primary_color">
+        android:layout_height="@dimen/header_height"
+        android:elevation="@dimen/toolbar_elevation"
+        android:background="@color/primary_color"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/toolbar_title_margin_start"
+                android:layout_marginTop="@dimen/toolbar_title_margin_top"
                 android:transitionName="title"
                 android:textColor="@color/text_icon_color"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:text="@string/app_name"
+                android:textAppearance="@style/TextAppearance.LobsterRegular"
+                tools:ignore="MissingPrefix"
+                />
+
+
+            <com.panwrona.myportfolio.customviews.CircularImageView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/toolbar_circle_image_height"
+                android:layout_marginTop="@dimen/toolbar_title_margin_top"
+                civ:circularRadius="8dp"
+                civ:strokeWidth="2dp"
+                civ:strokeColor="@color/text_icon_color"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                />
+        </LinearLayout>
 
 
     </Toolbar>
