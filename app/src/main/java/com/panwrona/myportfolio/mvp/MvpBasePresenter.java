@@ -2,9 +2,6 @@ package com.panwrona.myportfolio.mvp;
 
 import java.lang.ref.WeakReference;
 
-/**
- * Created by Mariusz on 2015-07-06.
- */
 public class MvpBasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     private WeakReference<V> viewRef;

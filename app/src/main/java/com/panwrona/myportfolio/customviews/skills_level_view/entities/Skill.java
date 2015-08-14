@@ -4,10 +4,19 @@ public class Skill {
 
 	private final int level;
 	private final String name;
+	private float textWidth;
 
 	public Skill(Builder builder) {
 		this.level = builder.level;
 		this.name = builder.name;
+	}
+
+	public float getTextWidth() {
+		return textWidth;
+	}
+
+	public void setTextWidth(float textWidth) {
+		this.textWidth = textWidth;
 	}
 
 	public int getLevel() {

@@ -18,7 +18,7 @@ public abstract class MvpFragment<V extends MvpView, P extends MvpPresenter> ext
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(getLayout(), container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 

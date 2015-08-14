@@ -4,4 +4,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="splash_screen_author">by mariusz brona</string>
+    <string name="name">Mariusz Brona</string>
+    <string name="occupation">android developer</string>
 </resources>

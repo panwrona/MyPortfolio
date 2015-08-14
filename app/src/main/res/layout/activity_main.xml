@@ -9,26 +9,30 @@
     android:background="@android:color/white"
     >
 
-    <Toolbar
+    <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/header_height"
+        android:layout_height="@dimen/toolbar_height"
         android:elevation="@dimen/toolbar_elevation"
-        android:background="@color/primary_color"
+        android:background="@drawable/main_background"
+        civ:contentInsetStart="0dp"
         >
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/toolbar_rl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:background="@color/transparent_logo"
+            android:visibility="gone"
             >
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/toolbar_title_margin_start"
                 android:layout_marginTop="@dimen/toolbar_title_margin_top"
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"
                 android:transitionName="title"
                 android:textColor="@color/text_icon_color"
                 android:textSize="20sp"
@@ -37,25 +41,81 @@
                 tools:ignore="MissingPrefix"
                 />
 
-
             <com.panwrona.myportfolio.customviews.CircularImageView
-                android:layout_width="wrap_content"
+                android:id="@+id/portfolio_logo"
+                android:layout_width="@dimen/toolbar_circle_image_height"
                 android:layout_height="@dimen/toolbar_circle_image_height"
                 android:layout_marginTop="@dimen/toolbar_title_margin_top"
+                android:layout_marginStart="@dimen/default_layout_margin"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/title"
                 civ:circularRadius="8dp"
                 civ:strokeWidth="2dp"
                 civ:strokeColor="@color/text_icon_color"
                 />
 
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="34sp"
+                android:textColor="@color/text_icon_color"
+                android:text="@string/name"
+                android:layout_toEndOf="@id/portfolio_logo"
+                android:layout_below="@id/title"
+                android:layout_marginTop="@dimen/toolbar_title_margin_top"
+                android:layout_marginStart="@dimen/default_layout_margin"
+                fontPath="fonts/Roboto-Thin.ttf"
+                tools:ignore="MissingPrefix"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:textSize="24sp"
+                android:textColor="@color/light_primary_color"
+                android:text="@string/occupation"
+                android:layout_toEndOf="@id/portfolio_logo"
+                android:layout_below="@id/name"
+                android:layout_marginStart="@dimen/default_layout_margin"
+                fontPath="fonts/Roboto-Thin.ttf"
+                tools:ignore="MissingPrefix"
                 />
-        </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:weightSum="3"
+                android:layout_marginBottom="@dimen/default_layout_margin"
+                >
 
-    </Toolbar>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/social_network_icon_dimen"
+                    android:src="@drawable/twitter"
+                    android:layout_weight="1"
+                    />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/social_network_icon_dimen"
+                    android:src="@drawable/linkedin"
+                    android:layout_weight="1"
+                    />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/social_network_icon_dimen"
+                    android:src="@drawable/github"
+                    android:layout_weight="1"
+                    />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
 
 </LinearLayout>
