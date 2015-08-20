@@ -5,8 +5,10 @@ import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.transition.Transition;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
 import butterknife.Bind;
@@ -23,16 +25,14 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
         return new MainActivityPresenterImpl();
     }
 
-    @Override protected Transition getEnterTransition() {
-        return null;
-    }
-
     private void revealTransition() {
         int cx = mToolbar.getMeasuredWidth() / 2;
         int cy = mToolbar.getMeasuredHeight() / 2;
 
-        int finalRadius = Math.max(mToolbar.getWidth(), mToolbar.getHeight()) / 2;
-        Animator anim = ViewAnimationUtils.createCircularReveal(mToolbar, cx, cy, 0, finalRadius);
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        int bigRadius = Math.max(displayMetrics.widthPixels, mToolbar.getHeight());
+        Animator anim = ViewAnimationUtils.createCircularReveal(mToolbar, cx, cy, 0, bigRadius);
+        anim.setInterpolator(new AccelerateDecelerateInterpolator());
         anim.setDuration(500);
         mToolbar.setVisibility(View.VISIBLE);
         anim.addListener(new Animator.AnimatorListener() {
@@ -44,7 +44,7 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
             @Override
             public void onAnimationEnd(Animator animation) {
                 ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(mRlToolbarMainLayout, View.ALPHA, 0, 1);
-                alphaAnimator.setDuration(300);
+                alphaAnimator.setDuration(500);
                 alphaAnimator.setInterpolator(new DecelerateInterpolator());
                 alphaAnimator.addListener(new Animator.AnimatorListener() {
                     @Override public void onAnimationStart(Animator animation) {
@@ -52,7 +52,7 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
                     }
 
                     @Override public void onAnimationEnd(Animator animation) {
-
+                        populateData();
                     }
 
                     @Override public void onAnimationCancel(Animator animation) {
@@ -77,6 +77,14 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
             }
         });
         anim.start();
+    }
+
+    private void populateData() {
+
+    }
+
+    @Override protected Transition getEnterTransition() {
+        return null;
     }
 
     @Override protected Transition getExitTransition() {
