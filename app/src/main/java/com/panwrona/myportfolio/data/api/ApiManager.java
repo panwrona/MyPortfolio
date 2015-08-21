@@ -1,9 +1,12 @@
 package com.panwrona.myportfolio.data.api;
 
 import com.panwrona.myportfolio.data.entities.GithubRepoResponse;
+import com.panwrona.myportfolio.data.entities.OwnerResponse;
 import com.panwrona.myportfolio.utils.Constants;
 import retrofit.android.AndroidLog;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class ApiManager implements RestApi {
 
@@ -23,6 +26,15 @@ public class ApiManager implements RestApi {
 	}
 
 	@Override public Observable<GithubRepoResponse> getGithubRepos() {
-		return null;
+		return restAdapter.getGithubRepos().compose(applySchedulers());
+	}
+
+	private <T> Observable.Transformer<T, T> applySchedulers() {
+		return observable -> observable.subscribeOn(Schedulers.io())
+			.observeOn(AndroidSchedulers.mainThread());
+	}
+
+	@Override public Observable<OwnerResponse> getOwner() {
+		return restAdapter.getOwner().compose(applySchedulers());
 	}
 }

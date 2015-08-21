@@ -1,27 +1,72 @@
 package com.panwrona.myportfolio.actions.github_actions;
 
-import com.panwrona.myportfolio.dispatcher.Dispatcher;
+import com.panwrona.myportfolio.actions.DataBundle;
+import com.panwrona.myportfolio.buses.ActionBus;
+import com.panwrona.myportfolio.data.api.ApiManager;
+import com.panwrona.myportfolio.data.entities.GithubRepoResponse;
+import com.panwrona.myportfolio.data.entities.OwnerResponse;
+import com.panwrona.myportfolio.utils.RxUtils;
+import javax.inject.Inject;
+import rx.Subscriber;
+import rx.subscriptions.CompositeSubscription;
 
 public class GithubActionsCreator {
-	private static GithubActionsCreator instance;
-	final Dispatcher dispatcher;
+	private ActionBus actionBus;
+	@Inject ApiManager apiManager;
 
-	public GithubActionsCreator(Dispatcher dispatcher) {
-		this.dispatcher = dispatcher;
+	CompositeSubscription compositeSubscription = new CompositeSubscription();
+
+	@Inject
+	public GithubActionsCreator(ActionBus actionBus) {
+		this.actionBus = actionBus;
 	}
 
-	public static GithubActionsCreator get(Dispatcher dispatcher) {
-		if(instance == null) {
-			instance = new GithubActionsCreator(dispatcher);
-		}
-		return instance;
+	public final void downloadRepos() {
+		compositeSubscription.add(
+			apiManager.getGithubRepos().subscribe(new Subscriber<GithubRepoResponse>() {
+				@Override public void onCompleted() {
+
+				}
+
+				@Override public void onError(Throwable e) {
+
+				}
+
+				@Override public void onNext(GithubRepoResponse githubRepoResponse) {
+					DataBundle<GithubAction.GithubDataKey> bundle =
+						new DataBundle<GithubAction.GithubDataKey>();
+					bundle.put(GithubAction.GithubDataKey.DESCRIPTION,
+						githubRepoResponse.getGithubRepoList());
+					actionBus.post(
+						new GithubAction(GithubAction.GithubActionType.DOWNLOAD_REPOS, bundle));
+				}
+			}));
 	}
 
-	public void downloadRepos() {
-		dispatcher.dispatch(GithubActions.DOWNLOAD_REPOS);
+	public final void getOwner() {
+		compositeSubscription.add(apiManager.getOwner().subscribe(new Subscriber<OwnerResponse>() {
+			@Override public void onCompleted() {
+
+			}
+
+			@Override public void onError(Throwable e) {
+
+			}
+
+			@Override public void onNext(OwnerResponse ownerResponse) {
+				DataBundle<GithubAction.GithubDataKey> bundle =
+					new DataBundle<GithubAction.GithubDataKey>();
+				bundle.put(GithubAction.GithubDataKey.DESCRIPTION, ownerResponse.getOwner());
+				actionBus.post(new GithubAction(GithubAction.GithubActionType.GET_OWNER, bundle));
+			}
+		}));
 	}
 
-	public void getOwner() {
-		dispatcher.dispatch(GithubActions.GET_OWNER);
+	public void subscribe() {
+		RxUtils.getNewCompositeSubIfUnsubscribed(compositeSubscription);
+	}
+
+	public void unSubscribe() {
+		RxUtils.unsubscribeIfNotNull(compositeSubscription);
 	}
 }

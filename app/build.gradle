@@ -1,4 +1,20 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        // This plugin helps Android Studio find Dagger's generated classes
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+        classpath 'com.jakewharton.hugo:hugo-plugin:1.2.1'
+        classpath 'me.tatarka:gradle-retrolambda:3.2.2'
+    }
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.jakewharton.hugo'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 22
@@ -17,6 +33,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+retrolambda {
+    jvmArgs '-noverify'
 }
 
 dependencies {
@@ -36,4 +60,8 @@ dependencies {
     compile 'io.reactivex:rxandroid:0.24.0'
 
     compile 'com.google.code.gson:gson:2.3.1'
+
+    compile 'com.google.dagger:dagger:2.0'
+    apt 'com.google.dagger:dagger-compiler:2.0'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
 }
