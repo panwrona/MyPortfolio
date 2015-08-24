@@ -4,9 +4,10 @@ import com.panwrona.myportfolio.actions.github_actions.GithubActionsCreator;
 import com.panwrona.myportfolio.buses.DataBus;
 import com.panwrona.myportfolio.data.event_entities.GithubRepoList;
 import com.panwrona.myportfolio.mvp.MvpBasePresenter;
-import com.panwrona.myportfolio.screen_main.di.MainActivityComponent;
 import com.squareup.otto.Subscribe;
+
 import javax.inject.Inject;
+
 
 public class MainActivityPresenterImpl extends MvpBasePresenter<MainActivityView>
 	implements MainActivityPresenter {

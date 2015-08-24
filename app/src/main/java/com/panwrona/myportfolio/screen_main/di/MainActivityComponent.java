@@ -1,5 +1,7 @@
 package com.panwrona.myportfolio.screen_main.di;
 
+import android.app.Activity;
+
 import com.panwrona.myportfolio.app.MyPortfolioApp;
 import com.panwrona.myportfolio.app.MyPortfolioAppComponent;
 import com.panwrona.myportfolio.di.PerActivity;
@@ -21,4 +23,6 @@ public interface MainActivityComponent {
 
 	void inject(MainActivity mainActivity);
 	void inject(MainActivityPresenterImpl mainActivityPresenter);
+
+	Activity activity();
 }

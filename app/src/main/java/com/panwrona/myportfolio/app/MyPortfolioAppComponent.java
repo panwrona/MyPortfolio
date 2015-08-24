@@ -5,6 +5,8 @@ import com.panwrona.myportfolio.actions.DataBundle;
 import com.panwrona.myportfolio.buses.ActionBus;
 import com.panwrona.myportfolio.buses.DataBus;
 import com.panwrona.myportfolio.buses.RxBus;
+import com.panwrona.myportfolio.data.api.ApiManager;
+
 import dagger.Component;
 import javax.inject.Singleton;
 
@@ -25,4 +27,5 @@ public interface MyPortfolioAppComponent {
 	Application application();
 	ActionBus actionBus();
 	DataBus dataBus();
+	ApiManager apiManager();
 }

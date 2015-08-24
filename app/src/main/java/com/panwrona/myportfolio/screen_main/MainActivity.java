@@ -12,137 +12,179 @@ import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
-import butterknife.Bind;
+
 import com.panwrona.myportfolio.R;
+import com.panwrona.myportfolio.buses.DataBus;
 import com.panwrona.myportfolio.data.entities.GithubRepo;
+import com.panwrona.myportfolio.data.event_entities.GithubRepoList;
 import com.panwrona.myportfolio.mvp.MvpActivity;
 import com.panwrona.myportfolio.screen_main.di.MainActivityComponent;
+import com.squareup.otto.Subscribe;
+
 import java.util.List;
 
+import javax.inject.Inject;
+
+import butterknife.Bind;
+
 public class MainActivity extends MvpActivity<MainActivityView, MainActivityPresenter>
-	implements MainActivityView {
-	private static final String TAG = MainActivity.class.getSimpleName();
+        implements MainActivityView {
+    private static final String TAG = MainActivity.class.getSimpleName();
 
-	@Bind(R.id.toolbar) Toolbar mToolbar;
-	@Bind(R.id.toolbar_rl) RelativeLayout mRlToolbarMainLayout;
-	private MainActivityComponent component;
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
+    @Bind(R.id.toolbar_rl)
+    RelativeLayout mRlToolbarMainLayout;
+    @Inject
+    DataBus dataBus;
+    private MainActivityComponent component;
 
-	@Override protected MainActivityPresenter createPresenter() {
-		return new MainActivityPresenterImpl(this);
-	}
+    @Override
+    protected MainActivityPresenter createPresenter() {
+        return new MainActivityPresenterImpl(this);
+    }
 
-	private void revealTransition() {
-		int cx = mToolbar.getMeasuredWidth() / 2;
-		int cy = mToolbar.getMeasuredHeight() / 2;
+    private void revealTransition() {
+        int cx = mToolbar.getMeasuredWidth() / 2;
+        int cy = mToolbar.getMeasuredHeight() / 2;
 
-		DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-		int bigRadius = Math.max(displayMetrics.widthPixels, mToolbar.getHeight());
-		Animator anim = ViewAnimationUtils.createCircularReveal(mToolbar, cx, cy, 0, bigRadius);
-		anim.setInterpolator(new AccelerateDecelerateInterpolator());
-		anim.setDuration(500);
-		mToolbar.setVisibility(View.VISIBLE);
-		anim.addListener(new Animator.AnimatorListener() {
-			@Override public void onAnimationStart(Animator animation) {
+        DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+        int bigRadius = Math.max(displayMetrics.widthPixels, mToolbar.getHeight());
+        Animator anim = ViewAnimationUtils.createCircularReveal(mToolbar, cx, cy, 0, bigRadius);
+        anim.setInterpolator(new AccelerateDecelerateInterpolator());
+        anim.setDuration(500);
+        mToolbar.setVisibility(View.VISIBLE);
+        anim.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
 
-			}
+            }
 
-			@Override public void onAnimationEnd(Animator animation) {
-				ObjectAnimator alphaAnimator =
-					ObjectAnimator.ofFloat(mRlToolbarMainLayout, View.ALPHA, 0, 1);
-				alphaAnimator.setDuration(500);
-				alphaAnimator.setInterpolator(new DecelerateInterpolator());
-				alphaAnimator.addListener(new Animator.AnimatorListener() {
-					@Override public void onAnimationStart(Animator animation) {
-						mRlToolbarMainLayout.setVisibility(View.VISIBLE);
-					}
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                ObjectAnimator alphaAnimator =
+                        ObjectAnimator.ofFloat(mRlToolbarMainLayout, View.ALPHA, 0, 1);
+                alphaAnimator.setDuration(500);
+                alphaAnimator.setInterpolator(new DecelerateInterpolator());
+                alphaAnimator.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        mRlToolbarMainLayout.setVisibility(View.VISIBLE);
+                    }
 
-					@Override public void onAnimationEnd(Animator animation) {
-						populateData();
-					}
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        populateData();
+                    }
 
-					@Override public void onAnimationCancel(Animator animation) {
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
 
-					}
+                    }
 
-					@Override public void onAnimationRepeat(Animator animation) {
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
 
-					}
-				});
-				alphaAnimator.start();
-			}
+                    }
+                });
+                alphaAnimator.start();
+            }
 
-			@Override public void onAnimationCancel(Animator animation) {
+            @Override
+            public void onAnimationCancel(Animator animation) {
 
-			}
+            }
 
-			@Override public void onAnimationRepeat(Animator animation) {
+            @Override
+            public void onAnimationRepeat(Animator animation) {
 
-			}
-		});
-		anim.start();
-	}
+            }
+        });
+        anim.start();
+    }
 
-	private void populateData() {
-		presenter.getGithubRepos();
-	}
+    private void populateData() {
+        presenter.getGithubRepos();
+    }
 
-	@Override protected Transition getEnterTransition() {
-		return null;
-	}
+    @Override
+    protected Transition getEnterTransition() {
+        return null;
+    }
 
-	@Override protected Transition getExitTransition() {
-		return null;
-	}
+    @Override
+    protected Transition getExitTransition() {
+        return null;
+    }
 
-	@Override protected Transition getReturnTransition() {
-		return null;
-	}
+    @Override
+    protected Transition getReturnTransition() {
+        return null;
+    }
 
-	@Override protected Transition getReenterTransition() {
-		return null;
-	}
+    @Override
+    protected Transition getReenterTransition() {
+        return null;
+    }
 
-	@Override protected int getLayout() {
-		return R.layout.activity_main;
-	}
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_main;
+    }
 
-	@Override protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		component = MainActivityComponent.Initializer.init(this);
-		component.inject(this);
-		initToolbar();
-		mToolbar.post(new Runnable() {
-			@Override public void run() {
-				revealTransition();
-			}
-		});
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        component = MainActivityComponent.Initializer.init(this);
+        component.inject(this);
+        super.onCreate(savedInstanceState);
+        initToolbar();
+        mToolbar.post(new Runnable() {
+            @Override
+            public void run() {
+                revealTransition();
+            }
+        });
+    }
 
-	@Override protected void onStart() {
-		super.onStart();
-		presenter.subscribe();
-		presenter.registerDataBus();
-	}
+    @Override
+    protected void onStart() {
+        super.onStart();
+        dataBus.register(this);
+        presenter.subscribe();
+        presenter.registerDataBus();
+    }
 
-	@Override protected void onPause() {
-		super.onPause();
-		presenter.unsubscribe();
-		presenter.unregisterDataBus();
-	}
+    @Override
+    protected void onPause() {
+        super.onPause();
+        dataBus.unregister(this);
+        presenter.unsubscribe();
+        presenter.unregisterDataBus();
+    }
 
-	private void initToolbar() {
-		setSupportActionBar(mToolbar);
-		if (getSupportActionBar() != null) {
-			mToolbar.setTitle("");
-			getSupportActionBar().setTitle("");
-		}
-	}
+    private void initToolbar() {
+        setSupportActionBar(mToolbar);
+        if (getSupportActionBar() != null) {
+            mToolbar.setTitle("");
+            getSupportActionBar().setTitle("");
+        }
+    }
 
-	@Override public void updateReposList(List<GithubRepo> reposList) {
-		Log.d(TAG, "githubRepos: " + reposList.get(0).getName());
-	}
+    @Override
+    public void updateReposList(List<GithubRepo> reposList) {
+        Log.d(TAG, "githubRepos: " + reposList.get(0).getName());
+    }
 
-	public MainActivityComponent getComponent() {
-		return component;
-	}
+    @Subscribe
+    public void onGithubDataChange(GithubRepoList githubRepoList) {
+        updateViews(githubRepoList);
+    }
+
+    private void updateViews(GithubRepoList githubRepoList) {
+        updateReposList(githubRepoList.getGithubRepos());
+    }
+
+    public MainActivityComponent getComponent() {
+        return component;
+    }
 }

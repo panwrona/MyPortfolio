@@ -8,5 +8,4 @@ public interface MainActivityPresenter extends MvpPresenter<MainActivityView> {
     void registerDataBus();
     void unregisterDataBus();
     void getGithubRepos();
-
 }

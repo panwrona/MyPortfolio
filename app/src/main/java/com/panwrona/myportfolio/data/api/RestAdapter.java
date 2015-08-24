@@ -1,7 +1,11 @@
 package com.panwrona.myportfolio.data.api;
 
+import com.panwrona.myportfolio.data.entities.GithubRepo;
 import com.panwrona.myportfolio.data.entities.GithubRepoResponse;
 import com.panwrona.myportfolio.data.entities.OwnerResponse;
+
+import java.util.List;
+
 import retrofit.http.GET;
 import rx.Observable;
 
@@ -14,7 +18,7 @@ public interface RestAdapter {
 	}
 
 	@GET(Nodes.users + Nodes.username + Nodes.repos)
-	Observable<GithubRepoResponse> getGithubRepos();
+	Observable<List<GithubRepo>> getGithubRepos();
 
 	@GET(Nodes.users + Nodes.username)
 	Observable<OwnerResponse> getOwner();
