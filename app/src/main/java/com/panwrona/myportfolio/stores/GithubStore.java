@@ -1,6 +1,8 @@
 package com.panwrona.myportfolio.stores;
 
 import com.panwrona.myportfolio.actions.DataBundle;
+import com.panwrona.myportfolio.actions.DataPingAction;
+import com.panwrona.myportfolio.actions.PingAction;
 import com.panwrona.myportfolio.actions.github_actions.GithubAction;
 import com.panwrona.myportfolio.buses.ActionBus;
 import com.panwrona.myportfolio.buses.DataBus;

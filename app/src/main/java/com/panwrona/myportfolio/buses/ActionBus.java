@@ -5,8 +5,7 @@ import com.squareup.otto.ThreadEnforcer;
 import javax.inject.Inject;
 
 public class ActionBus extends Bus {
-	@Inject
-	public ActionBus() {
+	@Inject public ActionBus() {
 		super(ThreadEnforcer.ANY);
 	}
 }

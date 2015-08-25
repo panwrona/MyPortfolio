@@ -1,9 +1,12 @@
 package com.panwrona.myportfolio.screen_main;
 
+import android.util.Log;
+import com.panwrona.myportfolio.actions.DataPingAction;
 import com.panwrona.myportfolio.actions.github_actions.GithubActionsCreator;
 import com.panwrona.myportfolio.buses.DataBus;
 import com.panwrona.myportfolio.data.event_entities.GithubRepoList;
 import com.panwrona.myportfolio.mvp.MvpBasePresenter;
+import com.panwrona.myportfolio.stores.GithubStore;
 import com.squareup.otto.Subscribe;
 
 import javax.inject.Inject;
@@ -11,8 +14,10 @@ import javax.inject.Inject;
 
 public class MainActivityPresenterImpl extends MvpBasePresenter<MainActivityView>
 	implements MainActivityPresenter {
+	private static final String TAG = MainActivityPresenterImpl.class.getSimpleName();
 
 	@Inject GithubActionsCreator githubActionsCreator;
+	@Inject GithubStore githubStore;
 	@Inject DataBus dataBus;
 
 	public MainActivityPresenterImpl(MainActivity mainActivity) {

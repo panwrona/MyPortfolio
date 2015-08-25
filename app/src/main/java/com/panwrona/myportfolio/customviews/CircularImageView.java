@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import com.panwrona.myportfolio.R;
 
@@ -17,7 +18,8 @@ public class CircularImageView extends ImageView {
     private float radius;
     private int backgroundColor;
     private Bitmap photoBitmap;
-    private Paint paint;
+    private Paint bitmapPaint;
+    private Paint borderPaint;
     private int centerWidth;
     private int centerHeight;
     private boolean isImageSet = false;
@@ -42,10 +44,20 @@ public class CircularImageView extends ImageView {
             array.recycle();
         }
 
-        paint = new Paint();
-        paint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(backgroundColor);
-        paint.setStrokeWidth(strokeWidth);
+        bitmapPaint = new Paint();
+        bitmapPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        bitmapPaint.setAntiAlias(true);
+        bitmapPaint.setFilterBitmap(true);
+
+        borderPaint = new Paint();
+        borderPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        borderPaint.setAntiAlias(true);
+        borderPaint.setColor(context.getResources().getColor(android.R.color.white));
+        borderPaint.setStyle(Paint.Style.STROKE);
+        borderPaint.setStrokeWidth(strokeWidth);
+
+        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+
         photoBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.portoflio);
     }
 
@@ -61,7 +73,8 @@ public class CircularImageView extends ImageView {
 
     @Override protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawCircle(centerWidth, centerHeight, radius, paint);
+        canvas.drawCircle(centerWidth, centerHeight, radius, bitmapPaint);
+        canvas.drawCircle(centerWidth, centerHeight, radius + strokeWidth, borderPaint);
     }
 
     private Bitmap transformBitmapIntoCircle(Bitmap source) {

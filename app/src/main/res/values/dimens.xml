@@ -9,7 +9,11 @@
     <dimen name="toolbar_elevation">4dp</dimen>
     <dimen name="toolbar_title_margin_start">72dp</dimen>
     <dimen name="toolbar_title_margin_top">20dp</dimen>
-    <dimen name="toolbar_circle_image_height">72dp</dimen>
+    <dimen name="toolbar_circle_image_height">144dp</dimen>
     <dimen name="default_layout_margin">16dp</dimen>
     <dimen name="social_network_icon_dimen">32dp</dimen>
+    <dimen name="image_width">144dp</dimen>
+    <dimen name="image_margin">300dp</dimen>
+    <dimen name="default_layout_margin_doubled">32dp</dimen>
+    <dimen name="social_network_icon_dimen_small">16dp</dimen>
 </resources>

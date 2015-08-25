@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:civ="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@android:color/white"
-    >
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:civ="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:background="@android:color/white"
+	>
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height"
-        android:elevation="@dimen/toolbar_elevation"
-        android:background="@drawable/coding_logo"
-        civ:contentInsetStart="0dp"
-        >
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/toolbar_height"
+		android:elevation="@dimen/toolbar_elevation"
+		android:background="@color/primary_color"
+		civ:contentInsetStart="0dp"
+		>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/transparent_logo"
-            >
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+			<!--android:background="@color/transparent_logo"-->
 
-            <com.panwrona.myportfolio.customviews.skills_level_view.SkillsLevelView
-                android:id="@+id/skills_level_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_toEndOf="@id/title"
-                civ:radius="6dp"
-                civ:skillScale="6"
-                />
-
-
-            <!--<com.panwrona.myportfolio.customviews.CircularImageView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="@dimen/toolbar_circle_image_height"-->
-            <!--android:layout_marginTop="@dimen/toolbar_title_margin_top"-->
-            <!--android:layout_below="@id/title"-->
-            <!--civ:circularRadius="8dp"-->
-            <!--civ:strokeWidth="2dp"-->
-            <!--civ:strokeColor="@color/text_icon_color"-->
-            <!--/>-->
-
-        </RelativeLayout>
+			<com.panwrona.myportfolio.customviews.skills_level_view.SkillsLevelView
+				android:id="@+id/skills_level_view"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="end"
+				android:layout_centerInParent="true"
+				android:layout_marginEnd="@dimen/default_layout_margin"
+				civ:radius="6dp"
+				civ:skillScale="6"
+				/>
 
 
-    </android.support.v7.widget.Toolbar>
+			<!--<com.panwrona.myportfolio.customviews.CircularImageView-->
+			<!--android:layout_width="wrap_content"-->
+			<!--android:layout_height="@dimen/toolbar_circle_image_height"-->
+			<!--android:layout_marginTop="@dimen/toolbar_title_margin_top"-->
+			<!--android:layout_below="@id/title"-->
+			<!--civ:circularRadius="8dp"-->
+			<!--civ:strokeWidth="2dp"-->
+			<!--civ:strokeColor="@color/text_icon_color"-->
+			<!--/>-->
+
+		</RelativeLayout>
+
+
+	</android.support.v7.widget.Toolbar>
 
 
 </LinearLayout>
