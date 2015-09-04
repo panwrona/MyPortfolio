@@ -1,45 +1,63 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <!-- Customize your theme here. -->
-    </style>
+	<!-- Base application theme. -->
+	<style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+		<item name="android:colorPrimary">@color/primary_color</item>
+		<item name="android:colorPrimaryDark">@color/dark_primary_color</item>
+		<item name="android:colorAccent">@color/accent_color</item>
+		<item name="android:windowContentTransitions">true</item>
+		<item name="android:windowSharedElementsUseOverlay">false</item>
+	</style>
 
 
-    <style name="TextAppearance.LobsterBold" parent="android:TextAppearance">
-        <item name="fontPath">fonts/lobster-bold.ttf</item>
-    </style>
+	<style name="TextAppearance.LobsterBold" parent="android:TextAppearance">
+		<item name="fontPath">fonts/lobster-bold.ttf</item>
+	</style>
 
-    <style name="TextAppearance.LobsterRegular" parent="android:TextAppearance">
-        <item name="fontPath">fonts/lobster-regular.ttf</item>
-    </style>
+	<style name="TextAppearance.LobsterRegular" parent="android:TextAppearance">
+		<item name="fontPath">fonts/lobster-regular.ttf</item>
+	</style>
 
-    <!-- CUSTOM VIEWS -->
-    <declare-styleable name="ProgressPhotoView">
-        <attr name="strokeThickness" format="dimension"/>
-        <attr name="progresssColor" format="color" />
-        <!--<attr name="backgroundColor" format="color" />-->
-        <!--<attr name="radius" format="dimension" />-->
-        <attr name="imageSrc" format="reference" />
-    </declare-styleable>
+	<declare-styleable name="CodingCircleCategoryView">
+		<attr name="codingRadius" format="dimension"/>
+		<attr name="codingBackgroundColor" format="color" />
+		<attr name="codingFontSize" format="dimension" />
+		<attr name="codingStroke" format="dimension" />
+		<attr name="codingTextColor" format="color" />
+	</declare-styleable>
 
-    <declare-styleable name="SpellingTextView">
-        <attr name="text" format="string" />
-        <attr name="animationLength" format="integer" />
-    </declare-styleable>
+	<declare-styleable name="ProgressPhotoView">
+		<attr name="strokeThickness" format="dimension"/>
+		<attr name="progresssColor" format="color"/>
+		<!--<attr name="backgroundColor" format="color" />-->
+		<!--<attr name="radius" format="dimension" />-->
+		<attr name="imageSrc" format="reference"/>
+	</declare-styleable>
 
-    <declare-styleable name="SkillsLevelView">
-        <attr name="backgroundColor" format="color" />
-        <attr name="foregroundColor" format="color" />
-        <attr name="radius" format="dimension" />
-        <attr name="textColor" format="color" />
-        <attr name="textSize" format="dimension" />
-        <attr name="skillScale" format="integer" />
-    </declare-styleable>
+	<declare-styleable name="SpellingTextView">
+		<attr name="text" format="string"/>
+		<attr name="animationLength" format="integer"/>
+	</declare-styleable>
 
-    <declare-styleable name="CircularImageView">
-        <attr name="strokeWidth" format="dimension" />
-        <attr name="strokeColor" format="color" />
-        <attr name="circularRadius" format="dimension" />
-    </declare-styleable>
+	<declare-styleable name="SkillsLevelView">
+		<attr name="backgroundColor" format="color"/>
+		<attr name="foregroundColor" format="color"/>
+		<attr name="radius" format="dimension"/>
+		<attr name="textColor" format="color"/>
+		<attr name="textSize" format="dimension"/>
+		<attr name="skillScale" format="integer"/>
+	</declare-styleable>
+
+	<declare-styleable name="CircularImageView">
+		<attr name="strokeWidth" format="dimension"/>
+		<attr name="strokeColor" format="color"/>
+		<attr name="circularRadius" format="dimension"/>
+	</declare-styleable>
+
+	<declare-styleable name="CirCleRefreshLayout">
+		<attr name="AniBackColor" format="color" />
+		<attr name="AniForeColor" format="color" />
+		<attr name="CircleSmaller" format="integer"/>
+	</declare-styleable>
+
 </resources>

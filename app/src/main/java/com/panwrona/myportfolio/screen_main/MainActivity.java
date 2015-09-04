@@ -3,6 +3,8 @@ package com.panwrona.myportfolio.screen_main;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -28,12 +30,15 @@ import android.widget.TextView;
 import butterknife.OnClick;
 import com.panwrona.myportfolio.R;
 import com.panwrona.myportfolio.buses.DataBus;
+import com.panwrona.myportfolio.customviews.pull_to_refresh.CircleRefreshLayout;
 import com.panwrona.myportfolio.data.entities.GithubRepo;
 import com.panwrona.myportfolio.data.event_entities.GithubRepoList;
 import com.panwrona.myportfolio.mvp.MvpActivity;
 import com.panwrona.myportfolio.screen_coding.CodingActivity;
 import com.panwrona.myportfolio.screen_main.di.MainActivityComponent;
+import com.panwrona.myportfolio.screen_main.views.AboutMeViewHolder;
 import com.panwrona.myportfolio.screen_main.views.MainRecyclerViewAdapter;
+import com.panwrona.myportfolio.utils.RecyclerItemClickListener;
 import com.squareup.otto.Subscribe;
 
 import java.util.List;
@@ -67,31 +72,38 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 	private boolean mIsTheTitleVisible = false;
 	private boolean mIsTheTitleContainerVisible = true;
 
-	@Override protected MainActivityPresenter createPresenter() {
+	@Override
+	protected MainActivityPresenter createPresenter() {
 		return new MainActivityPresenterImpl(this);
 	}
 
-	@Override protected Transition getEnterTransition() {
+	@Override
+	protected Transition getEnterTransition() {
 		return null;
 	}
 
-	@Override protected Transition getExitTransition() {
+	@Override
+	protected Transition getExitTransition() {
 		return null;
 	}
 
-	@Override protected Transition getReturnTransition() {
+	@Override
+	protected Transition getReturnTransition() {
 		return null;
 	}
 
-	@Override protected Transition getReenterTransition() {
+	@Override
+	protected Transition getReenterTransition() {
 		return null;
 	}
 
-	@Override protected int getLayout() {
+	@Override
+	protected int getLayout() {
 		return R.layout.activity_main;
 	}
 
-	@Override protected void onCreate(Bundle savedInstanceState) {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
 		component = MainActivityComponent.Initializer.init(this);
 		component.inject(this);
 		super.onCreate(savedInstanceState);
@@ -101,14 +113,19 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 		presenter.subscribe();
 		mToolbar.post(this::revealTransition);
 		startAlphaAnimation(mTvToolbarTitle, 0, View.INVISIBLE);
-		mRecyclerView.setAdapter(new MainRecyclerViewAdapter());
+		init();
+	}
+
+	private void init() {
+		mRecyclerView.setAdapter(new MainRecyclerViewAdapter(this));
 		mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 		mAppBarLayout.addOnOffsetChangedListener(this);
 		mClCoordinatorLayout.setOnTouchListener((v, event) -> true);
 		initParallaxValues();
 	}
 
-	@Override protected void onDestroy() {
+	@Override
+	protected void onDestroy() {
 		presenter.unsubscribe();
 		dataBus.unregister(this);
 		presenter.unregisterDataBus();
@@ -127,40 +144,48 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 		anim.setDuration(500);
 		mRlPlaceholder.setVisibility(View.VISIBLE);
 		anim.addListener(new Animator.AnimatorListener() {
-			@Override public void onAnimationStart(Animator animation) {
+			@Override
+			public void onAnimationStart(Animator animation) {
 
 			}
 
-			@Override public void onAnimationEnd(Animator animation) {
+			@Override
+			public void onAnimationEnd(Animator animation) {
 				ObjectAnimator alphaAnimator =
 					ObjectAnimator.ofFloat(mRlToolbarMainLayout, View.ALPHA, 0, 1);
 				alphaAnimator.setDuration(500);
 				alphaAnimator.setInterpolator(new DecelerateInterpolator());
 				alphaAnimator.addListener(new Animator.AnimatorListener() {
-					@Override public void onAnimationStart(Animator animation) {
+					@Override
+					public void onAnimationStart(Animator animation) {
 						mRlToolbarMainLayout.setVisibility(View.VISIBLE);
 					}
 
-					@Override public void onAnimationEnd(Animator animation) {
+					@Override
+					public void onAnimationEnd(Animator animation) {
 						populateData();
 					}
 
-					@Override public void onAnimationCancel(Animator animation) {
+					@Override
+					public void onAnimationCancel(Animator animation) {
 
 					}
 
-					@Override public void onAnimationRepeat(Animator animation) {
+					@Override
+					public void onAnimationRepeat(Animator animation) {
 
 					}
 				});
 				alphaAnimator.start();
 			}
 
-			@Override public void onAnimationCancel(Animator animation) {
+			@Override
+			public void onAnimationCancel(Animator animation) {
 
 			}
 
-			@Override public void onAnimationRepeat(Animator animation) {
+			@Override
+			public void onAnimationRepeat(Animator animation) {
 
 			}
 		});
@@ -194,11 +219,13 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 		mFlTitleContainer.setLayoutParams(petBackgroundLp);
 	}
 
-	@Override public void updateReposList(List<GithubRepo> reposList) {
+	@Override
+	public void updateReposList(List<GithubRepo> reposList) {
 
 	}
 
-	@OnClick(R.id.portfolio_logo) public void onPortfolioLogoClicked() {
+	@OnClick(R.id.portfolio_logo)
+	public void onPortfolioLogoClicked() {
 		CodingActivity.startActivity(this);
 	}
 
@@ -210,7 +237,8 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 		return component;
 	}
 
-	@Override public void onOffsetChanged(AppBarLayout appBarLayout, int offset) {
+	@Override
+	public void onOffsetChanged(AppBarLayout appBarLayout, int offset) {
 		int maxScroll = appBarLayout.getTotalScrollRange();
 		float percentage = (float) Math.abs(offset) / (float) maxScroll;
 		handleAlphaOnTitle(percentage);
@@ -222,14 +250,16 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 
 			if (!mIsTheTitleVisible) {
 				startAlphaAnimation(mTvToolbarTitle, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);
-				startAlphaAnimation(mLlToolbarItemsContainer, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);
+				startAlphaAnimation(mLlToolbarItemsContainer, ALPHA_ANIMATIONS_DURATION,
+					View.VISIBLE);
 				mIsTheTitleVisible = true;
 			}
 		} else {
 
 			if (mIsTheTitleVisible) {
 				startAlphaAnimation(mTvToolbarTitle, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
-				startAlphaAnimation(mLlToolbarItemsContainer, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
+				startAlphaAnimation(mLlToolbarItemsContainer, ALPHA_ANIMATIONS_DURATION,
+					View.INVISIBLE);
 
 				mIsTheTitleVisible = false;
 			}
@@ -240,13 +270,15 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 		if (percentage >= PERCENTAGE_TO_HIDE_TITLE_DETAILS) {
 			if (mIsTheTitleContainerVisible) {
 				startAlphaAnimation(mLlTitleContainer, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
-				startAlphaAnimation(mLlActionItemsContainer, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
+				startAlphaAnimation(mLlActionItemsContainer, ALPHA_ANIMATIONS_DURATION,
+					View.INVISIBLE);
 				mIsTheTitleContainerVisible = false;
 			}
 		} else {
 			if (!mIsTheTitleContainerVisible) {
 				startAlphaAnimation(mLlTitleContainer, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);
-				startAlphaAnimation(mLlActionItemsContainer, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);
+				startAlphaAnimation(mLlActionItemsContainer, ALPHA_ANIMATIONS_DURATION,
+					View.VISIBLE);
 				mIsTheTitleContainerVisible = true;
 			}
 		}

@@ -7,6 +7,7 @@ import com.panwrona.myportfolio.app.MyPortfolioAppComponent;
 import com.panwrona.myportfolio.di.PerActivity;
 import com.panwrona.myportfolio.screen_main.MainActivity;
 import com.panwrona.myportfolio.screen_main.MainActivityPresenterImpl;
+import com.panwrona.myportfolio.screen_main.views.MainRecyclerViewAdapter;
 import dagger.Component;
 
 @PerActivity

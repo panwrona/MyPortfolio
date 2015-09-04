@@ -1,22 +1,31 @@
 package com.panwrona.myportfolio.screen_main.views;
 
-import android.app.ActivityOptions;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.panwrona.myportfolio.R;
+import com.panwrona.myportfolio.screen_main.views.interfaces.OnAboutMeViewItemClickListener;
 
-public class AboutMeViewHolder extends RecyclerView.ViewHolder {
+public class AboutMeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-	@Bind(R.id.cardview_logo) ImageView imageView;
+	@Bind(R.id.cardview_about_me_logo) ImageView ivAboutMeLogo;
+	OnAboutMeViewItemClickListener listener;
 
-	public AboutMeViewHolder(View view) {
+	public AboutMeViewHolder(View view, OnAboutMeViewItemClickListener listener) {
 		super(view);
-		ButterKnife.bind(view);
-		imageView.setOnClickListener(v -> {
-		});
+		ButterKnife.bind(this, view);
+		view.setOnClickListener(this);
+		this.listener = listener;
+	}
+
+	@Override
+	public void onClick(View v) {
+		listener.onItemClick(this);
+	}
+
+	public ImageView getIvAboutMeLogo() {
+		return ivAboutMeLogo;
 	}
 }

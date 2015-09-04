@@ -1,21 +1,26 @@
 package com.panwrona.myportfolio.screen_coding;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.transition.Transition;
+import android.util.DisplayMetrics;
+import android.view.View;
 import butterknife.Bind;
 import com.panwrona.myportfolio.R;
 import com.panwrona.myportfolio.customviews.skills_level_view.SkillsLevelView;
 import com.panwrona.myportfolio.customviews.skills_level_view.entities.Skill;
 import com.panwrona.myportfolio.mvp.MvpActivity;
+import com.panwrona.myportfolio.ui.lollipop_animations.transitions.RevealTransition;
+import com.panwrona.myportfolio.utils.Naming;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CodingActivity extends MvpActivity<CodingView, CodingPresenter> implements CodingView {
-
+	public static final String EXTRA_EPICENTER = Naming.EXTRA + "EPICENTER";
 	@Bind(R.id.skills_level_view)
 	SkillsLevelView skillsLevelView;
 
@@ -35,7 +40,13 @@ public class CodingActivity extends MvpActivity<CodingView, CodingPresenter> imp
 	}
 
 	@Override protected Transition getEnterTransition() {
-		return null;
+		DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+		int bigRadius = Math.max(displayMetrics.widthPixels, displayMetrics.heightPixels);
+		Point epicenter = getIntent().getParcelableExtra(EXTRA_EPICENTER);
+		RevealTransition reveal = new RevealTransition(epicenter, 0, bigRadius, 500);
+		reveal.addTarget(R.id.activity_coding_ll_main_layout);
+		reveal.addTarget(android.R.id.statusBarBackground);
+		return reveal;
 	}
 
 	@Override protected Transition getExitTransition() {
@@ -54,8 +65,14 @@ public class CodingActivity extends MvpActivity<CodingView, CodingPresenter> imp
 		return R.layout.activity_coding;
 	}
 
-	public static void startActivity(Context ctx) {
+	public static void startActivity(Activity activity, View view, String transitionName, Context ctx) {
 		Intent intent = new Intent(ctx, CodingActivity.class);
-		ctx.startActivity(intent);
+		ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(activity,view, transitionName);
+		ctx.startActivity(intent, options.toBundle());
+	}
+
+	public static void startActivity(Context context) {
+		Intent intent = new Intent(context.getApplicationContext(), CodingActivity.class);
+		context.startActivity(intent);
 	}
 }

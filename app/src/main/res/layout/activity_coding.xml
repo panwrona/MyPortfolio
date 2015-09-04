@@ -5,7 +5,9 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
-	android:background="@android:color/white"
+	android:background="@color/primary_color"
+	style="@style/AppTheme"
+	android:id="@+id/activity_coding_ll_main_layout"
 	>
 
 	<android.support.v7.widget.Toolbar
@@ -13,41 +15,43 @@
 		android:layout_width="match_parent"
 		android:layout_height="@dimen/toolbar_height"
 		android:elevation="@dimen/toolbar_elevation"
-		android:background="@color/primary_color"
+		android:translationZ="4dp"
 		civ:contentInsetStart="0dp"
 		>
 
 		<RelativeLayout
+			android:id="@+id/toolbar_rl"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent">
-			<!--android:background="@color/transparent_logo"-->
+			android:layout_height="match_parent"
+			android:background="@color/primary_color"
+			>
 
 			<com.panwrona.myportfolio.customviews.skills_level_view.SkillsLevelView
 				android:id="@+id/skills_level_view"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:gravity="end"
 				android:layout_centerInParent="true"
+				android:gravity="center"
 				android:layout_marginEnd="@dimen/default_layout_margin"
 				civ:radius="6dp"
 				civ:skillScale="6"
 				/>
 
-
-			<!--<com.panwrona.myportfolio.customviews.CircularImageView-->
-			<!--android:layout_width="wrap_content"-->
-			<!--android:layout_height="@dimen/toolbar_circle_image_height"-->
-			<!--android:layout_marginTop="@dimen/toolbar_title_margin_top"-->
-			<!--android:layout_below="@id/title"-->
-			<!--civ:circularRadius="8dp"-->
-			<!--civ:strokeWidth="2dp"-->
-			<!--civ:strokeColor="@color/text_icon_color"-->
-			<!--/>-->
+			<ImageView
+				android:layout_width="100dp"
+				android:layout_height="100dp"
+				android:layout_alignParentBottom="true"
+				android:layout_margin="@dimen/default_layout_margin"
+				android:background="@android:color/holo_green_dark"
+				android:transitionName="reveal"/>
 
 		</RelativeLayout>
 
-
 	</android.support.v7.widget.Toolbar>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
 
 
 </LinearLayout>

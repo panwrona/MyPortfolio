@@ -2,9 +2,10 @@
 <android.support.v7.widget.CardView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:card_view="http://schemas.android.com/apk/res-auto"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:orientation="vertical"
 	android:layout_width="match_parent"
-	android:layout_height="144dp"
+	android:layout_height="300dp"
 	card_view:cardBackgroundColor="@android:color/white"
 	card_view:cardCornerRadius="2dp"
 	card_view:cardElevation="2dp">
@@ -12,23 +13,30 @@
 	<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:padding="@dimen/default_layout_margin"
 		>
 
 		<ImageView
-			android:id="@+id/cardview_logo"
-			android:layout_width="112dp"
-			android:layout_height="match_parent"
-			android:background="@color/primary_color"/>
-
-		<LinearLayout
+			android:id="@+id/cardview_about_me_logo"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:orientation="vertical"
-			android:background="@color/light_primary_color"
-			android:layout_toEndOf="@id/cardview_logo"
-			android:layout_marginStart="@dimen/default_layout_margin"
+			android:layout_height="132dp"
+			android:transitionName="reveal"
+			android:background="@drawable/coding"
 			/>
+
+		<com.panwrona.myportfolio.customviews.circle_category_views.CodingCircleCategoryView
+			android:layout_width="100dp"
+			android:layout_height="100dp"
+			app:codingStroke="1dp"
+			app:codingRadius="32dp"
+			app:codingBackgroundColor="@color/accent_color"
+			app:codingTextColor="@android:color/white"
+			app:codingFontSize="24sp"
+			android:layout_centerHorizontal="true"
+			android:layout_marginTop="78dp"
+			/>
+
+
+
 	</RelativeLayout>
 
 	</android.support.v7.widget.CardView>
