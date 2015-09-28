@@ -16,21 +16,20 @@
 		>
 
 		<ImageView
-			android:id="@+id/cardview_about_me_logo"
 			android:layout_width="match_parent"
 			android:layout_height="132dp"
-			android:transitionName="reveal"
 			android:background="@drawable/coding"
 			/>
 
-		<com.panwrona.myportfolio.customviews.circle_category_views.CodingCircleCategoryView
+		<com.panwrona.myportfolio.customviews.circle_category_views.CircleCategoryView
+			android:id="@+id/cardview_about_me_logo"
 			android:layout_width="100dp"
 			android:layout_height="100dp"
-			app:codingStroke="1dp"
-			app:codingRadius="32dp"
-			app:codingBackgroundColor="@color/accent_color"
-			app:codingTextColor="@android:color/white"
-			app:codingFontSize="24sp"
+			app:catStroke="1dp"
+			app:catRadius="32dp"
+			app:catBackgroundColor="@color/light_primary_color"
+			app:catDrawable="@drawable/ic_perm_device_information_white_48dp"
+			android:transitionName="reveal"
 			android:layout_centerHorizontal="true"
 			android:layout_marginTop="78dp"
 			/>

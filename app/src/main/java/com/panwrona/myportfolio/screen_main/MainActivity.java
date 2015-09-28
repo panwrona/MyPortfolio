@@ -12,9 +12,11 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.transition.Transition;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -34,6 +36,7 @@ import com.panwrona.myportfolio.customviews.pull_to_refresh.CircleRefreshLayout;
 import com.panwrona.myportfolio.data.entities.GithubRepo;
 import com.panwrona.myportfolio.data.event_entities.GithubRepoList;
 import com.panwrona.myportfolio.mvp.MvpActivity;
+import com.panwrona.myportfolio.screen_about_me.AboutMeActivity;
 import com.panwrona.myportfolio.screen_coding.CodingActivity;
 import com.panwrona.myportfolio.screen_main.di.MainActivityComponent;
 import com.panwrona.myportfolio.screen_main.views.AboutMeViewHolder;
@@ -226,7 +229,7 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 
 	@OnClick(R.id.portfolio_logo)
 	public void onPortfolioLogoClicked() {
-		CodingActivity.startActivity(this);
+		AboutMeActivity.startActivity(this);
 	}
 
 	private void updateViews(GithubRepoList githubRepoList) {
@@ -247,7 +250,6 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 
 	private void handleToolbarTitleVisibility(float percentage) {
 		if (percentage >= PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR) {
-
 			if (!mIsTheTitleVisible) {
 				startAlphaAnimation(mTvToolbarTitle, ALPHA_ANIMATIONS_DURATION, View.VISIBLE);
 				startAlphaAnimation(mLlToolbarItemsContainer, ALPHA_ANIMATIONS_DURATION,
@@ -260,7 +262,6 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 				startAlphaAnimation(mTvToolbarTitle, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
 				startAlphaAnimation(mLlToolbarItemsContainer, ALPHA_ANIMATIONS_DURATION,
 					View.INVISIBLE);
-
 				mIsTheTitleVisible = false;
 			}
 		}

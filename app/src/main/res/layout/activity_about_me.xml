@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar"
+		android:layout_width="match_parent"
+		android:layout_height="216dp"
+		android:background="@color/primary_color"
+		app:contentInsetStart="0dp"
+		app:theme="@style/ThemeOverlay.AppCompat.Dark"
+		android:elevation="4dp"
+		>
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+
+			<TextView
+				android:id="@+id/activity_main_tv_toolbar_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@color/text_icon_color"
+				android:textSize="20sp"
+				android:gravity="top"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginBottom="@dimen/default_layout_margin"
+				android:layout_marginTop="@dimen/default_layout_margin"
+				android:text="@string/app_name"
+				android:textAppearance="@style/TextAppearance.LobsterRegular"
+				tools:ignore="MissingPrefix"
+				/>
+
+			<de.hdodenhof.circleimageview.CircleImageView
+				android:layout_width="100dp"
+				android:layout_height="100dp"
+				android:layout_gravity="center"
+				android:src="@drawable/portoflio"
+				android:layout_marginBottom="@dimen/default_layout_margin"
+				app:border_width="1dp"
+				app:border_color="#FFFFFF"				/>
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_icon_color"
+					android:text="android developer | "/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_icon_color"
+					android:text="snowboarder | "/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_icon_color"
+					android:text="coffee addict"/>
+
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
+				>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_icon_color"
+					android:text="traveler | "/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textColor="@color/text_icon_color"
+					android:text="adrenaline addict"/>
+
+
+			</LinearLayout>
+
+
+		</LinearLayout>
+
+
+
+
+		</android.support.v7.widget.Toolbar>
+
+	<FrameLayout
+		android:id="@+id/activity_about_me_fl_container"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
+
+</LinearLayout>

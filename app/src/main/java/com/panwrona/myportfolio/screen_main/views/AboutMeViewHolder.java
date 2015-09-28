@@ -6,11 +6,12 @@ import android.widget.ImageView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.panwrona.myportfolio.R;
+import com.panwrona.myportfolio.customviews.circle_category_views.CircleCategoryView;
 import com.panwrona.myportfolio.screen_main.views.interfaces.OnAboutMeViewItemClickListener;
 
 public class AboutMeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-	@Bind(R.id.cardview_about_me_logo) ImageView ivAboutMeLogo;
+	@Bind(R.id.cardview_about_me_logo) CircleCategoryView ivAboutMeLogo;
 	OnAboutMeViewItemClickListener listener;
 
 	public AboutMeViewHolder(View view, OnAboutMeViewItemClickListener listener) {

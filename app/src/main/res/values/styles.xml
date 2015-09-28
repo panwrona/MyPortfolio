@@ -6,7 +6,8 @@
 		<item name="android:colorPrimaryDark">@color/dark_primary_color</item>
 		<item name="android:colorAccent">@color/accent_color</item>
 		<item name="android:windowContentTransitions">true</item>
-		<item name="android:windowSharedElementsUseOverlay">false</item>
+		<item name="android:windowAllowEnterTransitionOverlap">false</item>
+		<item name="android:windowAllowReturnTransitionOverlap">false</item>
 	</style>
 
 
@@ -18,12 +19,11 @@
 		<item name="fontPath">fonts/lobster-regular.ttf</item>
 	</style>
 
-	<declare-styleable name="CodingCircleCategoryView">
-		<attr name="codingRadius" format="dimension"/>
-		<attr name="codingBackgroundColor" format="color" />
-		<attr name="codingFontSize" format="dimension" />
-		<attr name="codingStroke" format="dimension" />
-		<attr name="codingTextColor" format="color" />
+	<declare-styleable name="CircleCategoryView">
+		<attr name="catRadius" format="dimension"/>
+		<attr name="catBackgroundColor" format="color" />
+		<attr name="catStroke" format="dimension" />
+		<attr name="catDrawable" format="reference" />
 	</declare-styleable>
 
 	<declare-styleable name="ProgressPhotoView">

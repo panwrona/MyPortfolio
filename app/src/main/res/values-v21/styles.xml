@@ -7,13 +7,14 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowEnterTransition">@transition/change_image_transform</item>
-        <item name="android:windowExitTransition">@transition/change_image_transform</item>
+        <item name="android:windowAllowEnterTransitionOverlap">false</item>
+        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+        <!--<item name="android:windowEnterTransition">@transition/change_image_transform</item>-->
+        <!--<item name="android:windowExitTransition">@transition/change_image_transform</item>-->
 
-        <!-- specify shared element transitions -->
-        <item name="android:windowSharedElementEnterTransition">
-            @transition/change_image_transform</item>
-        <item name="android:windowSharedElementExitTransition">
-            @transition/change_image_transform</item>
+        <!--&lt;!&ndash; specify shared element transitions &ndash;&gt;-->
+        <!--<item name="android:windowSharedElementEnterTransition">@transition/change_image_transform</item>-->
+        <!--<item name="android:windowSharedElementExitTransition">-->
+            <!--@transition/change_image_transform</item>-->
     </style>
 </resources>
