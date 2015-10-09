@@ -1,11 +1,8 @@
 package com.panwrona.myportfolio.app;
 
 import android.app.Application;
-import com.panwrona.myportfolio.buses.ActionBus;
 import com.panwrona.myportfolio.buses.DataBus;
-import com.panwrona.myportfolio.buses.RxBus;
 import com.panwrona.myportfolio.data.api.ApiManager;
-import com.squareup.otto.Bus;
 import dagger.Module;
 import dagger.Provides;
 import javax.inject.Singleton;
@@ -29,10 +26,5 @@ import javax.inject.Singleton;
 	@Provides
 	@Singleton DataBus provideDataBus() {
 		return new DataBus();
-	}
-
-	@Provides
-	@Singleton ActionBus provideActionBus() {
-		return new ActionBus();
 	}
 }

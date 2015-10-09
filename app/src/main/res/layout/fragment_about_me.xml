@@ -2,11 +2,76 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:background="@android:color/white"
+	android:layout_height="match_parent"
+	android:padding="@dimen/default_layout_margin">
 
-	<android.support.v7.widget.RecyclerView
-		android:id="@+id/fragment_about_me_rv"
+	<TextView
+		android:id="@+id/about_me_title"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"/>
+		android:layout_height="wrap_content"
+		android:textSize="20sp"
+		android:layout_marginBottom="@dimen/default_layout_margin"
+		android:text="ABOUT ME"
+		android:textColor="@color/primary_text"/>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="16sp"
+		android:textColor="@color/secondary_text"
+		android:layout_marginBottom="@dimen/default_layout_margin"
+		android:text="@string/about_me" />
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="20sp"
+		android:layout_marginBottom="@dimen/default_layout_margin"
+		android:text="ABOUT ME"
+		android:textColor="@color/primary_text"/>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="16sp"
+		android:textColor="@color/secondary_text"
+		android:layout_marginBottom="@dimen/default_layout_margin"
+		android:text="@string/about_me" />
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="20sp"
+		android:layout_marginBottom="@dimen/default_layout_margin"
+		android:text="ABOUT ME"
+		android:textColor="@color/primary_text"/>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="16sp"
+		android:textColor="@color/secondary_text"
+		android:layout_marginBottom="@dimen/default_layout_margin"
+		android:text="@string/about_me" />
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="20sp"
+		android:layout_marginBottom="@dimen/default_layout_margin"
+		android:text="ABOUT ME"
+		android:textColor="@color/primary_text"/>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="16sp"
+		android:textColor="@color/secondary_text"
+		android:text="@string/about_me" />
+
+	<!--<FrameLayout-->
+		<!--android:layout_width="match_parent"-->
+		<!--android:layout_height="match_parent"/>-->
 
 </LinearLayout>

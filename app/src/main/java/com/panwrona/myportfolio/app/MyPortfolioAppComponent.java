@@ -1,10 +1,7 @@
 package com.panwrona.myportfolio.app;
 
 import android.app.Application;
-import com.panwrona.myportfolio.actions.DataBundle;
-import com.panwrona.myportfolio.buses.ActionBus;
 import com.panwrona.myportfolio.buses.DataBus;
-import com.panwrona.myportfolio.buses.RxBus;
 import com.panwrona.myportfolio.data.api.ApiManager;
 
 import dagger.Component;
@@ -25,7 +22,6 @@ public interface MyPortfolioAppComponent {
 	void inject(MyPortfolioApp app);
 
 	Application application();
-	ActionBus actionBus();
 	DataBus dataBus();
 	ApiManager apiManager();
 }

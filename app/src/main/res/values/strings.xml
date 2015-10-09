@@ -42,4 +42,10 @@
 		convallis mattis.
 	</string>
 	<string name="company">working @ thedroidsonroids.com</string>
+	<string name="about_me">My name is Mariusz Brona. I am an android developer, currently working
+		for Droids on Roids. I was born in Wrocław, Poland. I have been living there
+		for 25 years. I have two passions - snowboarding and travelling - each of them I share with
+		my fiancée.
+	</string>
+	<string name="transition_reveal_contact">revealContact</string>
 </resources>

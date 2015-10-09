@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.transition.Transition;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.transition.Fade;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
@@ -28,6 +29,9 @@ public class SplashScreenActivity extends MvpActivity<SplashScreenView, SplashSc
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
+        Fade fade = new Fade(Fade.OUT);
+        fade.setDuration(300);
+        getWindow().setExitTransition(fade);
 
         Animation fadeIn = new AlphaAnimation(0, 1);
         fadeIn.setInterpolator(new DecelerateInterpolator());
@@ -40,14 +44,7 @@ public class SplashScreenActivity extends MvpActivity<SplashScreenView, SplashSc
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                    @Override public void run() {
-                        ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(SplashScreenActivity.this);
-                        startActivity(new Intent(SplashScreenActivity.this, MainActivity.class),
-                            activityOptions.toBundle());
-                        finishAfterTransition();
-                    }
-                }, 1500);
+                startMainActivity();
             }
 
             @Override
@@ -59,25 +56,17 @@ public class SplashScreenActivity extends MvpActivity<SplashScreenView, SplashSc
         mAuthor.startAnimation(fadeIn);
     }
 
+    private void startMainActivity() {
+            ActivityOptions options =
+                ActivityOptions.makeSceneTransitionAnimation(SplashScreenActivity.this);
+            startActivity(new Intent(SplashScreenActivity.this, MainActivity.class),
+                options.toBundle());
+            finish();
+    }
+
     @Override
     protected SplashScreenPresenter createPresenter() {
         return new SplashScreenPresenterImpl();
-    }
-
-    @Override protected Transition getEnterTransition() {
-        return null;
-    }
-
-    @Override protected Transition getExitTransition() {
-       return null;
-    }
-
-    @Override protected Transition getReturnTransition() {
-        return null;
-    }
-
-    @Override protected Transition getReenterTransition() {
-        return null;
     }
 
     @Override

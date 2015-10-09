@@ -7,227 +7,165 @@
 	android:layout_height="match_parent"
 	android:orientation="vertical"
 	android:background="@android:color/white"
-	style="@style/AppTheme"
 	>
 
 	<android.support.design.widget.CoordinatorLayout
-		android:id="@+id/activity_main_cl"
+		android:id="@+id/activity_main_cl_container"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		>
+		android:layout_height="match_parent">
 
-		<android.support.design.widget.AppBarLayout
-			android:id="@+id/activity_main_app_bar_layout"
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-			>
+			android:layout_height="match_parent"
+			android:orientation="vertical">
 
-			<android.support.design.widget.CollapsingToolbarLayout
-				android:id="@+id/activity_main_collapsing_toolbar_layout"
+			<RelativeLayout
+				android:id="@+id/activity_main_rl_placeholder"
 				android:layout_width="match_parent"
-				android:layout_height="470dp"
-				app:layout_scrollFlags="scroll|enterAlways"
-				android:translationZ="4dp"
-				android:elevation="4dp"
-				>
-
-				<RelativeLayout
-					android:id="@+id/activity_main_rl_placeholder"
-					android:layout_width="match_parent"
-					android:layout_height="@dimen/image_margin"
-					android:scaleType="centerCrop"
-					android:background="@drawable/main_background"
-					android:tint="#11000000"
-					app:layout_collapseMode="parallax"
-					android:visibility="invisible"
-					>
-
-					<RelativeLayout
-						android:id="@+id/toolbar_rl"
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:background="@drawable/header_shadow"
-						android:visibility="invisible"
-						>
-
-						<LinearLayout
-							android:id="@+id/activity_main_ll_action_items_container"
-							android:layout_width="match_parent"
-							android:layout_height="wrap_content"
-							android:orientation="horizontal"
-							android:layout_centerInParent="true"
-							android:weightSum="3"
-							android:layout_marginBottom="@dimen/default_layout_margin"
-							>
-
-							<ImageView
-								android:layout_width="0dp"
-								android:layout_height="@dimen/social_network_icon_dimen"
-								android:src="@drawable/twitter"
-								android:layout_weight="1"
-								/>
-
-							<ImageView
-								android:layout_width="0dp"
-								android:layout_height="@dimen/social_network_icon_dimen"
-								android:src="@drawable/linkedin"
-								android:layout_weight="1"
-								/>
-
-							<ImageView
-								android:layout_width="0dp"
-								android:layout_height="@dimen/social_network_icon_dimen"
-								android:src="@drawable/github"
-								android:layout_weight="1"
-								/>
-
-						</LinearLayout>
-
-					</RelativeLayout>
-
-				</RelativeLayout>
-
-				<FrameLayout
-					android:id="@+id/activity_main_fl_title"
-					android:layout_width="match_parent"
-					android:layout_height="170dp"
-					android:layout_gravity="bottom|center_horizontal"
-					android:background="@color/primary_color"
-					android:orientation="vertical"
-					app:layout_collapseMode="parallax"
-					android:elevation="4dp"
-					android:translationZ="4dp"
-					>
-
-					<LinearLayout
-						android:id="@+id/activity_main_ll_title_container"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_gravity="bottom|center_horizontal"
-						android:orientation="vertical"
-						>
-
-						<TextView
-							android:id="@+id/name"
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="34sp"
-							android:textColor="@color/text_icon_color"
-							android:text="@string/name"
-							android:layout_gravity="center_horizontal"
-							fontPath="fonts/Roboto-Thin.ttf"
-							tools:ignore="MissingPrefix"
-							/>
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="24sp"
-							android:textColor="@color/text_icon_color"
-							android:text="@string/occupation"
-							android:layout_gravity="center_horizontal"
-							fontPath="fonts/Roboto-Thin.ttf"
-							tools:ignore="MissingPrefix"
-							/>
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textSize="18sp"
-							android:textColor="@color/light_primary_color"
-							android:text="@string/company"
-							android:layout_gravity="center_horizontal"
-							android:layout_marginBottom="@dimen/default_layout_margin"
-							fontPath="fonts/Roboto-Thin.ttf"
-							tools:ignore="MissingPrefix"
-							/>
-
-					</LinearLayout>
-				</FrameLayout>
-			</android.support.design.widget.CollapsingToolbarLayout>
-		</android.support.design.widget.AppBarLayout>
-
-		<android.support.v7.widget.RecyclerView
-			android:id="@+id/activity_main_rv_recycler_view"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:scrollbars="none"
-			android:padding="@dimen/default_layout_margin"
-			app:layout_behavior="@string/appbar_scrolling_view_behavior"
-			/>
-
-		<android.support.v7.widget.Toolbar
-			android:id="@+id/toolbar"
-			android:layout_width="match_parent"
-			android:layout_height="?attr/actionBarSize"
-			android:background="@color/primary_color"
-			app:layout_anchor="@id/activity_main_fl_title"
-			app:theme="@style/ThemeOverlay.AppCompat.Dark"
-			>
-
-			<TextView
-				android:id="@+id/activity_main_tv_toolbar_title"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textColor="@color/text_icon_color"
-				android:textSize="20sp"
-				android:layout_gravity="center_horizontal"
-				android:gravity="bottom|left"
-				android:text="@string/app_name"
-				android:textAppearance="@style/TextAppearance.LobsterRegular"
-				tools:ignore="MissingPrefix"
-				/>
-
-			<LinearLayout
-				android:id="@+id/activity_main_ll_toolbar_items_container"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="right|center_horizontal"
-				android:orientation="horizontal"
-				android:layout_centerInParent="true"
-				android:layout_marginEnd="@dimen/default_layout_margin"
-				android:weightSum="3"
-				android:layout_marginBottom="@dimen/default_layout_margin"
+				android:layout_height="@dimen/image_margin"
+				android:scaleType="centerCrop"
+				android:background="@drawable/main_background"
+				android:tint="#11000000"
 				android:visibility="invisible"
 				>
 
-				<ImageView
-					android:layout_width="0dp"
-					android:layout_height="@dimen/social_network_icon_dimen_small"
-					android:src="@drawable/twitter"
-					android:layout_weight="1"
+				<RelativeLayout
+					android:id="@+id/toolbar_rl"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:background="@drawable/header_shadow"
+					>
+
+				</RelativeLayout>
+
+			</RelativeLayout>
+
+
+			<LinearLayout
+				android:id="@+id/activity_main_ll_container"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="@color/primary_color"
+				android:paddingTop="72dp"
+				android:orientation="vertical"
+				android:visibility="invisible">
+
+				<TextView
+					android:id="@+id/name"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textSize="28sp"
+					android:textColor="@color/text_icon_color"
+					android:text="@string/name"
+					android:layout_gravity="center_horizontal"
+					fontPath="fonts/Roboto-Thin.ttf"
+					tools:ignore="MissingPrefix"
 					/>
 
-				<ImageView
-					android:layout_width="0dp"
-					android:layout_height="@dimen/social_network_icon_dimen_small"
-					android:src="@drawable/linkedin"
-					android:layout_weight="1"
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textSize="22sp"
+					android:textColor="@color/text_icon_color"
+					android:text="@string/occupation"
+					android:layout_gravity="center_horizontal"
+					fontPath="fonts/Roboto-Thin.ttf"
+					tools:ignore="MissingPrefix"
 					/>
 
-				<ImageView
-					android:layout_width="0dp"
-					android:layout_height="@dimen/social_network_icon_dimen_small"
-					android:src="@drawable/github"
-					android:layout_weight="1"
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:textSize="16sp"
+					android:textColor="@color/light_primary_color"
+					android:text="@string/company"
+					android:layout_gravity="center_horizontal"
+					android:layout_marginBottom="@dimen/default_layout_margin"
+					fontPath="fonts/Roboto-Thin.ttf"
+					tools:ignore="MissingPrefix"
 					/>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal"
+					android:layout_marginBottom="@dimen/default_layout_margin"
+					android:weightSum="2">
+
+					<TextView
+						android:id="@+id/activity_main_tv_about_me"
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:layout_weight="1"
+						android:gravity="center"
+						android:drawableTop="@drawable/about_me_aboutme"
+						android:text="about me"/>
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:gravity="center"
+						android:layout_weight="1"
+						android:drawableTop="@drawable/about_me_strengths"
+						android:text="coding"/>
+
+					</LinearLayout>
+
+				<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:layout_weight="1"
+						android:gravity="center"
+						android:drawableTop="@drawable/about_me_passion"
+						android:text="passion"/>
+
+					<TextView
+						android:layout_height="wrap_content"
+						android:layout_width="wrap_content"
+						android:gravity="center"
+						android:layout_weight="1"
+						android:layout_gravity="fill"
+						android:drawableTop="@drawable/about_me_contact"
+						android:text="credits"/>
+
+				</LinearLayout>
 
 			</LinearLayout>
 
-		</android.support.v7.widget.Toolbar>
+		</LinearLayout>
 
 		<de.hdodenhof.circleimageview.CircleImageView
-			android:id="@+id/portfolio_logo"
+			android:id="@+id/activity_main_iv_logo"
 			android:layout_width="@dimen/toolbar_circle_image_height"
 			android:layout_height="@dimen/toolbar_circle_image_height"
 			android:src="@drawable/portoflio"
+			android:visibility="invisible"
 			app:border_width="1dp"
 			app:border_color="#FFFFFF"
-			app:layout_scrollFlags="scroll|scroll|enterAlways|enterAlwaysCollapsed"
-			app:layout_behavior="com.panwrona.myportfolio.customviews.support_layouts.AvatarImageBehavior"
+			app:layout_anchor="@id/activity_main_ll_container"
+			app:layout_anchorGravity="top|center_horizontal"
 			/>
 
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/activity_main_fab"
+			android:layout_height="56dp"
+			android:layout_width="56dp"
+			android:src="@drawable/ic_email_white_24dp"
+			android:transitionName="@string/transition_reveal_contact"
+			android:visibility="invisible"
+			android:layout_marginEnd="@dimen/default_layout_margin"
+			app:layout_anchor="@id/activity_main_ll_container"
+			app:layout_anchorGravity="top|center_horizontal|right"
+			app:pressedTranslationZ="8dp"
+			app:backgroundTint="@color/accent_color"/>
+
+
 	</android.support.design.widget.CoordinatorLayout>
+
 
 </RelativeLayout>

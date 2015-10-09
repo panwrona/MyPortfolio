@@ -2,108 +2,188 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
 	android:orientation="vertical"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent">
+	android:layout_height="match_parent"
+	android:background="@android:color/darker_gray">
 
-	<android.support.v7.widget.Toolbar
-		android:id="@+id/toolbar"
+	<android.support.design.widget.CoordinatorLayout
 		android:layout_width="match_parent"
-		android:layout_height="216dp"
-		android:background="@color/primary_color"
-		app:contentInsetStart="0dp"
-		app:theme="@style/ThemeOverlay.AppCompat.Dark"
-		android:elevation="4dp"
-		>
-		<LinearLayout
+		android:layout_height="match_parent">
+
+		<android.support.design.widget.AppBarLayout
+			android:id="@+id/activity_about_me_appbar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:visibility="invisible"
+			>
+
+			<android.support.design.widget.CollapsingToolbarLayout
+				android:id="@+id/activity_about_me_ctl"
+				android:layout_width="match_parent"
+				android:layout_height="300dp"
+				android:background="@color/primary_color"
+				app:layout_scrollFlags="scroll|exitUntilCollapsed"
+				android:elevation="4dp"
+				>
+
+				<LinearLayout
+					android:id="@+id/activity_about_me_ll_container"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:gravity="bottom"
+					android:layout_marginBottom="64dp"
+					android:orientation="vertical">
+
+					<de.hdodenhof.circleimageview.CircleImageView
+						android:layout_width="100dp"
+						android:layout_height="100dp"
+						android:layout_gravity="center"
+						android:src="@drawable/portoflio"
+						android:layout_marginBottom="@dimen/default_layout_margin"
+						app:border_width="1dp"
+						app:border_color="#FFFFFF"/>
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center"
+						>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textColor="@color/text_icon_color"
+							android:text="android developer | "/>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textColor="@color/text_icon_color"
+							android:text="snowboarder | "/>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textColor="@color/text_icon_color"
+							android:text="coffee maniac"/>
+
+
+					</LinearLayout>
+
+					<LinearLayout
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:layout_gravity="center_horizontal"
+						>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textColor="@color/text_icon_color"
+							android:text="traveler | "/>
+
+						<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:textColor="@color/text_icon_color"
+							android:text="adrenaline addict"/>
+
+
+					</LinearLayout>
+
+				</LinearLayout>
+
+			</android.support.design.widget.CollapsingToolbarLayout>
+		</android.support.design.widget.AppBarLayout>
+
+		<com.panwrona.myportfolio.customviews.support_layouts.MyNestedScrollView
+			android:id="@+id/activity_about_me_nsv_container"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:orientation="vertical">
+			app:layout_behavior="@string/appbar_scrolling_view_behavior"
+			app:behavior_overlapTop="64dp">
 
+
+		<android.support.v7.widget.CardView
+			android:id="@+id/activity_about_me_cv_container"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:background="@android:color/white"
+			android:layout_margin="16dp"
+			android:visibility="invisible"
+			app:cardElevation="8dp">
+
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:orientation="vertical">
+
+				<android.support.design.widget.TabLayout
+					android:id="@+id/activity_about_me_tl_container"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_margin="8dp"
+					app:tabGravity="fill"
+					app:tabTextColor="@color/secondary_text"
+					app:tabSelectedTextColor="@color/primary_text"
+					app:tabIndicatorColor="@color/accent_color"
+					app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+					/>
+
+				<com.panwrona.myportfolio.customviews.support_layouts.WrapContentHeightViewPager
+					android:id="@+id/activity_about_me_vp_container"
+					android:layout_width="match_parent"
+					android:layout_height="0dp"
+					android:layout_weight="1"
+					android:layout_marginBottom="24dp"
+					android:layout_marginStart="8dp"
+					android:layout_marginEnd="8dp"
+					android:background="@android:color/white"
+					/>
+
+			</LinearLayout>
+
+		</android.support.v7.widget.CardView>
+
+		</com.panwrona.myportfolio.customviews.support_layouts.MyNestedScrollView>
+
+		<android.support.v7.widget.Toolbar
+			android:id="@+id/activity_abouy_me_toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			android:background="@color/primary_color"
+			android:visibility="invisible"
+			app:layout_anchor="@id/activity_about_me_ll_container"
+			app:title=""
+			app:contentInsetStart="0dp"
+			>
 			<TextView
-				android:id="@+id/activity_main_tv_toolbar_title"
+				android:id="@+id/main.textview.title"
 				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:textColor="@color/text_icon_color"
-				android:textSize="20sp"
-				android:gravity="top"
-				android:layout_gravity="center_horizontal"
-				android:layout_marginBottom="@dimen/default_layout_margin"
-				android:layout_marginTop="@dimen/default_layout_margin"
+				android:layout_height="match_parent"
 				android:text="@string/app_name"
-				android:textAppearance="@style/TextAppearance.LobsterRegular"
-				tools:ignore="MissingPrefix"
+				android:gravity="center_vertical"
+				android:textColor="@android:color/white"
+				android:textSize="20sp"
+				android:textAppearance="@style/TextAppearance.LobsterBold"
 				/>
-
-			<de.hdodenhof.circleimageview.CircleImageView
-				android:layout_width="100dp"
-				android:layout_height="100dp"
-				android:layout_gravity="center"
-				android:src="@drawable/portoflio"
-				android:layout_marginBottom="@dimen/default_layout_margin"
-				app:border_width="1dp"
-				app:border_color="#FFFFFF"				/>
-
-			<LinearLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				>
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:textColor="@color/text_icon_color"
-					android:text="android developer | "/>
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:textColor="@color/text_icon_color"
-					android:text="snowboarder | "/>
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:textColor="@color/text_icon_color"
-					android:text="coffee addict"/>
-
-
-			</LinearLayout>
-
-			<LinearLayout
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				>
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:textColor="@color/text_icon_color"
-					android:text="traveler | "/>
-
-				<TextView
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:textColor="@color/text_icon_color"
-					android:text="adrenaline addict"/>
-
-
-			</LinearLayout>
-
-
-		</LinearLayout>
-
-
-
-
 		</android.support.v7.widget.Toolbar>
 
-	<FrameLayout
-		android:id="@+id/activity_about_me_fl_container"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"/>
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/activity_about_me_fab"
+			android:layout_height="@dimen/default_fab_size"
+			android:layout_width="@dimen/default_fab_size"
+			android:layout_marginBottom="@dimen/default_layout_margin"
+			android:layout_marginEnd="@dimen/default_layout_margin_doubled"
+			android:src="@drawable/ic_email_white_24dp"
+			app:layout_behavior="com.panwrona.myportfolio.customviews.support_layouts.ScrollFloatingActionButtonBehavior"
+			app:layout_anchor="@id/activity_about_me_vp_container"
+			app:layout_anchorGravity="bottom|right|end"
+			app:backgroundTint="@color/accent_color"
+			app:elevation="8dp"
+			app:pressedTranslationZ="12dp"/>
+
+	</android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>

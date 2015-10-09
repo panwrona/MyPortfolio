@@ -13,8 +13,10 @@
     <dimen name="default_layout_margin">16dp</dimen>
     <dimen name="social_network_icon_dimen">32dp</dimen>
     <dimen name="image_width">144dp</dimen>
-    <dimen name="image_margin">300dp</dimen>
+    <dimen name="image_margin">200dp</dimen>
     <dimen name="default_layout_margin_doubled">32dp</dimen>
     <dimen name="social_network_icon_dimen_small">16dp</dimen>
     <dimen name="default_layout_margin_halved">8dp</dimen>
+    <dimen name="init_scroll_up_distance">300dp</dimen>
+    <dimen name="default_fab_size">56dp</dimen>
 </resources>
