@@ -33,7 +33,8 @@
 			android:screenOrientation="portrait" />
 
 		<activity
-			android:name=".screen_main.screen_contact.ContactActivity"
+			android:name=".screen_contact.ContactActivity"
+			android:theme="@style/AppTheme.ContactActivity"
 			android:screenOrientation="portrait" />
 	</application>
 

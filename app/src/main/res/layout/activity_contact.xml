@@ -6,12 +6,6 @@
 	android:layout_height="match_parent"
 	android:id="@+id/activity_contact_rl_container">
 
-	<ImageView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="@dimen/default_layout_margin"
-		/>
-
 	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/activity_contact_fab"
 		android:layout_height="wrap_content"
@@ -37,31 +31,45 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:src="@drawable/twitter"/>
+			android:src="@drawable/twitter"
+			android:background="?android:attr/selectableItemBackground"
+			/>
 
 		<ImageView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:src="@drawable/github"/>
+			android:src="@drawable/github"
+			android:background="?android:attr/selectableItemBackground"
+			/>
 
 		<ImageView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:src="@drawable/linkedin"/>
+			android:src="@drawable/linkedin"
+			android:background="?android:attr/selectableItemBackground"
+			/>
 
 		<ImageView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
-			android:src="@drawable/ic_email_white_36dp"/>
+			android:src="@drawable/ic_email_white_36dp"
+			android:background="?android:attr/selectableItemBackground"
+			/>
 
 	</LinearLayout>
 
 
-
-
-
+	<ImageView
+		android:id="@+id/activity_contact_iv_close"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/default_layout_margin"
+		android:visibility="invisible"
+		android:src="@drawable/ic_close_white_36dp"
+		android:background="?android:attr/selectableItemBackground"
+	/>
 
 </RelativeLayout>

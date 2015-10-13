@@ -11,4 +11,5 @@
     <color name="transparent_logo">#19000000</color>
     <color name="header_gradient_start_color">#19000000</color>
     <color name="header_gradient_end_color">#8b000000</color>
+    <color name="separator_transparent_line">#46727272</color>
 </resources>

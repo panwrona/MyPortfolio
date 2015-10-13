@@ -137,8 +137,6 @@
 					android:layout_height="0dp"
 					android:layout_weight="1"
 					android:layout_marginBottom="24dp"
-					android:layout_marginStart="8dp"
-					android:layout_marginEnd="8dp"
 					android:background="@android:color/white"
 					/>
 
@@ -177,6 +175,7 @@
 			android:layout_marginBottom="@dimen/default_layout_margin"
 			android:layout_marginEnd="@dimen/default_layout_margin_doubled"
 			android:src="@drawable/ic_email_white_24dp"
+			android:transitionName="@string/transition_reveal_contact"
 			app:layout_behavior="com.panwrona.myportfolio.customviews.support_layouts.ScrollFloatingActionButtonBehavior"
 			app:layout_anchor="@id/activity_about_me_vp_container"
 			app:layout_anchorGravity="bottom|right|end"

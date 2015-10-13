@@ -1,4 +1,4 @@
-package com.panwrona.myportfolio.screen_main.screen_contact;
+package com.panwrona.myportfolio.screen_contact;
 
 import com.panwrona.myportfolio.mvp.MvpView;
 

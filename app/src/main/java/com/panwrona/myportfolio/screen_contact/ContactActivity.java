@@ -1,4 +1,4 @@
-package com.panwrona.myportfolio.screen_main.screen_contact;
+package com.panwrona.myportfolio.screen_contact;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,9 +10,12 @@ import android.transition.TransitionInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import butterknife.Bind;
+import butterknife.OnClick;
+
 import com.panwrona.myportfolio.R;
 import com.panwrona.myportfolio.mvp.MvpActivity;
 import com.panwrona.myportfolio.utils.GUIUtils;
@@ -24,6 +27,7 @@ public class ContactActivity extends MvpActivity<ContactActivityView, ContactAct
 	@Bind(R.id.activity_contact_rl_container) RelativeLayout mRlContainer;
 	@Bind(R.id.activity_contact_fab) FloatingActionButton mFab;
 	@Bind(R.id.activity_contact_ll_container) LinearLayout mLlContainer;
+	@Bind(R.id.activity_contact_iv_close) ImageView mIvClose;
 
 	@Override
 	protected ContactActivityPresenter createPresenter() {
@@ -97,7 +101,9 @@ public class ContactActivity extends MvpActivity<ContactActivityView, ContactAct
 			Animation animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
 			animation.setDuration(300);
 			mLlContainer.startAnimation(animation);
+			mIvClose.startAnimation(animation);
 			mLlContainer.setVisibility(View.VISIBLE);
+			mIvClose.setVisibility(View.VISIBLE);
 		});
 	}
 
@@ -115,6 +121,11 @@ public class ContactActivity extends MvpActivity<ContactActivityView, ContactAct
 
 				}
 			});
+	}
+
+	@OnClick(R.id.activity_contact_iv_close)
+	public void onIvCloseClicked() {
+		onBackPressed();
 	}
 
 	private void backPressed() {

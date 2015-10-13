@@ -1,77 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:orientation="vertical"
 	android:layout_width="match_parent"
 	android:background="@android:color/white"
-	android:layout_height="match_parent"
-	android:padding="@dimen/default_layout_margin">
+	android:layout_height="match_parent">
 
 	<TextView
 		android:id="@+id/about_me_title"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:textSize="20sp"
+		android:paddingTop="@dimen/default_layout_margin"
+		android:paddingStart="@dimen/default_layout_margin"
+		android:paddingEnd="@dimen/default_layout_margin"
 		android:layout_marginBottom="@dimen/default_layout_margin"
-		android:text="ABOUT ME"
+		android:text="@string/basic_info_header"
 		android:textColor="@color/primary_text"/>
 
 	<TextView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:textSize="16sp"
+		android:textSize="@dimen/text_size_about_me_contact"
+		android:paddingStart="@dimen/default_layout_margin"
+		android:paddingEnd="@dimen/default_layout_margin"
+		android:layout_marginBottom="@dimen/default_layout_margin_halved"
+		android:drawableStart="@drawable/ic_person"
+		android:drawablePadding="@dimen/default_layout_margin"
+		android:text="@string/contact_name"
 		android:textColor="@color/secondary_text"
+		/>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="@dimen/text_size_about_me_contact"
+		android:paddingStart="@dimen/default_layout_margin"
+		android:paddingEnd="@dimen/default_layout_margin"
+		android:layout_marginBottom="@dimen/default_layout_margin_halved"
+		android:drawableStart="@drawable/ic_location_city"
+		android:drawablePadding="@dimen/default_layout_margin"
+		android:text="@string/contact_city"
+		android:textColor="@color/secondary_text"
+		/>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:textSize="@dimen/text_size_about_me_contact"
+		android:paddingStart="@dimen/default_layout_margin"
+		android:paddingEnd="@dimen/default_layout_margin"
 		android:layout_marginBottom="@dimen/default_layout_margin"
-		android:text="@string/about_me" />
+		android:drawableStart="@drawable/ic_call"
+		android:drawablePadding="@dimen/default_layout_margin"
+		android:text="@string/contact_number"
+		android:textColor="@color/secondary_text"
+		/>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="@color/separator_transparent_line" />
 
 	<TextView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:textSize="20sp"
+		android:paddingStart="@dimen/default_layout_margin"
+		android:paddingEnd="@dimen/default_layout_margin"
 		android:layout_marginBottom="@dimen/default_layout_margin"
-		android:text="ABOUT ME"
+		android:layout_marginTop="@dimen/default_layout_margin"
+		android:text="@string/about_me_header"
 		android:textColor="@color/primary_text"/>
 
 	<TextView
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:textSize="16sp"
+		android:paddingStart="@dimen/default_layout_margin"
+		android:paddingEnd="@dimen/default_layout_margin"
 		android:textColor="@color/secondary_text"
 		android:layout_marginBottom="@dimen/default_layout_margin"
-		android:text="@string/about_me" />
-
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:textSize="20sp"
-		android:layout_marginBottom="@dimen/default_layout_margin"
-		android:text="ABOUT ME"
-		android:textColor="@color/primary_text"/>
-
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:textSize="16sp"
-		android:textColor="@color/secondary_text"
-		android:layout_marginBottom="@dimen/default_layout_margin"
-		android:text="@string/about_me" />
-
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:textSize="20sp"
-		android:layout_marginBottom="@dimen/default_layout_margin"
-		android:text="ABOUT ME"
-		android:textColor="@color/primary_text"/>
-
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:textSize="16sp"
-		android:textColor="@color/secondary_text"
-		android:text="@string/about_me" />
-
-	<!--<FrameLayout-->
-		<!--android:layout_width="match_parent"-->
-		<!--android:layout_height="match_parent"/>-->
+		fontPath="fonts/Roboto-Slab-Regular.ttf"
+		android:text="@string/about_me"
+		tools:ignore="MissingPrefix" />
 
 </LinearLayout>

@@ -34,8 +34,6 @@
 			android:layout_marginTop="78dp"
 			/>
 
-
-
 	</RelativeLayout>
 
 	</android.support.v7.widget.CardView>

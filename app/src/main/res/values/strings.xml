@@ -45,7 +45,15 @@
 	<string name="about_me">My name is Mariusz Brona. I am an android developer, currently working
 		for Droids on Roids. I was born in Wrocław, Poland. I have been living there
 		for 25 years. I have two passions - snowboarding and travelling - each of them I share with
+		my fiancée. My name is Mariusz Brona. I am an android developer, currently working
+		for Droids on Roids. I was born in Wrocław, Poland. I have been living there
+		for 25 years. I have two passions - snowboarding and travelling - each of them I share with
 		my fiancée.
 	</string>
 	<string name="transition_reveal_contact">revealContact</string>
+	<string name="about_me_header">ABOUT ME</string>
+	<string name="basic_info_header">BASIC INFO</string>
+	<string name="contact_number">+48 519 055 420</string>
+	<string name="contact_city">Wrocław, Poland</string>
+	<string name="contact_name">Mariusz Brona</string>
 </resources>

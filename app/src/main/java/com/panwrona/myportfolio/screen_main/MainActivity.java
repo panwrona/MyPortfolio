@@ -17,7 +17,7 @@ import com.panwrona.myportfolio.buses.DataBus;
 import com.panwrona.myportfolio.mvp.MvpActivity;
 import com.panwrona.myportfolio.screen_about_me.AboutMeActivity;
 import com.panwrona.myportfolio.screen_main.di.MainActivityComponent;
-import com.panwrona.myportfolio.screen_main.screen_contact.ContactActivity;
+import com.panwrona.myportfolio.screen_contact.ContactActivity;
 import com.panwrona.myportfolio.utils.GUIUtils;
 import com.panwrona.myportfolio.utils.RequestCodes;
 import de.hdodenhof.circleimageview.CircleImageView;
