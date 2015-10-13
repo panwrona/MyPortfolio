@@ -20,4 +20,7 @@
     <dimen name="init_scroll_up_distance">300dp</dimen>
     <dimen name="default_fab_size">56dp</dimen>
     <dimen name="text_size_about_me_contact">16sp</dimen>
+    <dimen name="fragment_experience_header_size">72dp</dimen>
+    <dimen name="fragment_experience_header_text">14sp</dimen>
+    <dimen name="civ_border_dimen">1dp</dimen>
 </resources>

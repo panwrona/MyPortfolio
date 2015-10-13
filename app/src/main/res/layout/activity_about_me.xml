@@ -24,8 +24,28 @@
 				android:layout_height="300dp"
 				android:background="@color/primary_color"
 				app:layout_scrollFlags="scroll|exitUntilCollapsed"
-				android:elevation="4dp"
 				>
+
+				<android.support.v7.widget.Toolbar
+					android:id="@+id/activity_abouy_me_toolbar"
+					android:layout_width="match_parent"
+					android:layout_height="?attr/actionBarSize"
+					android:background="@color/primary_color"
+					android:visibility="invisible"
+					app:title=""
+					app:contentInsetStart="0dp"
+					>
+					<TextView
+						android:id="@+id/main.textview.title"
+						android:layout_width="wrap_content"
+						android:layout_height="match_parent"
+						android:text="@string/app_name"
+						android:gravity="center_vertical"
+						android:textColor="@android:color/white"
+						android:textSize="20sp"
+						android:textAppearance="@style/TextAppearance.LobsterBold"
+						/>
+				</android.support.v7.widget.Toolbar>
 
 				<LinearLayout
 					android:id="@+id/activity_about_me_ll_container"
@@ -112,18 +132,20 @@
 			android:background="@android:color/white"
 			android:layout_margin="16dp"
 			android:visibility="invisible"
+			android:layout_marginBottom="36dp"
 			app:cardElevation="8dp">
 
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:orientation="vertical">
+				android:orientation="vertical"
+				android:layout_marginBottom="24dp"
+				>
 
 				<android.support.design.widget.TabLayout
 					android:id="@+id/activity_about_me_tl_container"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_margin="8dp"
 					app:tabGravity="fill"
 					app:tabTextColor="@color/secondary_text"
 					app:tabSelectedTextColor="@color/primary_text"
@@ -136,7 +158,6 @@
 					android:layout_width="match_parent"
 					android:layout_height="0dp"
 					android:layout_weight="1"
-					android:layout_marginBottom="24dp"
 					android:background="@android:color/white"
 					/>
 
@@ -145,28 +166,6 @@
 		</android.support.v7.widget.CardView>
 
 		</com.panwrona.myportfolio.customviews.support_layouts.MyNestedScrollView>
-
-		<android.support.v7.widget.Toolbar
-			android:id="@+id/activity_abouy_me_toolbar"
-			android:layout_width="match_parent"
-			android:layout_height="?attr/actionBarSize"
-			android:background="@color/primary_color"
-			android:visibility="invisible"
-			app:layout_anchor="@id/activity_about_me_ll_container"
-			app:title=""
-			app:contentInsetStart="0dp"
-			>
-			<TextView
-				android:id="@+id/main.textview.title"
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:text="@string/app_name"
-				android:gravity="center_vertical"
-				android:textColor="@android:color/white"
-				android:textSize="20sp"
-				android:textAppearance="@style/TextAppearance.LobsterBold"
-				/>
-		</android.support.v7.widget.Toolbar>
 
 		<android.support.design.widget.FloatingActionButton
 			android:id="@+id/activity_about_me_fab"

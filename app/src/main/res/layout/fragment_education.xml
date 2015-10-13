@@ -9,7 +9,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:textColor="@android:color/black"
-		android:text="@string/lorem"
+		android:text="@string/about_me"
 		fontPath="fonts/Roboto-Slab-Regular.ttf"
 		tools:ignore="MissingPrefix"/>
 

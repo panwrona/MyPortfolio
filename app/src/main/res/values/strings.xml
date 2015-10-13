@@ -56,4 +56,6 @@
 	<string name="contact_number">+48 519 055 420</string>
 	<string name="contact_city">Wrocław, Poland</string>
 	<string name="contact_name">Mariusz Brona</string>
+	<string name="company_desc">Mobile Development Company</string>
+	<string name="company_name">Droids on Roids</string>
 </resources>
