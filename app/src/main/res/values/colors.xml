@@ -15,4 +15,5 @@
 	<color name="heavy_header_gradient_end_color">#b8000000</color>
 	<color name="separator_transparent_line">#46727272</color>
 	<color name="transparent_about_me">#8b000000</color>
+	<color name="transparent_orange">#ab3b1a00</color>
 </resources>

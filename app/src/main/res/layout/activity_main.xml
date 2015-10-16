@@ -7,6 +7,7 @@
 	android:layout_height="match_parent"
 	android:background="@android:color/white"
 	android:id="@+id/activity_main_cl_container"
+	android:visibility="invisible"
 	>
 
 		<LinearLayout
@@ -17,24 +18,22 @@
 			<RelativeLayout
 				android:id="@+id/activity_main_rl_placeholder"
 				android:layout_width="match_parent"
-				android:layout_height="@dimen/image_margin"
-				android:scaleType="centerCrop"
+				android:layout_height="200dp"
 				android:background="@drawable/main_background"
-				android:tint="#11000000"
-				android:visibility="invisible"
 				>
 
-				<RelativeLayout
-					android:id="@+id/toolbar_rl"
+				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
-					android:background="@drawable/header_shadow"
-					>
-
-				</RelativeLayout>
+					android:background="@color/transparent_orange"
+					android:text="@string/app_name"
+					android:textColor="@color/text_icon_color"
+					android:textSize="36sp"
+					android:textAppearance="@style/TextAppearance.LobsterBold"
+					android:gravity="center"
+					/>
 
 			</RelativeLayout>
-
 
 			<LinearLayout
 				android:id="@+id/activity_main_ll_container"
@@ -42,8 +41,7 @@
 				android:layout_height="match_parent"
 				android:background="@color/primary_color"
 				android:paddingTop="72dp"
-				android:orientation="vertical"
-				android:visibility="invisible">
+				android:orientation="vertical">
 
 				<TextView
 					android:id="@+id/name"
@@ -97,6 +95,7 @@
 						android:text="about me"/>
 
 					<TextView
+						android:id="@+id/activity_main_tv_coding"
 						android:layout_height="wrap_content"
 						android:layout_width="wrap_content"
 						android:gravity="center"
@@ -139,7 +138,6 @@
 			android:layout_width="@dimen/toolbar_circle_image_height"
 			android:layout_height="@dimen/toolbar_circle_image_height"
 			android:src="@drawable/portoflio"
-			android:visibility="invisible"
 			app:border_width="1dp"
 			app:border_color="#FFFFFF"
 			app:layout_anchor="@id/activity_main_ll_container"
@@ -152,7 +150,6 @@
 			android:layout_width="56dp"
 			android:src="@drawable/ic_email_white_24dp"
 			android:transitionName="@string/transition_reveal_contact"
-			android:visibility="invisible"
 			android:layout_marginEnd="@dimen/default_layout_margin"
 			app:layout_anchor="@id/activity_main_ll_container"
 			app:layout_anchorGravity="top|center_horizontal|right"

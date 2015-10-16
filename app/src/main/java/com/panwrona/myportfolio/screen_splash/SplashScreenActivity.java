@@ -57,10 +57,9 @@ public class SplashScreenActivity extends MvpActivity<SplashScreenView, SplashSc
     }
 
     private void startMainActivity() {
-            ActivityOptions options =
-                ActivityOptions.makeSceneTransitionAnimation(SplashScreenActivity.this);
-            startActivity(new Intent(SplashScreenActivity.this, MainActivity.class),
-                options.toBundle());
+            //ActivityOptions options =
+            //    ActivityOptions.makeSceneTransitionAnimation(SplashScreenActivity.this);
+            startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
             finish();
     }
 

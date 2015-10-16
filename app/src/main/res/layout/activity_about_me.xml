@@ -1,128 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:orientation="vertical"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@android:color/darker_gray">
+	android:background="@android:color/white"
+	android:id="@+id/activity_about_me_cl_main_layout">
 
-	<android.support.design.widget.CoordinatorLayout
+	<android.support.design.widget.AppBarLayout
+		android:id="@+id/activity_about_me_appbar"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="wrap_content"
+		android:visibility="invisible"
+		>
 
-		<android.support.design.widget.AppBarLayout
-			android:id="@+id/activity_about_me_appbar"
+		<android.support.design.widget.CollapsingToolbarLayout
+			android:id="@+id/activity_about_me_ctl"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:visibility="invisible"
+			android:layout_height="300dp"
+			android:background="@color/primary_color"
+			app:layout_scrollFlags="scroll|exitUntilCollapsed"
+			app:contentScrim="@color/primary_color"
 			>
 
-			<android.support.design.widget.CollapsingToolbarLayout
-				android:id="@+id/activity_about_me_ctl"
+			<ImageView
 				android:layout_width="match_parent"
-				android:layout_height="300dp"
-				android:background="@color/primary_color"
-				app:layout_scrollFlags="scroll|exitUntilCollapsed"
+				android:layout_height="match_parent"
+				android:src="@drawable/orange_about_me_background"
+				android:scaleType="centerCrop"
+				app:layout_collapseMode="parallax"/>
+
+			<android.support.v7.widget.Toolbar
+				android:id="@+id/activity_about_me_toolbar"
+				android:layout_width="match_parent"
+				android:layout_height="?attr/actionBarSize"
+				android:visibility="invisible"
+				app:title=""
+				app:contentInsetStart="0dp"
+				app:layout_collapseMode="pin"
 				>
-
-				<android.support.v7.widget.Toolbar
-					android:id="@+id/activity_abouy_me_toolbar"
-					android:layout_width="match_parent"
-					android:layout_height="?attr/actionBarSize"
-					android:background="@color/primary_color"
-					android:visibility="invisible"
-					app:title=""
-					app:contentInsetStart="0dp"
-					>
-					<TextView
-						android:id="@+id/main.textview.title"
-						android:layout_width="wrap_content"
-						android:layout_height="match_parent"
-						android:text="@string/app_name"
-						android:gravity="center_vertical"
-						android:textColor="@android:color/white"
-						android:textSize="20sp"
-						android:textAppearance="@style/TextAppearance.LobsterBold"
-						/>
-				</android.support.v7.widget.Toolbar>
-
-				<LinearLayout
-					android:id="@+id/activity_about_me_ll_container"
-					android:layout_width="match_parent"
+				<TextView
+					android:layout_width="wrap_content"
 					android:layout_height="match_parent"
-					android:gravity="bottom"
-					android:layout_marginBottom="64dp"
-					android:orientation="vertical">
+					android:text="@string/app_name"
+					android:gravity="center_vertical"
+					android:textColor="@android:color/white"
+					android:textSize="20sp"
+					android:textAppearance="@style/TextAppearance.LobsterBold"
+					/>
+			</android.support.v7.widget.Toolbar>
 
-					<de.hdodenhof.circleimageview.CircleImageView
-						android:layout_width="100dp"
-						android:layout_height="100dp"
-						android:layout_gravity="center"
-						android:src="@drawable/portoflio"
-						android:layout_marginBottom="@dimen/default_layout_margin"
-						app:border_width="1dp"
-						app:border_color="#FFFFFF"/>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="bottom"
+				android:layout_marginBottom="64dp"
+				android:orientation="vertical">
 
-					<LinearLayout
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_gravity="center"
-						>
+				<de.hdodenhof.circleimageview.CircleImageView
+					android:id="@+id/activity_about_me_civ"
+					android:layout_width="100dp"
+					android:layout_height="100dp"
+					android:layout_gravity="center"
+					android:src="@drawable/portoflio"
+					android:layout_marginBottom="@dimen/default_layout_margin"
+					app:border_width="2dp"
+					app:border_color="@color/text_icon_color"/>
 
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textColor="@color/text_icon_color"
-							android:text="android developer | "/>
+				<TextView
+					android:id="@+id/activity_about_me_tv_info"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:gravity="center"
+					android:layout_gravity="center"
+					android:textColor="@color/text_icon_color"
+					android:text="@string/about_me_header_info"/>
 
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textColor="@color/text_icon_color"
-							android:text="snowboarder | "/>
+			</LinearLayout>
 
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textColor="@color/text_icon_color"
-							android:text="coffee maniac"/>
+		</android.support.design.widget.CollapsingToolbarLayout>
+	</android.support.design.widget.AppBarLayout>
 
-
-					</LinearLayout>
-
-					<LinearLayout
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_gravity="center_horizontal"
-						>
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textColor="@color/text_icon_color"
-							android:text="traveler | "/>
-
-						<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:textColor="@color/text_icon_color"
-							android:text="adrenaline addict"/>
-
-
-					</LinearLayout>
-
-				</LinearLayout>
-
-			</android.support.design.widget.CollapsingToolbarLayout>
-		</android.support.design.widget.AppBarLayout>
-
-		<com.panwrona.myportfolio.customviews.support_layouts.MyNestedScrollView
-			android:id="@+id/activity_about_me_nsv_container"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			app:layout_behavior="@string/appbar_scrolling_view_behavior"
-			app:behavior_overlapTop="64dp">
+	<com.panwrona.myportfolio.customviews.support_layouts.MyNestedScrollView
+		android:id="@+id/activity_about_me_nsv_container"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior"
+		app:behavior_overlapTop="64dp">
 
 
 		<android.support.v7.widget.CardView
@@ -165,23 +129,21 @@
 
 		</android.support.v7.widget.CardView>
 
-		</com.panwrona.myportfolio.customviews.support_layouts.MyNestedScrollView>
+	</com.panwrona.myportfolio.customviews.support_layouts.MyNestedScrollView>
 
-		<android.support.design.widget.FloatingActionButton
-			android:id="@+id/activity_about_me_fab"
-			android:layout_height="@dimen/default_fab_size"
-			android:layout_width="@dimen/default_fab_size"
-			android:layout_marginBottom="@dimen/default_layout_margin"
-			android:layout_marginEnd="@dimen/default_layout_margin_doubled"
-			android:src="@drawable/ic_email_white_24dp"
-			android:transitionName="@string/transition_reveal_contact"
-			app:layout_behavior="com.panwrona.myportfolio.customviews.support_layouts.ScrollFloatingActionButtonBehavior"
-			app:layout_anchor="@id/activity_about_me_vp_container"
-			app:layout_anchorGravity="bottom|right|end"
-			app:backgroundTint="@color/accent_color"
-			app:elevation="8dp"
-			app:pressedTranslationZ="12dp"/>
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/activity_about_me_fab"
+		android:layout_height="@dimen/default_fab_size"
+		android:layout_width="@dimen/default_fab_size"
+		android:layout_marginBottom="@dimen/default_layout_margin"
+		android:layout_marginEnd="@dimen/default_layout_margin_doubled"
+		android:src="@drawable/ic_email_white_24dp"
+		android:transitionName="@string/transition_reveal_contact"
+		app:layout_behavior="com.panwrona.myportfolio.customviews.support_layouts.ScrollFloatingActionButtonBehavior"
+		app:layout_anchor="@id/activity_about_me_vp_container"
+		app:layout_anchorGravity="bottom|right|end"
+		app:backgroundTint="@color/accent_color"
+		app:elevation="8dp"
+		app:pressedTranslationZ="12dp"/>
 
-	</android.support.design.widget.CoordinatorLayout>
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

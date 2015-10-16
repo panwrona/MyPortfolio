@@ -58,4 +58,7 @@
 	<string name="contact_name">Mariusz Brona</string>
 	<string name="company_desc">Mobile Development Company</string>
 	<string name="company_name">Droids on Roids</string>
+	<string name="about_me_header_info">android developer | snowboarder | coffee maniac\n traveler
+		| adrenaline addict
+	</string>
 </resources>

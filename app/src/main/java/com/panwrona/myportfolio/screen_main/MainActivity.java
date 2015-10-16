@@ -4,10 +4,14 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.transition.Fade;
-import android.transition.Transition;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import butterknife.Bind;
@@ -16,6 +20,7 @@ import com.panwrona.myportfolio.R;
 import com.panwrona.myportfolio.buses.DataBus;
 import com.panwrona.myportfolio.mvp.MvpActivity;
 import com.panwrona.myportfolio.screen_about_me.AboutMeActivity;
+import com.panwrona.myportfolio.screen_coding.CodingActivity;
 import com.panwrona.myportfolio.screen_main.di.MainActivityComponent;
 import com.panwrona.myportfolio.screen_contact.ContactActivity;
 import com.panwrona.myportfolio.utils.GUIUtils;
@@ -24,13 +29,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import javax.inject.Inject;
 
 public class MainActivity extends MvpActivity<MainActivityView, MainActivityPresenter>
-	implements MainActivityView {
+	implements MainActivityView, ViewTreeObserver.OnGlobalLayoutListener {
 	private static final String TAG = MainActivity.class.getSimpleName();
 
 	@Inject DataBus dataBus;
 
 	@Bind(R.id.activity_main_rl_placeholder) RelativeLayout mRlPlaceholder;
-	@Bind(R.id.toolbar_rl) RelativeLayout mRlToolbarMainLayout;
 	@Bind(R.id.activity_main_fab) FloatingActionButton mFab;
 	@Bind(R.id.activity_main_iv_logo) CircleImageView mIvLogo;
 	@Bind(R.id.activity_main_cl_container) CoordinatorLayout mClContainer;
@@ -54,46 +58,14 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 		component.inject(this);
 		super.onCreate(savedInstanceState);
 		dataBus.register(this);
-		setEnterTransition();
-	}
-
-	private void setEnterTransition() {
-		Fade fade = new Fade(Fade.IN);
-		fade.setDuration(300);
-		fade.addListener(new Transition.TransitionListener() {
-			@Override
-			public void onTransitionStart(Transition transition) {
-
-			}
-
-			@Override
-			public void onTransitionEnd(Transition transition) {
-				startEnterTransitions();
-			}
-
-			@Override
-			public void onTransitionCancel(Transition transition) {
-
-			}
-
-			@Override
-			public void onTransitionPause(Transition transition) {
-
-			}
-
-			@Override
-			public void onTransitionResume(Transition transition) {
-
-			}
-		});
-		getWindow().setEnterTransition(fade);
+		mClContainer.getViewTreeObserver().addOnGlobalLayoutListener(this);
 	}
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if(resultCode == Activity.RESULT_OK) {
-			if(requestCode == RequestCodes.ABOUT_ME) {
+		if (resultCode == Activity.RESULT_OK) {
+			if (requestCode == RequestCodes.NEW_ACTIVITY) {
 				startEnterTransitions();
 			}
 		}
@@ -104,6 +76,7 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 		GUIUtils.startEnterTransitionSlideUp(this, mLlContainer);
 		GUIUtils.startScaleUpAnimation(this, mIvLogo);
 		mFab.show();
+		mClContainer.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 	}
 
 	@Override
@@ -123,7 +96,22 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 
 	private void startAboutMeActivity() {
 		ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this);
-		startActivityForResult(new Intent(this, AboutMeActivity.class), RequestCodes.ABOUT_ME,
+		startActivityForResult(new Intent(this, AboutMeActivity.class), RequestCodes.NEW_ACTIVITY,
+			options.toBundle());
+	}
+
+	@OnClick(R.id.activity_main_tv_coding)
+	public void onCodingClicked() {
+		GUIUtils.startReturnTransitionSlideUp(this, null, mRlPlaceholder);
+		GUIUtils.startReturnTransitionSlideDown(this, MainActivity.this::startCodingActivity,
+			mLlContainer);
+		GUIUtils.startScaleDownAnimation(this, mIvLogo);
+		mFab.hide();
+	}
+
+	private void startCodingActivity() {
+		ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this);
+		startActivityForResult(new Intent(this, CodingActivity.class), RequestCodes.NEW_ACTIVITY,
 			options.toBundle());
 	}
 
@@ -134,7 +122,30 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 		startActivity(new Intent(this, ContactActivity.class), options.toBundle());
 	}
 
-	public MainActivityComponent getComponent() {
-		return component;
+	@Override
+	public void onGlobalLayout() {
+		new Handler(Looper.getMainLooper()).post(() -> fadeInEnterTransitions());
+	}
+
+	private void fadeInEnterTransitions() {
+		Animation animation = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
+		animation.setDuration(500);
+		animation.setAnimationListener(new Animation.AnimationListener() {
+			@Override
+			public void onAnimationStart(Animation animation) {
+
+			}
+
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				mClContainer.setVisibility(View.VISIBLE);
+			}
+
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+
+			}
+		});
+		mClContainer.startAnimation(animation);
 	}
 }
