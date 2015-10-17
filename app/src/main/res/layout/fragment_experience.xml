@@ -1,272 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:orientation="vertical"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="@dimen/fragment_experience_header_size"
-		android:paddingStart="@dimen/default_layout_margin"
-		android:paddingEnd="@dimen/default_layout_margin"
-		android:paddingTop="@dimen/default_layout_margin"
-		android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_experience_header_size"
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/default_layout_margin"
+        android:paddingStart="@dimen/default_layout_margin"
+        android:paddingTop="@dimen/default_layout_margin">
 
-		<de.hdodenhof.circleimageview.CircleImageView
-			android:layout_width="48dp"
-			android:layout_height="48dp"
-			android:layout_marginEnd="@dimen/default_layout_margin"
-			android:src="@drawable/dor"
-			android:scaleType="centerCrop"
-			app:border_color="@color/secondary_text"
-			app:border_width="@dimen/civ_border_dimen"
-			/>
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="48dp"
-			android:orientation="vertical"
-			android:gravity="center">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="@dimen/default_layout_margin"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dor"
+            app:border_color="@color/secondary_text"
+            app:border_width="@dimen/civ_border_dimen" />
 
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:textSize="16sp"
-				android:textColor="@color/primary_text"
-				android:text="@string/company_name"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:textSize="@dimen/fragment_experience_header_text"
-				android:textColor="@color/secondary_text"
-				android:text="@string/company_desc"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/company_name"
+                android:textColor="@color/primary_text"
+                android:textSize="16sp" />
 
-
-		</LinearLayout>
-
-	</LinearLayout>
-
-	<FrameLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		>
-
-		<ImageView
-			android:layout_width="match_parent"
-			android:layout_height="172dp"
-			android:scaleType="centerCrop"
-			android:background="@drawable/experience_background"/>
-
-		<ImageView
-			android:layout_width="match_parent"
-			android:layout_height="172dp"
-			android:background="@color/transparent_orange"/>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="172dp"
-			android:orientation="vertical"
-			android:gravity="center|left"
-			android:paddingStart="24dp"
-			android:paddingEnd="@dimen/default_layout_margin">
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="@dimen/default_layout_margin_halved"
-				android:drawableStart="@drawable/ic_worker_white_24dp"
-				android:drawablePadding="@dimen/default_layout_margin"
-				android:text="Android Developer"
-				android:textColor="@color/text_icon_color"
-				android:textSize="14sp"
-				android:gravity="center|left"/>
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="@dimen/default_layout_margin_halved"
-				android:drawableStart="@drawable/ic_event_white_24dp"
-				android:drawablePadding="@dimen/default_layout_margin"
-				android:text="November '14 ~ Now"
-				android:textColor="@color/text_icon_color"
-				android:textSize="14sp"
-				android:gravity="center|left"/>
-
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:drawableStart="@drawable/ic_assignment_white_24dp"
-				android:drawablePadding="@dimen/default_layout_margin"
-				android:text="My main responsibility is to maintain android projects in every stadium of the development. I am coding both frontend and backend."
-				android:textColor="@color/text_icon_color"
-				android:textSize="14sp"
-				android:gravity="center|left"/>
-
-		</LinearLayout>
-	</FrameLayout>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:gravity="left">
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textColor="@color/accent_color"
-			android:textSize="16sp"
-			android:paddingStart="@dimen/default_layout_margin_halved"
-			android:paddingEnd="@dimen/default_layout_margin_halved"
-			android:gravity="center"
-			android:background="?android:attr/selectableItemBackground"
-			fontPath="fonts/Roboto-Regular.ttf"
-			android:text="HOMEPAGE"
-			tools:ignore="MissingPrefix"/>
-
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textColor="@color/accent_color"
-			android:textSize="16sp"
-			android:gravity="center"
-			android:text="BLOG"
-			android:background="?android:attr/selectableItemBackground"
-			fontPath="fonts/Roboto-Regular.ttf"
-			tools:ignore="MissingPrefix"/>
-
-	</LinearLayout>
-
-	<View
-		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:background="@color/separator_transparent_line"/>
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="@dimen/fragment_experience_header_size"
-		android:paddingStart="@dimen/default_layout_margin"
-		android:paddingEnd="@dimen/default_layout_margin"
-		android:paddingTop="@dimen/default_layout_margin"
-		android:orientation="horizontal">
-
-		<de.hdodenhof.circleimageview.CircleImageView
-			android:layout_width="48dp"
-			android:layout_height="48dp"
-			android:layout_marginEnd="@dimen/default_layout_margin"
-			android:src="@drawable/siemens"
-			android:scaleType="centerCrop"
-			app:border_color="@color/secondary_text"
-			app:border_width="@dimen/civ_border_dimen"
-			/>
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="48dp"
-			android:orientation="vertical"
-			android:gravity="center">
-
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:textSize="16sp"
-				android:textColor="@color/primary_text"
-				android:text="Siemens Sp. z o.o."/>
-
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:textSize="@dimen/fragment_experience_header_text"
-				android:textColor="@color/secondary_text"
-				android:text="Industry Company"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/company_desc"
+                android:textColor="@color/secondary_text"
+                android:textSize="@dimen/fragment_experience_header_text" />
 
 
-		</LinearLayout>
+        </LinearLayout>
 
-	</LinearLayout>
+    </LinearLayout>
 
-	<FrameLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-		<FrameLayout
-			android:layout_width="match_parent"
-			android:layout_height="172dp"
-			android:scaleType="centerCrop"
-			android:background="@drawable/experience_background"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="172dp"
+            android:background="@drawable/experience_background"
+            android:scaleType="centerCrop" />
 
-		<ImageView
-			android:layout_width="match_parent"
-			android:layout_height="172dp"
-			android:scaleType="centerCrop"
-			android:src="@color/transparent_orange"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="172dp"
+            android:background="@color/transparent_orange" />
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="172dp"
-			android:orientation="vertical"
-			android:paddingLeft="24dp"
-			android:paddingEnd="@dimen/default_layout_margin"
-			android:gravity="center|left">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="172dp"
+            android:gravity="center|left"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/default_layout_margin"
+            android:paddingStart="24dp">
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="@dimen/default_layout_margin_halved"
-				android:drawableStart="@drawable/ic_worker_white_24dp"
-				android:drawablePadding="@dimen/default_layout_margin"
-				android:text="Assistant sales department"
-				android:textColor="@color/text_icon_color"
-				android:textSize="14sp"
-				android:gravity="center|left"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_layout_margin_halved"
+                android:drawablePadding="@dimen/default_layout_margin"
+                android:drawableStart="@drawable/ic_worker_white_24dp"
+                android:gravity="center|left"
+                android:text="Android Developer"
+                android:textColor="@color/text_icon_color"
+                android:textSize="14sp" />
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="@dimen/default_layout_margin_halved"
-				android:drawableStart="@drawable/ic_event_white_24dp"
-				android:drawablePadding="@dimen/default_layout_margin"
-				android:text="March '14 ~ October '14"
-				android:textColor="@color/text_icon_color"
-				android:textSize="14sp"
-				android:gravity="center|left"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_layout_margin_halved"
+                android:drawablePadding="@dimen/default_layout_margin"
+                android:drawableStart="@drawable/ic_event_white_24dp"
+                android:gravity="center|left"
+                android:text="November '14 ~ Now"
+                android:textColor="@color/text_icon_color"
+                android:textSize="14sp" />
 
-			<TextView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:drawableStart="@drawable/ic_assignment_white_24dp"
-				android:drawablePadding="@dimen/default_layout_margin"
-				android:text="I was responsible for matching solutions for existing and new investments. "
-				android:textColor="@color/text_icon_color"
-				android:textSize="14sp"
-				android:gravity="center|left"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/default_layout_margin"
+                android:drawableStart="@drawable/ic_assignment_white_24dp"
+                android:gravity="center|left"
+                android:text="My main responsibility is to maintain android projects in every stadium of the development. I am coding both frontend and backend."
+                android:textColor="@color/text_icon_color"
+                android:textSize="14sp" />
 
-		</LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
 
-	</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="horizontal">
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:gravity="left">
+        <Button
+            fontPath="fonts/Roboto-Regular.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:paddingEnd="@dimen/default_layout_margin_halved"
+            android:paddingStart="@dimen/default_layout_margin_halved"
+            android:text="@string/text_link_homepage"
+            android:textColor="@color/text_link_color"
+            android:textSize="16sp"
+            tools:ignore="MissingPrefix" />
 
-		<Button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:textColor="@color/accent_color"
-			android:textSize="16sp"
-			android:padding="@dimen/default_layout_margin_halved"
-			android:gravity="center"
-			android:background="?android:attr/selectableItemBackground"
-			fontPath="fonts/Roboto-Regular.ttf"
-			android:text="HOMEPAGE"
-			tools:ignore="MissingPrefix"/>
+        <Button
+            fontPath="fonts/Roboto-Regular.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="@string/text_link_blog"
+            android:textColor="@color/text_link_color"
+            android:textSize="16sp"
+            tools:ignore="MissingPrefix" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/separator_transparent_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_experience_header_size"
+        android:orientation="horizontal"
+        android:paddingEnd="@dimen/default_layout_margin"
+        android:paddingStart="@dimen/default_layout_margin"
+        android:paddingTop="@dimen/default_layout_margin">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="@dimen/default_layout_margin"
+            android:scaleType="centerCrop"
+            android:src="@drawable/siemens"
+            app:border_color="@color/secondary_text"
+            app:border_width="@dimen/civ_border_dimen" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Siemens Sp. z o.o."
+                android:textColor="@color/primary_text"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Industry Company"
+                android:textColor="@color/secondary_text"
+                android:textSize="@dimen/fragment_experience_header_text" />
 
 
-	</LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="172dp"
+            android:background="@drawable/experience_background"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="172dp"
+            android:scaleType="centerCrop"
+            android:src="@color/transparent_orange" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="172dp"
+            android:gravity="center|left"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/default_layout_margin"
+            android:paddingStart="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_layout_margin_halved"
+                android:drawablePadding="@dimen/default_layout_margin"
+                android:drawableStart="@drawable/ic_worker_white_24dp"
+                android:gravity="center|left"
+                android:text="Assistant sales department"
+                android:textColor="@color/text_icon_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_layout_margin_halved"
+                android:drawablePadding="@dimen/default_layout_margin"
+                android:drawableStart="@drawable/ic_event_white_24dp"
+                android:gravity="center|left"
+                android:text="March '14 ~ October '14"
+                android:textColor="@color/text_icon_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/default_layout_margin"
+                android:drawableStart="@drawable/ic_assignment_white_24dp"
+                android:gravity="center|left"
+                android:text="I was responsible for matching solutions for existing and new investments. "
+                android:textColor="@color/text_icon_color"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <Button
+        fontPath="fonts/Roboto-Regular.ttf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:gravity="center"
+        android:padding="@dimen/default_layout_margin_halved"
+        android:text="@string/text_link_homepage"
+        android:textColor="@color/text_link_color"
+        android:textSize="16sp"
+        tools:ignore="MissingPrefix" />
 
 </LinearLayout>

@@ -25,9 +25,13 @@ import butterknife.OnClick;
 import com.panwrona.myportfolio.R;
 import com.panwrona.myportfolio.customviews.support_layouts.MyNestedScrollView;
 import com.panwrona.myportfolio.customviews.support_layouts.WrapContentHeightViewPager;
+import com.panwrona.myportfolio.data.entities.GithubRepo;
 import com.panwrona.myportfolio.mvp.MvpActivity;
 import com.panwrona.myportfolio.screen_contact.ContactActivity;
 import com.panwrona.myportfolio.utils.GUIUtils;
+
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AboutMeActivity extends MvpActivity<AboutMeView, AboutMePresenter>

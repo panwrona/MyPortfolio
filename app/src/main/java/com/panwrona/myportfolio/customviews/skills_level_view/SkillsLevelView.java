@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -53,6 +54,7 @@ public class SkillsLevelView extends View {
 	public SkillsLevelView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initViews(context, attrs);
+		isInEditMode(); //TODO: remove before pushing to store
 	}
 
 	private void initViews(Context context, AttributeSet attrs) {
@@ -79,8 +81,10 @@ public class SkillsLevelView extends View {
 		backgroundPaint = new Paint();
 		foregroundPaint = new Paint();
 		textPaint = new Paint();
-		textPaint.setColor(getBackgroundColor(context));
+		textPaint.setColor(foregroundColor);
 		textPaint.setTextSize(textSize);
+		Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Light.ttf");
+		textPaint.setTypeface(typeface);
 		backgroundPaint.setColor(backgroundColor);
 		foregroundPaint.setColor(foregroundColor);
 
@@ -157,7 +161,7 @@ public class SkillsLevelView extends View {
 	}
 
 	private int getBackgroundColor(Context context) {
-		return context.getResources().getColor(R.color.light_primary_color);
+		return context.getResources().getColor(R.color.skills_level_view_background);
 	}
 
 	private float getTextSize(Context context) {

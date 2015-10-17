@@ -3,40 +3,55 @@ package com.panwrona.myportfolio.data.entities;
 import com.google.gson.annotations.SerializedName;
 
 public class GithubRepo {
-	@SerializedName("name") private String name;
-	@SerializedName("stargazers_count") private Integer stargazersCount;
-	@SerializedName("watchers_count") private Integer watchersCount;
-	@SerializedName("forks_count") private Integer forksCount;
+    @SerializedName("name")
+    private String name;
+    @SerializedName("stargazers_count")
+    private Integer stargazersCount;
+    @SerializedName("watchers_count")
+    private Integer watchersCount;
+    @SerializedName("forks_count")
+    private Integer forksCount;
 
-	public String getName() {
-		return name;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public Integer getStargazersCount() {
-		return stargazersCount;
-	}
+    @SerializedName("description")
+    private String description;
 
-	public void setStargazersCount(Integer stargazersCount) {
-		this.stargazersCount = stargazersCount;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public Integer getWatchersCount() {
-		return watchersCount;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setWatchersCount(Integer watchersCount) {
-		this.watchersCount = watchersCount;
-	}
+    public Integer getStargazersCount() {
+        return stargazersCount;
+    }
 
-	public Integer getForksCount() {
-		return forksCount;
-	}
+    public void setStargazersCount(Integer stargazersCount) {
+        this.stargazersCount = stargazersCount;
+    }
 
-	public void setForksCount(Integer forksCount) {
-		this.forksCount = forksCount;
-	}
+    public Integer getWatchersCount() {
+        return watchersCount;
+    }
+
+    public void setWatchersCount(Integer watchersCount) {
+        this.watchersCount = watchersCount;
+    }
+
+    public Integer getForksCount() {
+        return forksCount;
+    }
+
+    public void setForksCount(Integer forksCount) {
+        this.forksCount = forksCount;
+    }
 }

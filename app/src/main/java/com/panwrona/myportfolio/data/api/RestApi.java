@@ -1,15 +1,13 @@
 package com.panwrona.myportfolio.data.api;
 
 import com.panwrona.myportfolio.data.entities.GithubRepo;
-import com.panwrona.myportfolio.data.entities.GithubRepoResponse;
 import com.panwrona.myportfolio.data.entities.OwnerResponse;
 
 import java.util.List;
 
-import rx.Observable;
+import retrofit.Callback;
 
 public interface RestApi {
-
-	Observable<List<GithubRepo>> getGithubRepos();
-	Observable<OwnerResponse> getOwner();
+	void getGithubRepos(Callback<List<GithubRepo>> callback);
+	Callback<OwnerResponse> getOwner();
 }

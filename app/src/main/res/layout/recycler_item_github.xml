@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/text_icon_color"
+    android:layout_marginStart="@dimen/default_layout_margin"
+    android:layout_marginEnd="@dimen/default_layout_margin"
+    android:layout_marginTop="@dimen/default_layout_margin_halved"
+    android:layout_marginBottom="@dimen/default_layout_margin_halved"
+    android:elevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/default_layout_margin"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="@dimen/default_layout_margin"
+            android:scaleType="centerCrop"
+            android:src="@drawable/github"
+            app:border_color="@color/secondary_text"
+            app:border_width="@dimen/civ_border_dimen" />
+
+        <TextView
+            android:id="@+id/github_tv_reponame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|left"
+            android:textSize="20sp"
+            android:textColor="@color/primary_text"
+            android:text="RepositoryNae"
+            />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="144dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/basic_info"
+            android:scaleType="centerCrop"
+            />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@color/transparent_orange"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/github_tv_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="@dimen/default_layout_margin_halved"
+                    android:paddingStart="@dimen/default_layout_margin"
+                    android:paddingTop="@dimen/default_layout_margin"
+                    android:textColor="@color/text_icon_color"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/github_tv_stars"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="@dimen/default_layout_margin_halved"
+                        android:text="Stars: "
+                        android:drawablePadding="@dimen/default_layout_margin"
+                        android:drawableStart="@drawable/ic_star_white_18dp"
+                        android:textColor="@color/text_icon_color"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/github_tv_forks"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="@dimen/default_layout_margin_halved"
+                        android:text="Forks: "
+                        android:drawablePadding="@dimen/default_layout_margin"
+                        android:drawableStart="@drawable/ic_source_fork_white_18dp"
+                        android:textColor="@color/text_icon_color"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/github_tv_watchers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginBottom="@dimen/default_layout_margin_halved"
+                        android:text="Watchers"
+                        android:drawablePadding="@dimen/default_layout_margin"
+                        android:drawableStart="@drawable/ic_eye_white_18dp"
+                        android:textColor="@color/text_icon_color"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <Button
+            fontPath="fonts/Roboto-Regular.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:paddingEnd="@dimen/default_layout_margin_halved"
+            android:paddingStart="@dimen/default_layout_margin_halved"
+            android:text="@string/see_on_github"
+            android:textColor="@color/text_link_color"
+            android:textSize="16sp"
+            tools:ignore="MissingPrefix" />
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

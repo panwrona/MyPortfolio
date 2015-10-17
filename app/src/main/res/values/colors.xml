@@ -16,4 +16,6 @@
 	<color name="separator_transparent_line">#46727272</color>
 	<color name="transparent_about_me">#8b000000</color>
 	<color name="transparent_orange">#ab3b1a00</color>
+	<color name="text_link_color">#000000</color>
+	<color name="skills_level_view_background">#57e9e9e9</color>
 </resources>
