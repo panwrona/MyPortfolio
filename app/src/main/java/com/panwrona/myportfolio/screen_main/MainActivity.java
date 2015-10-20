@@ -113,7 +113,8 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 
 	private void startPassionActivity() {
 		//noinspection unchecked
-		startActivityForResult(new Intent(this, PassionActivity.class), RequestCodes.NEW_ACTIVITY);
+		ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this);
+		startActivityForResult(new Intent(this, PassionActivity.class), RequestCodes.NEW_ACTIVITY, options.toBundle());
 	}
 
 	@OnClick(R.id.activity_main_fab)
