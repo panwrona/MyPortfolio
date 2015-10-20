@@ -8,17 +8,14 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
-import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.ScaleAnimation;
 import com.panwrona.myportfolio.R;
-import com.panwrona.myportfolio.screen_main.MainActivity;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class GUIUtils {
 
@@ -60,7 +57,7 @@ public class GUIUtils {
 			@Override
 			public void onAnimationStart(Animator animation) {
 				super.onAnimationStart(animation);
-				view.setBackgroundColor(ctx.getResources().getColor(color));
+				view.setBackgroundColor(ContextCompat.getColor(ctx, color));
 			}
 
 			@Override
@@ -86,7 +83,7 @@ public class GUIUtils {
 		anim.addListener(new AnimatorListenerAdapter() {
 			@Override
 			public void onAnimationStart(Animator animation) {
-				view.setBackgroundColor(ctx.getResources().getColor(color));
+				view.setBackgroundColor(ContextCompat.getColor(ctx, color));
 			}
 
 			@Override

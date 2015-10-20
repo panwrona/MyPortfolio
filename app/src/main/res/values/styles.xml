@@ -46,12 +46,6 @@
 		<attr name="skillScale" format="integer"/>
 	</declare-styleable>
 
-	<declare-styleable name="CircularImageView">
-		<attr name="strokeWidth" format="dimension"/>
-		<attr name="strokeColor" format="color"/>
-		<attr name="circularRadius" format="dimension"/>
-	</declare-styleable>
-
 	<declare-styleable name="CirCleRefreshLayout">
 		<attr name="AniBackColor" format="color" />
 		<attr name="AniForeColor" format="color" />

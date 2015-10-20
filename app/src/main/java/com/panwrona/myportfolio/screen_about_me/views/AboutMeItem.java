@@ -2,7 +2,7 @@ package com.panwrona.myportfolio.screen_about_me.views;
 
 import android.support.annotation.DrawableRes;
 
-public class AboutMeItem {
+class AboutMeItem {
 
 	@DrawableRes private int drawable;
 	private String title;

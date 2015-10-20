@@ -27,6 +27,7 @@ public abstract class MvpFragment<V extends MvpView, P extends MvpPresenter> ext
         super.onViewCreated(view, savedInstanceState);
         if(presenter == null)
             presenter = createPresenter();
+        //noinspection unchecked
         presenter.attachView(this);
     }
 

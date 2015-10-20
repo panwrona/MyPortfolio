@@ -7,8 +7,13 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/fragment_github_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="invisible"/>
 
-
+    <ProgressBar
+        android:id="@+id/fragment_github_progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"/>
 
 </FrameLayout>

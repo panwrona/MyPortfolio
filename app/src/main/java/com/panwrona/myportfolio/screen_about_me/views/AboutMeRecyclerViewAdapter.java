@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import com.panwrona.myportfolio.R;
 import java.util.List;
 
-public class AboutMeRecyclerViewAdapter extends RecyclerView.Adapter<AboutMeViewHolder> {
+class AboutMeRecyclerViewAdapter extends RecyclerView.Adapter<AboutMeViewHolder> {
 
 	private final List<AboutMeItem> aboutMeItems;
 

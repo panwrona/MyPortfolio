@@ -4,6 +4,7 @@
 	android:duration="200"
 	android:interpolator="@android:interpolator/fast_out_linear_in">
 	<changeBounds>
+		<!--suppress AndroidElementNotAllowed -->
 		<arcMotion
 			android:maximumAngle="90"
 			android:minimumHorizontalAngle="90"

@@ -25,6 +25,7 @@ import com.panwrona.myportfolio.R;
 	}
 
 	private void init() {
+		//noinspection ConstantConditions
 		mImageMaxSize = mContext.getResources().getDrawable(R.drawable.twitter).getIntrinsicWidth();
 		mMarginTop = mContext.getResources().getDimension(R.dimen.image_margin);
 	}

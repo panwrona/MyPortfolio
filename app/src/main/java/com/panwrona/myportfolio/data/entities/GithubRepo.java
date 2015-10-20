@@ -11,6 +11,9 @@ public class GithubRepo {
     private Integer watchersCount;
     @SerializedName("forks_count")
     private Integer forksCount;
+    @SerializedName("html_url")
+    private String htmlUrl;
+
 
     public String getDescription() {
         return description;
@@ -53,5 +56,13 @@ public class GithubRepo {
 
     public void setForksCount(Integer forksCount) {
         this.forksCount = forksCount;
+    }
+
+    public String getHtmlUrl() {
+        return htmlUrl;
+    }
+
+    public void setHtmlUrl(String htmlUrl) {
+        this.htmlUrl = htmlUrl;
     }
 }

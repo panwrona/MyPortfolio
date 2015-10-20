@@ -10,10 +10,10 @@ import retrofit.Callback;
 import retrofit.RequestInterceptor;
 import retrofit.android.AndroidLog;
 
-public class ApiManager implements RestApi {
+public final class ApiManager implements RestApi {
 
 	private RestAdapter restAdapter;
-	private RequestInterceptor requestInterceptor;
+	private final RequestInterceptor requestInterceptor;
 
 	public ApiManager() {
 		requestInterceptor = request -> request.addHeader(Constants.USER_AGENT, "panwrona");
@@ -33,10 +33,5 @@ public class ApiManager implements RestApi {
 	@Override
 	public void getGithubRepos(Callback<List<GithubRepo>> callback) {
 		restAdapter.getGithubRepos(callback);
-	}
-
-	@Override
-	public Callback<OwnerResponse> getOwner() {
-		return null;
 	}
 }

@@ -1,6 +1,5 @@
 package com.panwrona.myportfolio.screen_about_me;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -8,18 +7,16 @@ import com.panwrona.myportfolio.screen_about_me.screen_about_me_fragment.AboutMe
 import com.panwrona.myportfolio.screen_about_me.screen_education.EducationFragment;
 import com.panwrona.myportfolio.screen_about_me.screen_experience.ExperienceFragment;
 
-public class AboutMePagerAdapter extends FragmentPagerAdapter {
+final class AboutMePagerAdapter extends FragmentPagerAdapter {
 	private static final int ABOUT_ME_POSITION = 0;
 	private static final int EXPERIENCE_POSITION = 2;
 	private static final int EDUCATION_POSITION = 1;
 	private static final int PAGE_COUNT = 3;
 
-	private final Context mContext;
 	private String tabTitles[] = new String[] { "About Me", "Education", "Experience"};
 
-	public AboutMePagerAdapter(FragmentManager fm, Context context) {
+	public AboutMePagerAdapter(FragmentManager fm) {
 		super(fm);
-		mContext = context;
 	}
 
 	@Override

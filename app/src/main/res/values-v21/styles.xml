@@ -15,5 +15,9 @@
 	<style name="AppTheme.ContactActivity" parent="AppTheme">
 		<item name="android:navigationBarColor">@color/accent_color</item>
 	</style>
+
+	<style name="AppTheme.PassionActivity" parent="AppTheme">
+		<item name="android:navigationBarColor">@color/full_orange_dark</item>
+	</style>
 </resources>
 

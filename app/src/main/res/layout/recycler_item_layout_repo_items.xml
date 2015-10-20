@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	android:gravity="center_horizontal"
+	android:weightSum="6"
+	>
+
+	<TextView
+		android:id="@+id/github_tv_stars"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="@dimen/default_layout_margin_halved"
+		android:text="1"
+		android:layout_weight="1"
+		android:gravity="center"
+		android:drawableStart="@drawable/ic_star_white_18dp"
+		android:textColor="@color/text_icon_color"
+		android:textSize="14sp"/>
+
+	<TextView
+		android:id="@+id/github_tv_forks"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="@dimen/default_layout_margin_halved"
+		android:text="2"
+		android:layout_weight="1"
+		android:gravity="center"
+		android:drawableStart="@drawable/ic_source_fork_white_18dp"
+		android:textColor="@color/text_icon_color"
+		android:textSize="14sp"/>
+	<TextView
+		android:id="@+id/github_tv_watchers"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="@dimen/default_layout_margin_halved"
+		android:text="3"
+		android:layout_weight="1"
+		android:gravity="center"
+		android:drawableStart="@drawable/ic_eye_white_18dp"
+		android:textColor="@color/text_icon_color"
+		android:textSize="14sp"/>
+
+</LinearLayout>

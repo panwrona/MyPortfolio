@@ -1,11 +1,7 @@
 package com.panwrona.myportfolio.screen_splash;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.transition.Fade;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;

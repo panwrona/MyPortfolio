@@ -3,9 +3,9 @@ package com.panwrona.myportfolio.data.event_entities;
 import com.panwrona.myportfolio.data.entities.GithubRepo;
 import java.util.List;
 
-public class GithubRepoList {
+final class GithubRepoList {
 
-	public List<GithubRepo> githubRepos;
+	private List<GithubRepo> githubRepos;
 
 	public GithubRepoList(List<GithubRepo> githubRepos) {
 		this.githubRepos = githubRepos;

@@ -8,6 +8,9 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.os.Handler;
+import android.os.Looper;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -118,19 +121,23 @@ public class SkillsLevelView extends View {
 		showUpZAnimator.setRepeatMode(ObjectAnimator.RESTART);
 		showUpZAnimator.setInterpolator(new OvershootInterpolator(3.5f));
 		showUpZAnimator.addListener(new Animator.AnimatorListener() {
-			@Override public void onAnimationStart(Animator animation) {
+			@Override
+			public void onAnimationStart(Animator animation) {
 				state = State.ANIMATING;
 			}
 
-			@Override public void onAnimationEnd(Animator animation) {
+			@Override
+			public void onAnimationEnd(Animator animation) {
 
 			}
 
-			@Override public void onAnimationCancel(Animator animation) {
+			@Override
+			public void onAnimationCancel(Animator animation) {
 
 			}
 
-			@Override public void onAnimationRepeat(Animator animation) {
+			@Override
+			public void onAnimationRepeat(Animator animation) {
 				repeatCount--;
 				invalidate();
 			}
@@ -153,15 +160,15 @@ public class SkillsLevelView extends View {
 
 			}
 		});
-		fadeInAnimator.start();
+		post(fadeInAnimator::start);
 	}
 
 	private int getForegroundColor(Context context) {
-		return context.getResources().getColor(R.color.text_icon_color);
+		return ContextCompat.getColor(context, R.color.text_icon_color);
 	}
 
 	private int getBackgroundColor(Context context) {
-		return context.getResources().getColor(R.color.skills_level_view_background);
+		return ContextCompat.getColor(context, R.color.skills_level_view_background);
 	}
 
 	private float getTextSize(Context context) {
@@ -169,7 +176,7 @@ public class SkillsLevelView extends View {
 	}
 
 	private int getTextColor(Context context) {
-		return context.getResources().getColor(R.color.text_icon_color);
+		return ContextCompat.getColor(context, R.color.text_icon_color);
 	}
 
 	public void setSkillsList(List<Skill> skillList) {

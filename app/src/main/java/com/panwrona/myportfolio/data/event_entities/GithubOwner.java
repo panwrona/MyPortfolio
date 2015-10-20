@@ -2,7 +2,7 @@ package com.panwrona.myportfolio.data.event_entities;
 
 import com.panwrona.myportfolio.data.entities.Owner;
 
-public class GithubOwner {
+final class GithubOwner {
 
 	private Owner owner;
 

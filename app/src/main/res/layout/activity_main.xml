@@ -78,56 +78,9 @@
 					tools:ignore="MissingPrefix"
 					/>
 
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="horizontal"
-					android:layout_marginBottom="@dimen/default_layout_margin"
-					android:weightSum="2">
+				<include layout="@layout/layout_actvity_main_buttons_row1" />
 
-					<TextView
-						android:id="@+id/activity_main_tv_about_me"
-						android:layout_height="wrap_content"
-						android:layout_width="wrap_content"
-						android:layout_weight="1"
-						android:gravity="center"
-						android:drawableTop="@drawable/about_me_aboutme"
-						android:text="about me"/>
-
-					<TextView
-						android:id="@+id/activity_main_tv_coding"
-						android:layout_height="wrap_content"
-						android:layout_width="wrap_content"
-						android:gravity="center"
-						android:layout_weight="1"
-						android:drawableTop="@drawable/about_me_strengths"
-						android:text="coding"/>
-
-					</LinearLayout>
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="horizontal">
-
-					<TextView
-						android:layout_height="wrap_content"
-						android:layout_width="wrap_content"
-						android:layout_weight="1"
-						android:gravity="center"
-						android:drawableTop="@drawable/about_me_passion"
-						android:text="passion"/>
-
-					<TextView
-						android:layout_height="wrap_content"
-						android:layout_width="wrap_content"
-						android:gravity="center"
-						android:layout_weight="1"
-						android:layout_gravity="fill"
-						android:drawableTop="@drawable/about_me_contact"
-						android:text="credits"/>
-
-				</LinearLayout>
+				<include layout="@layout/layout_activity_main_buttons_row2" />
 
 			</LinearLayout>
 

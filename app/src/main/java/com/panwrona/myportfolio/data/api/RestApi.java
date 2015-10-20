@@ -7,7 +7,6 @@ import java.util.List;
 
 import retrofit.Callback;
 
-public interface RestApi {
+interface RestApi {
 	void getGithubRepos(Callback<List<GithubRepo>> callback);
-	Callback<OwnerResponse> getOwner();
 }

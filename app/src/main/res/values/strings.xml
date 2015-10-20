@@ -64,4 +64,12 @@
 	<string name="text_link_homepage">HOMEPAGE</string>
 	<string name="text_link_blog">BLOG</string>
 	<string name="see_on_github">SEE ON GITHUB</string>
+	<string name="passion">passion</string>
+	<string name="coding">coding</string>
+	<string name="aboutme">about me</string>
+	<string name="credits">credits</string>
+	<string name="passion_boards">I love boards. Each of them. I\'ve been snowboarding for almost 17
+		years, currently finishing a snowboard instructor course. Also I finished my first kite
+		surfing course. My favourite way to get to the work is a half hour ride on my longboard.
+	</string>
 </resources>

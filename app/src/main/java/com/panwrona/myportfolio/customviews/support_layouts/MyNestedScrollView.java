@@ -7,30 +7,19 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 
 public class MyNestedScrollView extends NestedScrollView {
-	private int slop;
-	private float mInitialMotionX;
-	private float mInitialMotionY;
 
 	public MyNestedScrollView(Context context) {
 		super(context);
-		init(context);
 	}
 
-	private void init(Context context) {
-		ViewConfiguration config = ViewConfiguration.get(context);
-		slop = config.getScaledEdgeSlop();
-	}
 
 	public MyNestedScrollView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		init(context);
 	}
 
 	public MyNestedScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		init(context);
 	}
-
 
 	private float xDistance, yDistance, lastX, lastY;
 

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:background="@color/full_orange_dark">
+	<RelativeLayout
+		android:id="@+id/activity_passion_rl_header"
+		android:layout_width="match_parent"
+		android:layout_height="340dp"
+		android:background="@drawable/passion_background"
+		>
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:background="@drawable/boarding_transparent_gradient"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:paddingBottom="@dimen/default_layout_margin_doubled"
+			android:textColor="@color/text_icon_color"
+			android:textSize="40sp"
+			android:textAppearance="@style/TextAppearance.LobsterBold"
+			android:text="Boarding"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="120dp"
+			android:orientation="horizontal"
+			android:layout_alignParentBottom="true"
+			android:weightSum="4"
+			android:layout_margin="@dimen/default_layout_margin">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:drawableTop="@drawable/white_snowboard"
+				android:drawablePadding="@dimen/default_layout_margin_halved"
+				android:text="snow"
+				android:gravity="center"/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:drawableTop="@drawable/white_skimboard"
+				android:drawablePadding="@dimen/default_layout_margin_halved"
+				android:text="skim"
+				android:gravity="center"
+				/>
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:drawableTop="@drawable/white_longboard"
+				android:drawablePadding="@dimen/default_layout_margin_halved"
+				android:text="long"
+				android:gravity="center"
+				/>
+
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:drawableTop="@drawable/white_kiteboard"
+				android:drawablePadding="@dimen/default_layout_margin_halved"
+				android:text="kite"
+				android:gravity="center"
+				/>
+
+
+
+		</LinearLayout>
+
+	</RelativeLayout>
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:paddingStart="@dimen/default_layout_margin"
+		android:paddingEnd="@dimen/default_layout_margin"
+		android:paddingBottom="@dimen/default_layout_margin_doubled"
+		android:textColor="@color/text_icon_color"
+		android:textSize="16sp"
+		android:gravity="center"
+		android:text="@string/passion_boards"/>
+
+</LinearLayout>

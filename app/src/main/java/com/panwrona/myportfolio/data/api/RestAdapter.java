@@ -8,7 +8,7 @@ import java.util.List;
 import retrofit.Callback;
 import retrofit.http.GET;
 
-public interface RestAdapter {
+interface RestAdapter {
 
 	class Nodes {
 		public static final String users = "/users";

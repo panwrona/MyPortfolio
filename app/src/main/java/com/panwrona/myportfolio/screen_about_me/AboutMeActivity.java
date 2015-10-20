@@ -12,7 +12,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
-
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
@@ -21,17 +20,12 @@ import android.view.animation.ScaleAnimation;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.OnClick;
-
 import com.panwrona.myportfolio.R;
 import com.panwrona.myportfolio.customviews.support_layouts.MyNestedScrollView;
 import com.panwrona.myportfolio.customviews.support_layouts.WrapContentHeightViewPager;
-import com.panwrona.myportfolio.data.entities.GithubRepo;
 import com.panwrona.myportfolio.mvp.MvpActivity;
 import com.panwrona.myportfolio.screen_contact.ContactActivity;
 import com.panwrona.myportfolio.utils.GUIUtils;
-
-import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AboutMeActivity extends MvpActivity<AboutMeView, AboutMePresenter>
@@ -71,7 +65,7 @@ public class AboutMeActivity extends MvpActivity<AboutMeView, AboutMePresenter>
 		super.onCreate(savedInstanceState);
 		initViews();
 		AboutMePagerAdapter pagerAdapter =
-			new AboutMePagerAdapter(getSupportFragmentManager(), AboutMeActivity.this);
+			new AboutMePagerAdapter(getSupportFragmentManager());
 		mVpContainer.setAdapter(pagerAdapter);
 		mVpContainer.addOnPageChangeListener(this);
 		mTlContainer.setupWithViewPager(mVpContainer);
@@ -218,6 +212,6 @@ public class AboutMeActivity extends MvpActivity<AboutMeView, AboutMePresenter>
 
 	@Override
 	public void onGlobalLayout() {
-		new Handler(Looper.getMainLooper()).post(() -> setupEnterTransition());
+		new Handler(Looper.getMainLooper()).post(this::setupEnterTransition);
 	}
 }

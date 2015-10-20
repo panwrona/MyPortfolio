@@ -1,7 +1,5 @@
 package com.panwrona.myportfolio.screen_coding.screen_tools;
 
-import android.support.v4.app.Fragment;
-
 import com.panwrona.myportfolio.R;
 import com.panwrona.myportfolio.mvp.MvpFragment;
 

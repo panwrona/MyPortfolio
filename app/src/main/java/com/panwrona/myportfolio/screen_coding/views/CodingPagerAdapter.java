@@ -8,7 +8,7 @@ import com.panwrona.myportfolio.screen_coding.screen_github.GithubFragment;
 import com.panwrona.myportfolio.screen_coding.screen_projects.ProjectsFragment;
 import com.panwrona.myportfolio.screen_coding.screen_tools.ToolsFragment;
 
-public class CodingPagerAdapter extends FragmentPagerAdapter {
+public final class CodingPagerAdapter extends FragmentPagerAdapter {
     private static final int GITHUB_POSITION = 0;
     private static final int PROJECTS_POSITION = 2;
     private static final int TOOLS_POSITION = 1;

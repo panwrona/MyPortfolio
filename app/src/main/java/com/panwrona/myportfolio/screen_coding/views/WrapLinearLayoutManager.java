@@ -3,10 +3,12 @@ package com.panwrona.myportfolio.screen_coding.views;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import com.panwrona.myportfolio.customviews.support_layouts.WrapContentHeightViewPager;
 
-public class WrapLinearLayoutManager extends LinearLayoutManager {
+public final class WrapLinearLayoutManager extends LinearLayoutManager {
 
     public WrapLinearLayoutManager(Context context) {
         super(context);
@@ -67,7 +69,7 @@ public class WrapLinearLayoutManager extends LinearLayoutManager {
             case View.MeasureSpec.AT_MOST:
             case View.MeasureSpec.UNSPECIFIED:
         }
-
+        Log.d(WrapContentHeightViewPager.class.getSimpleName(), "onMeasure");
         setMeasuredDimension(width, height);
     }
 

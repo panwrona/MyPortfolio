@@ -33,6 +33,11 @@
 			android:screenOrientation="portrait" />
 
 		<activity
+			android:name=".screen_passion.PassionActivity"
+			android:theme="@style/AppTheme.PassionActivity"
+			android:screenOrientation="portrait" />
+
+		<activity
 			android:name=".screen_contact.ContactActivity"
 			android:theme="@style/AppTheme.ContactActivity"
 			android:screenOrientation="portrait" />

@@ -2,7 +2,7 @@ package com.panwrona.myportfolio.customviews.skills_level_view.entities;
 
 import java.util.List;
 
-public class Skills {
+class Skills {
 	private List<Skill> skillList;
 	private int scale;
 
