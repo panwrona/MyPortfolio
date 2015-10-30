@@ -10,7 +10,7 @@ android:orientation="horizontal">
 	android:layout_width="wrap_content"
 	android:layout_weight="1"
 	android:gravity="center"
-	android:drawableTop="@drawable/about_me_passion"
+	android:drawableTop="@drawable/passion_button"
 	android:text="@string/passion"/>
 
 <TextView
@@ -19,7 +19,7 @@ android:orientation="horizontal">
 	android:gravity="center"
 	android:layout_weight="1"
 	android:layout_gravity="fill"
-	android:drawableTop="@drawable/about_me_contact"
+	android:drawableTop="@drawable/credits_button"
 	android:text="@string/credits"/>
 
 </LinearLayout>

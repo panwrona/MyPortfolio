@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import butterknife.Bind;
 import butterknife.OnClick;
 import com.panwrona.myportfolio.R;
+import com.panwrona.myportfolio.customviews.ZoomOutPageTransformer;
 import com.panwrona.myportfolio.mvp.MvpActivity;
 
 public class PassionActivity extends MvpActivity<PassionActivityView, PassionActivityPresenter> implements PassionActivityView {
@@ -26,6 +27,7 @@ public class PassionActivity extends MvpActivity<PassionActivityView, PassionAct
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mVpContainer.setAdapter(new PassionViewPagerAdapter(getSupportFragmentManager()));
+		mVpContainer.setPageTransformer(true, new ZoomOutPageTransformer());
 	}
 
 	@Override

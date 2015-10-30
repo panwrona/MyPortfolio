@@ -5,7 +5,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@android:color/white"
+	android:background="@color/dark_primary_color"
 	android:id="@+id/activity_main_cl_container"
 	android:visibility="invisible"
 	>
@@ -25,7 +25,7 @@
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
-					android:background="@color/transparent_orange"
+					android:background="@drawable/circle_gradient"
 					android:text="@string/app_name"
 					android:textColor="@color/text_icon_color"
 					android:textSize="36sp"
@@ -92,7 +92,7 @@
 			android:layout_height="@dimen/toolbar_circle_image_height"
 			android:src="@drawable/portoflio"
 			app:border_width="1dp"
-			app:border_color="#FFFFFF"
+			app:border_color="@color/text_icon_color"
 			app:layout_anchor="@id/activity_main_ll_container"
 			app:layout_anchorGravity="top|center_horizontal"
 			/>

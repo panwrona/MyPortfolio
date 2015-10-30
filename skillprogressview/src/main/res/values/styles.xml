@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="SkillProgressView">
+		<attr name="spv_backgroundColor" format="color" />
+		<attr name="spv_foregroundColor" format="color" />
+		<attr name="spv_strokeWidth" format="dimension" />
+		<attr name="spv_radius" format="dimension" />
+		<attr name="spv_skillScale" format="integer" />
+		<attr name="spv_skillLevel" format="integer" />
+	</declare-styleable>
+</resources>

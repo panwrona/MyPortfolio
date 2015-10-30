@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="skill_progress_background_color">#57e9e9e9</color>
+	<color name="skill_progress_foreground_color">@android:color/white</color>
+</resources>

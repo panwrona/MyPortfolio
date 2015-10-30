@@ -1,10 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="primary_color">#2196F3</color>
-	<color name="light_primary_color">#BBDEFB</color>
-	<color name="dark_primary_color">#1976D2</color>
-	<color name="text_icon_color">#FFFFFF</color>
-	<color name="accent_color">#FF6D00</color>
+	<!-- DEFAULT -->
+	<!--<color name="primary_color">#2196F3</color> -->
+	<!--<color name="light_primary_color">#BBDEFB</color>-->
+	<!--<color name="dark_primary_color">#1976D2</color>-->
+	<!--<color name="text_icon_color">#FFFFFF</color>-->
+	<!--<color name="accent_color">#FF6D00</color>-->
+
+	<!-- Color Lovers #1 -->
+	<color name="primary_color">#2C3B63</color>
+	<color name="light_primary_color">#9EEFE5</color>
+	<color name="dark_primary_color">#19223a</color>
+	<color name="text_icon_color">#efefef</color>
+	<color name="accent_color">#FF6B35</color>
+	<color name="transparent_about_me">#8b250352</color>
+
+	<color name="circle_gradient_end">#e7000000</color>
+	<color name="circle_gradient_center">#70000000</color>
+	<color name="circle_gradient_start">#1d000000</color>
+
+
+	<!-- Color Lovers #2 -->
+	<!--<color name="primary_color">#4F57AA</color>-->
+	<!--<color name="light_primary_color">#72818B</color>-->
+	<!--<color name="dark_primary_color">#454857</color>-->
+	<!--<color name="text_icon_color">#BEE2E7</color>-->
+	<!--<color name="accent_color">#8F002E</color>-->
+
+	<!-- Color Lovers #3 -->
+	<!--<color name="primary_color">#39552F</color>-->
+	<!--<color name="light_primary_color">#898421</color>-->
+	<!--<color name="dark_primary_color">#CC9933</color>-->
+	<!--<color name="text_icon_color">#EEECB9</color>-->
+	<!--<color name="accent_color">#A80054</color>-->
+
+	<!-- Color Lovers #4 -->
+	<!--<color name="primary_color">#1A659E</color>-->
+	<!--<color name="light_primary_color">#F7C59F</color>-->
+	<!--<color name="dark_primary_color">#004E89</color>-->
+	<!--<color name="text_icon_color">#EFEFD0</color>-->
+	<!--<color name="accent_color">#FF6B35</color>-->
+
 	<color name="primary_text">#212121</color>
 	<color name="secondary_text">#727272</color>
 	<color name="divider_color">#B6B6B6</color>
@@ -14,14 +50,14 @@
 	<color name="heavy_header_gradient_start_color">#51000000</color>
 	<color name="heavy_header_gradient_end_color">#b8000000</color>
 	<color name="separator_transparent_line">#46727272</color>
-	<color name="transparent_about_me">#8b000000</color>
-	<color name="transparent_orange">#ab3b1a00</color>
+	<color name="transparent_orange">#b2000000</color>
 	<color name="text_link_color">#000000</color>
 	<color name="skills_level_view_background">#57e9e9e9</color>
-	<color name="full_orange">#3b1a00</color>
-	<color name="transparent_orange_light">#3f3b1a00</color>
-	<color name="transparent_orange_center">#4c3b1a00</color>
-	<color name="full_orange_dark">#351800</color>
-	<color name="transparent_orange_darker_light">#623b1a00</color>
-	<color name="transparent_orange_darker_center">#833b1a00</color>
+	<color name="full_orange">#000000</color>
+	<color name="transparent_orange_light">#3f000000</color>
+	<color name="transparent_orange_center">#4c000000</color>
+	<color name="full_orange_dark">#2C3B63</color>
+	<color name="transparent_orange_darker_light">#62000000</color>
+	<color name="transparent_orange_darker_center">#82000000</color>
+	<color name="transparent_primary">#ae271308</color>
 </resources>

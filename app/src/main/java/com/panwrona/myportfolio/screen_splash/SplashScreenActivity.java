@@ -9,66 +9,68 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import com.droidsonroids.skillprogressview.SkillProgressView;
 import com.panwrona.myportfolio.R;
 import com.panwrona.myportfolio.mvp.MvpActivity;
 import com.panwrona.myportfolio.screen_main.MainActivity;
 
-public class SplashScreenActivity extends MvpActivity<SplashScreenView, SplashScreenPresenter> implements SplashScreenView {
+public class SplashScreenActivity extends MvpActivity<SplashScreenView, SplashScreenPresenter>
+	implements SplashScreenView {
 
-    @Bind(R.id.stv)
-    TextView mAuthor;
-    @Bind(R.id.name)
-    TextView mTitle;
+	@Bind(R.id.stv) TextView mAuthor;
+	@Bind(R.id.name) TextView mTitle;
+	@Bind(R.id.skill_progress_view) SkillProgressView mSkillProgress;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-        ButterKnife.bind(this);
-        Fade fade = new Fade(Fade.OUT);
-        fade.setDuration(300);
-        getWindow().setExitTransition(fade);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_splash);
+		ButterKnife.bind(this);
+		Fade fade = new Fade(Fade.OUT);
+		fade.setDuration(300);
+		getWindow().setExitTransition(fade);
 
-        Animation fadeIn = new AlphaAnimation(0, 1);
-        fadeIn.setInterpolator(new DecelerateInterpolator());
-        fadeIn.setDuration(1800);
-        fadeIn.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
+		Animation fadeIn = new AlphaAnimation(0, 1);
+		fadeIn.setInterpolator(new DecelerateInterpolator());
+		fadeIn.setDuration(1800);
+		fadeIn.setAnimationListener(new Animation.AnimationListener() {
+			@Override
+			public void onAnimationStart(Animation animation) {
 
-            }
+			}
 
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                startMainActivity();
-            }
+			@Override
+			public void onAnimationEnd(Animation animation) {
 
-            @Override
-            public void onAnimationRepeat(Animation animation) {
+				//startMainActivity();
+			}
 
-            }
-        });
-        mTitle.startAnimation(fadeIn);
-        mAuthor.startAnimation(fadeIn);
-    }
+			@Override
+			public void onAnimationRepeat(Animation animation) {
 
-    private void startMainActivity() {
-            //ActivityOptions options =
-            //    ActivityOptions.makeSceneTransitionAnimation(SplashScreenActivity.this);
-            startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
-            finish();
-    }
+			}
+		});
+		mTitle.startAnimation(fadeIn);
+		mAuthor.startAnimation(fadeIn);
+		mSkillProgress.startAnimating();
+	}
 
-    @Override
-    protected SplashScreenPresenter createPresenter() {
-        return new SplashScreenPresenterImpl();
-    }
+	private void startMainActivity() {
+		//ActivityOptions options =
+		//    ActivityOptions.makeSceneTransitionAnimation(SplashScreenActivity.this);
+		startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+		finish();
+	}
 
-    @Override
-    protected int getLayout() {
-        return R.layout.activity_splash;
-    }
+	@Override
+	protected SplashScreenPresenter createPresenter() {
+		return new SplashScreenPresenterImpl();
+	}
 
+	@Override
+	protected int getLayout() {
+		return R.layout.activity_splash;
+	}
 }
 
 
