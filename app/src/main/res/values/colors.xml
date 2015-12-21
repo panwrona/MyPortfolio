@@ -58,6 +58,9 @@
 	<color name="transparent_orange_center">#4c000000</color>
 	<color name="full_orange_dark">#2C3B63</color>
 	<color name="transparent_orange_darker_light">#62000000</color>
-	<color name="transparent_orange_darker_center">#82000000</color>
+	<color name="transparent_orange_darker_center">#ad000000</color>
 	<color name="transparent_primary">#ae271308</color>
+
+	<color name="transparent_dark_primary">#c619223a</color>
+	<color name="transparent_light_primary">#7b9eefe5</color>
 </resources>

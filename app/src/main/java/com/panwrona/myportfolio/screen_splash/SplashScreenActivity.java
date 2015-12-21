@@ -1,5 +1,6 @@
 package com.panwrona.myportfolio.screen_splash;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.transition.Fade;
@@ -19,7 +20,6 @@ public class SplashScreenActivity extends MvpActivity<SplashScreenView, SplashSc
 
 	@Bind(R.id.stv) TextView mAuthor;
 	@Bind(R.id.name) TextView mTitle;
-	@Bind(R.id.skill_progress_view) SkillProgressView mSkillProgress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +41,7 @@ public class SplashScreenActivity extends MvpActivity<SplashScreenView, SplashSc
 
 			@Override
 			public void onAnimationEnd(Animation animation) {
-
-				//startMainActivity();
+				startMainActivity();
 			}
 
 			@Override
@@ -52,13 +51,12 @@ public class SplashScreenActivity extends MvpActivity<SplashScreenView, SplashSc
 		});
 		mTitle.startAnimation(fadeIn);
 		mAuthor.startAnimation(fadeIn);
-		mSkillProgress.startAnimating();
 	}
 
 	private void startMainActivity() {
-		//ActivityOptions options =
-		//    ActivityOptions.makeSceneTransitionAnimation(SplashScreenActivity.this);
-		startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+		ActivityOptions options =
+		ActivityOptions.makeSceneTransitionAnimation(SplashScreenActivity.this);
+		startActivity(new Intent(SplashScreenActivity.this, MainActivity.class), options.toBundle());
 		finish();
 	}
 

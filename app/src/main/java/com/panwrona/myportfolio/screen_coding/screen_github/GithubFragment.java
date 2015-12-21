@@ -6,6 +6,7 @@ import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -48,10 +49,7 @@ public class GithubFragment extends MvpFragment<GithubView, GithubPresenter> imp
 		super.onViewCreated(view, savedInstanceState);
 		mGithubRecyclerViewAdapter = new GithubRecyclerViewAdapter();
 		mRecyclerView.setAdapter(mGithubRecyclerViewAdapter);
-		mRecyclerView.setLayoutManager(new WrapLinearLayoutManager(getActivity()));
-		mRecyclerView.setItemAnimator(new FadeInAnimator());
-		mRecyclerView.setHasFixedSize(false);
-		mRecyclerView.setNestedScrollingEnabled(false);
+		mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 		presenter.getGithubRepos();
 	}
 

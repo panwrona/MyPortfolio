@@ -10,8 +10,8 @@ import com.panwrona.myportfolio.screen_coding.screen_tools.ToolsFragment;
 
 public final class CodingPagerAdapter extends FragmentPagerAdapter {
     private static final int GITHUB_POSITION = 0;
-    private static final int PROJECTS_POSITION = 2;
-    private static final int TOOLS_POSITION = 1;
+    private static final int PROJECTS_POSITION = 1;
+    private static final int TOOLS_POSITION = 2;
     private static final int PAGE_COUNT = 3;
     private String tabTitles[] = new String[]{"Github", "Projects", "Tools"};
 
@@ -43,4 +43,6 @@ public final class CodingPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return tabTitles[position];
     }
+
+
 }

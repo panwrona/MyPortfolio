@@ -2,9 +2,6 @@ package com.droidsonroids.skillprogressview;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.Keyframe;
-import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,14 +13,8 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.util.Property;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AnimationSet;
-import android.view.animation.LinearInterpolator;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SkillProgressView extends View {
 	private static final int DEFAULT_SKILL_SCALE = 8;
@@ -41,10 +32,9 @@ public class SkillProgressView extends View {
 	private boolean areDimensInitialized = false;
 	private State mState;
 	private int mAnimatedValue;
-	private int[] currentSkillScalePoints;
-	private int currentSkillScale = 0;
 	private RectF mRectF;
 	private Path mPath = new Path();
+	private int currentSkillScalePoint = 1;
 	private ValueAnimator mProgressAnimation;
 
 	public void startAnimating() {
@@ -87,9 +77,6 @@ public class SkillProgressView extends View {
 		} finally {
 			array.recycle();
 		}
-
-		currentSkillScalePoints = new int[mSkillScale + 1];
-
 		mState = State.State_IDLE;
 
 		mBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -101,23 +88,21 @@ public class SkillProgressView extends View {
 		mForegroundPaint.setColor(foregroundColor);
 		mForegroundPaint.setStrokeWidth(strokeWidth);
 		mForegroundPaint.setStyle(Paint.Style.STROKE);
-
-		for(int i = 0; i <= mSkillScale; i++) {
-			currentSkillScalePoints[i] = (360 / mSkillScale) * i;
-		}
 		initAnimations();
 	}
 
 	private void initAnimations() {
-		 mProgressAnimation =
-			ValueAnimator.ofInt(currentSkillScalePoints[currentSkillScale],
-				currentSkillScalePoints[currentSkillScale + 1]);
+		int skillLevel = (360 / mSkillScale) * mSkillLevel;
+		mProgressAnimation = ValueAnimator.ofInt(0, skillLevel);
 		mProgressAnimation.setDuration(300);
 		mProgressAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
 		mProgressAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 			@Override
 			public void onAnimationUpdate(ValueAnimator animation) {
 				mAnimatedValue = (int) animation.getAnimatedValue();
+				if (mAnimatedValue == (360 / mSkillScale) * currentSkillScalePoint) {
+					currentSkillScalePoint++;
+				}
 				invalidate();
 			}
 		});
@@ -125,9 +110,6 @@ public class SkillProgressView extends View {
 			@Override
 			public void onAnimationRepeat(Animator animation) {
 				super.onAnimationRepeat(animation);
-				currentSkillScale++;
-				mProgressAnimation.setIntValues(currentSkillScalePoints[currentSkillScale], currentSkillScalePoints[currentSkillScale + 1]);
-				invalidate();
 			}
 
 			@Override
@@ -141,7 +123,6 @@ public class SkillProgressView extends View {
 				super.onAnimationEnd(animation);
 			}
 		});
-		mProgressAnimation.setRepeatCount(mSkillLevel);
 	}
 
 	private int getDefaultDimension(Context context, @DimenRes int dimenRes) {
@@ -161,14 +142,20 @@ public class SkillProgressView extends View {
 			areDimensInitialized = true;
 		}
 		mRectF = new RectF();
-		mRectF.bottom = h - mRadius;
-		mRectF.right = w - mRadius;
-		mRectF.top = mRadius;
-		mRectF.left = mRadius;
+		mRectF.bottom = h / 2f - mRadius;
+		mRectF.right = w / 2f - mRadius;
+		mRectF.top = h / 2f + mRadius;
+		mRectF.left = w / 2f + mRadius;
 
-		for(int i = 0; i < mSkillScale; i++) {
-			mPath.addArc(mRectF, currentSkillScalePoints[i] + 2, currentSkillScalePoints[i+1] -2);
+		for (int i = 0; i < mSkillScale; i++) {
+			int scalePoint = (360 / mSkillScale) * i;
+			mPath.addArc(mRectF, scalePoint - 5, scalePoint + 5);
 		}
+
+		//mBounds.top = h / 2f - mRadius;
+		//mBounds.left = w / 2f - mRadius;
+		//mBounds.bottom = h / 2f + mRadius;
+		//mBounds.right = w / 2f + mRadius;
 	}
 
 	@Override
@@ -176,19 +163,10 @@ public class SkillProgressView extends View {
 		super.onDraw(canvas);
 		canvas.drawCircle(mWidth / 2, mHeight / 2, mRadius, mBackgroundPaint);
 		if (mState == State.STATE_RUNNING) {
-			Log.d(TAG, "Animated val: "
-				+ mAnimatedValue
-				+ ", current point: "
-				+ currentSkillScalePoints[currentSkillScale]
-				+ ", plus ten: "
-				+ (currentSkillScalePoints[currentSkillScale] + 10));
-			if(mAnimatedValue <= currentSkillScalePoints[currentSkillScale] + 10) {
-				canvas.drawPath(mPath, mForegroundPaint);
-				//canvas.drawArc(mRectF, currentSkillScalePoints[currentSkillScale], mAnimatedValue, false, mBackgroundPaint);
-			} else {
-				//canvas.drawArc(mRectF, currentSkillScalePoints[currentSkillScale], mAnimatedValue, false, mForegroundPaint);
+			if (currentSkillScalePoint > 0) {
+				canvas.drawArc(mRectF, ((360 / mSkillScale) * (currentSkillScalePoint - 1)) - 5,
+					((360 / mSkillScale) * currentSkillScalePoint), false, mForegroundPaint);
 			}
-			canvas.save();
 		}
 	}
 }

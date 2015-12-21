@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import butterknife.Bind;
 import com.panwrona.myportfolio.R;
 import com.panwrona.myportfolio.customviews.skills_level_view.SkillsLevelView;
@@ -38,8 +40,10 @@ public class CodingActivity extends MvpActivity<CodingView, CodingPresenter>
 	@Bind(R.id.activity_coding_cl_main_layout) CoordinatorLayout mClMainLayout;
 	@Bind(R.id.activity_coding_vp_container) ViewPager mVpContainer;
 	@Bind(R.id.activity_coding_tl_container) TabLayout mTlContainer;
-	@Bind(R.id.activity_coding_nsv_container) NestedScrollView mNsvContainer;
-	@Bind(R.id.activity_coding_cv_container) CardView mCvContainer;
+	@Bind(R.id.activity_coding_ctl) CollapsingToolbarLayout mCtlContainer;
+	//@Bind(R.id.activity_coding_ll_container) LinearLayout mLlContainer;
+	//@Bind(R.id.activity_coding_nsv_container) NestedScrollView mNsvContainer;
+	//@Bind(R.id.activity_coding_cv_container) CardView mCvContainer;
 	private boolean mIsTheSkillsViewVisible = true;
 
 	@Override
@@ -76,13 +80,6 @@ public class CodingActivity extends MvpActivity<CodingView, CodingPresenter>
 		super.finish();
 	}
 
-	private void setupReturnTransition() {
-		GUIUtils.startReturnTransitionSlideUp(this, CodingActivity.this::superOnBackPressed,
-			mToolbar, mAppBar);
-		GUIUtils.startReturnTransitionSlideDown(this, CodingActivity.this::superOnBackPressed,
-			mNsvContainer);
-	}
-
 	private void superOnBackPressed() {
 		super.onBackPressed();
 	}
@@ -107,9 +104,16 @@ public class CodingActivity extends MvpActivity<CodingView, CodingPresenter>
 	}
 
 	private void setupEnterTransition() {
-		GUIUtils.startEnterTransitionSlideUp(this, mCvContainer);
-		GUIUtils.startEnterTransitionSlideDown(this, mAppBar, mToolbar);
+		GUIUtils.startEnterTransitionSlideUp(this, mVpContainer);
+		GUIUtils.startEnterTransitionSlideDown(this, mAppBar);
 		mClMainLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+	}
+
+	private void setupReturnTransition() {
+		GUIUtils.startReturnTransitionSlideUp(this, CodingActivity.this::superOnBackPressed,
+			mAppBar);
+		GUIUtils.startReturnTransitionSlideDown(this, CodingActivity.this::superOnBackPressed,
+			mVpContainer);
 	}
 
 	@Override

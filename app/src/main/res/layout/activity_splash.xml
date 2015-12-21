@@ -32,10 +32,4 @@
         android:layout_gravity="end"
         />
 
-    <com.droidsonroids.skillprogressview.SkillProgressView
-        android:id="@+id/skill_progress_view"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
-
-
 </LinearLayout>

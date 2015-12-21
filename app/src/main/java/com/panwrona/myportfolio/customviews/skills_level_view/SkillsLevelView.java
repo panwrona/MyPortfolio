@@ -41,6 +41,11 @@ public class SkillsLevelView extends View {
 	private float showUpZValue;
 	private float showUpYValue;
 	private int repeatCount;
+	private Skill mSkill = null;
+
+	public void setSkill(Skill skill) {
+		mSkill = skill;
+	}
 
 	private enum State {
 		IDLE,
