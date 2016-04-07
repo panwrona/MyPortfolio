@@ -40,7 +40,6 @@ public class SpellingTextView extends TextView {
     }
 
     private void setupAnimations() {
-
         final Animation in = new AlphaAnimation(0.0f, 1.0f);
         in.setDuration(mAnimationLength / mText.length());
         in.setAnimationListener(new Animation.AnimationListener() {

@@ -24,11 +24,11 @@ public class ToolsViewHolder extends RecyclerView.ViewHolder {
 	}
 
 	public void updateViews(Tool tool) {
-		Skill skill = new Skill.Builder().level(3).name("      ").build();
+		Skill skill = new Skill.Builder().level(tool.skillLevel).name("      ").build();
 		List<Skill> skills = new ArrayList<>();
 		skills.add(skill);
 		mSkillLevelView.setSkillsList(skills);
-		mTvDescription.setText("I am familiar with raw SQL queries and some android libraries. Most of all Ive been using ORMLite, but in this project I am testing ActiveAndroid library.");
-		mTvTitle.setText("Databases");
+		mTvDescription.setText(tool.description);
+		mTvTitle.setText(tool.name);
 	}
 }

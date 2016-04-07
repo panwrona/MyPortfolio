@@ -38,12 +38,12 @@
 	</declare-styleable>
 
 	<declare-styleable name="SkillsLevelView">
-		<attr name="backgroundColor" format="color"/>
-		<attr name="foregroundColor" format="color"/>
-		<attr name="radius" format="dimension"/>
-		<attr name="textColor" format="color"/>
-		<attr name="textSize" format="dimension"/>
-		<attr name="skillScale" format="integer"/>
+		<attr name="slv_backgroundColor" format="color"/>
+		<attr name="slv_foregroundColor" format="color"/>
+		<attr name="slv_radius" format="dimension"/>
+		<attr name="slv_textColor" format="color"/>
+		<attr name="slv_textSize" format="dimension"/>
+		<attr name="slv_skillScale" format="integer"/>
 	</declare-styleable>
 
 	<declare-styleable name="CirCleRefreshLayout">
@@ -55,6 +55,12 @@
 	<style name="MyTabLayoutTextAppearance" parent="TextAppearance.Design.Tab">
 		<item name="android:textSize">13sp</item>
 		<item name="android:textAllCaps">true</item>
+	</style>
+
+	<style name="AppTheme.ContactActivity" parent="AppTheme">
+	</style>
+
+	<style name="AppTheme.PassionActivity" parent="AppTheme">
 	</style>
 
 </resources>

@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.animation.LinearOutSlowInInterpolator;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -195,6 +196,10 @@ public class GUIUtils {
 		for(View v : views) {
 			v.startAnimation(animation);
 		}
+	}
+
+	public static float getPxByDp(Context mContext, float radius) {
+		return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, radius, mContext.getResources().getDisplayMetrics());
 	}
 
 	public interface OnReturnAnimationFinished {

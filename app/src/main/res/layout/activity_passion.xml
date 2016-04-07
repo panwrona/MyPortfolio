@@ -6,10 +6,22 @@
 	android:layout_height="match_parent"
 	android:background="@color/dark_primary_color">
 
+    <com.viewpagerindicator.CirclePageIndicator
+        android:id="@+id/activity_passion_circle_pager_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_pager_indicator_dimen"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="@dimen/default_layout_margin"
+        android:paddingTop="@dimen/default_layout_margin"
+        android:gravity="center"
+        android:background="@color/primary_color"
+        />
+
 	<android.support.v4.view.ViewPager
 		android:id="@+id/activity_passion_vp_container"
 		android:layout_height="match_parent"
-		android:layout_width="match_parent"/>
+		android:layout_width="match_parent"
+        android:layout_above="@id/activity_passion_circle_pager_indicator"/>
 
 	<View
 		android:id="@+id/activity_passion_vw_close"
@@ -17,6 +29,5 @@
 		android:layout_height="36dp"
 		android:layout_margin="@dimen/default_layout_margin"
 		android:background="@drawable/ic_close_white_36dp"/>
-
 
 </RelativeLayout>

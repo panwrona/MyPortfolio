@@ -8,7 +8,7 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-final class GithubPresenterImpl extends MvpBasePresenter<GithubView> implements GithubPresenter {
+public class GithubPresenterImpl extends MvpBasePresenter<GithubView> implements GithubPresenter {
 
 	ApiManager apiManager = new ApiManager();
 
@@ -18,14 +18,18 @@ final class GithubPresenterImpl extends MvpBasePresenter<GithubView> implements 
 		apiManager.getGithubRepos(new Callback<List<GithubRepo>>() {
 			@Override
 			public void success(List<GithubRepo> githubRepos, Response response) {
-				getView().hideLoadingIndicator();
-				getView().loadGithubRepos(githubRepos);
+				if(getView() != null) {
+					getView().hideLoadingIndicator();
+					getView().loadGithubRepos(githubRepos);
+				}
 			}
 
 			@Override
 			public void failure(RetrofitError error) {
-				getView().hideLoadingIndicator();
-				getView().showGithubReposError();
+				if(getView() != null) {
+					getView().hideLoadingIndicator();
+					getView().showGithubReposError();
+				}
 			}
 		});
 	}

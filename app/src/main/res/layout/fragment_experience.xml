@@ -10,14 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/fragment_experience_header_size"
         android:orientation="horizontal"
-        android:paddingEnd="@dimen/default_layout_margin"
-        android:paddingStart="@dimen/default_layout_margin"
+        android:paddingRight="@dimen/default_layout_margin"
+        android:paddingLeft="@dimen/default_layout_margin"
         android:paddingTop="@dimen/default_layout_margin">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginEnd="@dimen/default_layout_margin"
+            android:layout_marginRight="@dimen/default_layout_margin"
             android:scaleType="centerCrop"
             android:src="@drawable/dor"
             app:border_color="@color/secondary_text"
@@ -68,15 +68,15 @@
             android:layout_height="172dp"
             android:gravity="center|left"
             android:orientation="vertical"
-            android:paddingEnd="@dimen/default_layout_margin"
-            android:paddingStart="24dp">
+            android:paddingRight="@dimen/default_layout_margin"
+            android:paddingLeft="24dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/default_layout_margin_halved"
                 android:drawablePadding="@dimen/default_layout_margin"
-                android:drawableStart="@drawable/ic_worker_white_24dp"
+                android:drawableLeft="@drawable/ic_worker_white_24dp"
                 android:gravity="center|left"
                 android:text="Android Developer"
                 android:textColor="@color/text_icon_color"
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/default_layout_margin_halved"
                 android:drawablePadding="@dimen/default_layout_margin"
-                android:drawableStart="@drawable/ic_event_white_24dp"
+                android:drawableLeft="@drawable/ic_event_white_24dp"
                 android:gravity="center|left"
                 android:text="November '14 ~ Now"
                 android:textColor="@color/text_icon_color"
@@ -97,7 +97,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/default_layout_margin"
-                android:drawableStart="@drawable/ic_assignment_white_24dp"
+                android:drawableLeft="@drawable/ic_assignment_white_24dp"
                 android:gravity="center|left"
                 android:text="My main responsibility is to maintain android projects in every stadium of the development. I am coding both frontend and backend."
                 android:textColor="@color/text_icon_color"
@@ -113,19 +113,21 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/fragment_experience_btn_droids_homepage"
             fontPath="fonts/Roboto-Regular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?android:attr/selectableItemBackground"
             android:gravity="center"
-            android:paddingEnd="@dimen/default_layout_margin_halved"
-            android:paddingStart="@dimen/default_layout_margin_halved"
+            android:paddingRight="@dimen/default_layout_margin_halved"
+            android:paddingLeft="@dimen/default_layout_margin_halved"
             android:text="@string/text_link_homepage"
             android:textColor="@color/accent_color"
             android:textSize="16sp"
             tools:ignore="MissingPrefix" />
 
         <Button
+            android:id="@+id/fragment_experience_btn_droids_blog"
             fontPath="fonts/Roboto-Regular.ttf"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -147,14 +149,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/fragment_experience_header_size"
         android:orientation="horizontal"
-        android:paddingEnd="@dimen/default_layout_margin"
-        android:paddingStart="@dimen/default_layout_margin"
+        android:paddingRight="@dimen/default_layout_margin"
+        android:paddingLeft="@dimen/default_layout_margin"
         android:paddingTop="@dimen/default_layout_margin">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginEnd="@dimen/default_layout_margin"
+            android:layout_marginRight="@dimen/default_layout_margin"
             android:scaleType="centerCrop"
             android:src="@drawable/siemens"
             app:border_color="@color/secondary_text"
@@ -205,15 +207,15 @@
             android:layout_height="172dp"
             android:gravity="center|left"
             android:orientation="vertical"
-            android:paddingEnd="@dimen/default_layout_margin"
-            android:paddingStart="24dp">
+            android:paddingRight="@dimen/default_layout_margin"
+            android:paddingLeft="24dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/default_layout_margin_halved"
                 android:drawablePadding="@dimen/default_layout_margin"
-                android:drawableStart="@drawable/ic_worker_white_24dp"
+                android:drawableLeft="@drawable/ic_worker_white_24dp"
                 android:gravity="center|left"
                 android:text="Assistant sales department"
                 android:textColor="@color/text_icon_color"
@@ -224,7 +226,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/default_layout_margin_halved"
                 android:drawablePadding="@dimen/default_layout_margin"
-                android:drawableStart="@drawable/ic_event_white_24dp"
+                android:drawableLeft="@drawable/ic_event_white_24dp"
                 android:gravity="center|left"
                 android:text="March '14 ~ October '14"
                 android:textColor="@color/text_icon_color"
@@ -234,7 +236,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/default_layout_margin"
-                android:drawableStart="@drawable/ic_assignment_white_24dp"
+                android:drawableLeft="@drawable/ic_assignment_white_24dp"
                 android:gravity="center|left"
                 android:text="I was responsible for matching solutions for existing and new investments. "
                 android:textColor="@color/text_icon_color"
@@ -245,6 +247,7 @@
     </FrameLayout>
 
     <Button
+        android:id="@+id/fragment_experience_btn_siemens"
         fontPath="fonts/Roboto-Regular.ttf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

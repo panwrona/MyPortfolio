@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:orientation="vertical"
 	android:background="@color/full_orange_dark">
 	<RelativeLayout
@@ -25,7 +25,7 @@
 			android:textColor="@color/text_icon_color"
 			android:textSize="40sp"
 			android:textAppearance="@style/TextAppearance.LobsterBold"
-			android:text="Boarding"/>
+			android:text="@string/boarding"/>
 
 		<LinearLayout
 			android:layout_width="match_parent"
@@ -33,48 +33,99 @@
 			android:orientation="horizontal"
 			android:layout_alignParentBottom="true"
 			android:weightSum="4"
+			android:layout_gravity="center"
 			android:layout_margin="@dimen/default_layout_margin">
 
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="120dp"
+				android:orientation="vertical"
 				android:layout_weight="1"
-				android:drawableTop="@drawable/white_snowboard"
-				android:drawablePadding="@dimen/default_layout_margin_halved"
-				android:text="snow"
-				android:gravity="center"/>
-
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:drawableTop="@drawable/white_skimboard"
-				android:drawablePadding="@dimen/default_layout_margin_halved"
-				android:text="skim"
 				android:gravity="center"
-				/>
+				>
 
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:src="@drawable/snowboard"
+					android:tint="@android:color/white"
+					android:layout_marginBottom="@dimen/default_layout_margin_halved"/>
+
+				<TextView
+					android:id="@+id/fragment_boards_tv_snow"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/snow"
+					android:gravity="center"/>
+
+			</LinearLayout>
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="120dp"
+				android:orientation="vertical"
 				android:layout_weight="1"
-				android:drawableTop="@drawable/white_longboard"
-				android:drawablePadding="@dimen/default_layout_margin_halved"
-				android:text="long"
 				android:gravity="center"
-				/>
+				>
 
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:src="@drawable/kiteboard"
+					android:tint="@android:color/white"
+					android:layout_marginBottom="@dimen/default_layout_margin_halved"/>
 
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="20dp"
+					android:text="@string/kite"
+					android:gravity="center"/>
+
+			</LinearLayout>
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="120dp"
+				android:orientation="vertical"
 				android:layout_weight="1"
-				android:drawableTop="@drawable/white_kiteboard"
-				android:drawablePadding="@dimen/default_layout_margin_halved"
-				android:text="kite"
 				android:gravity="center"
-				/>
+				>
 
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:src="@drawable/longboard"
+					android:tint="@android:color/white"
+					android:layout_marginBottom="@dimen/default_layout_margin_halved"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/longboard"
+					android:gravity="center"/>
+
+			</LinearLayout>
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="120dp"
+				android:orientation="vertical"
+				android:layout_weight="1"
+				android:gravity="center"
+				>
+
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:src="@drawable/skimboard"
+					android:tint="@android:color/white"
+					android:layout_marginBottom="@dimen/default_layout_margin_halved"/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="@string/skim"
+					android:gravity="center"/>
+
+			</LinearLayout>
 
 
 		</LinearLayout>
@@ -84,11 +135,11 @@
 	<TextView
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:paddingStart="@dimen/default_layout_margin"
-		android:paddingEnd="@dimen/default_layout_margin"
+		android:paddingLeft="@dimen/default_layout_margin"
+		android:paddingRight="@dimen/default_layout_margin"
 		android:paddingBottom="@dimen/default_layout_margin_doubled"
 		android:textColor="@color/text_icon_color"
-		android:textSize="16sp"
+		android:textSize="18sp"
 		android:gravity="center"
 		android:text="@string/passion_boards"/>
 

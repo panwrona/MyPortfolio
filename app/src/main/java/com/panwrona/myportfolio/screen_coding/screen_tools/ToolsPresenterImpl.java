@@ -12,9 +12,7 @@ class ToolsPresenterImpl extends MvpBasePresenter<ToolsView> implements ToolsPre
 	@Override
 	public void loadToolsToRecyclerView() {
 		getView().showProgressBar();
-		for(int i = 0; i < 6; i++) {
-			mTools.add(new Tool());
-		}
+		mTools = Tool.getAll();
 		if (mTools.size() > 0) {
 			getView().hideProgressBar();
 			getView().loadTools(mTools);

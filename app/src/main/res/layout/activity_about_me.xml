@@ -138,7 +138,7 @@
 		android:layout_height="@dimen/default_fab_size"
 		android:layout_width="@dimen/default_fab_size"
 		android:layout_marginBottom="@dimen/default_layout_margin"
-		android:layout_marginEnd="@dimen/default_layout_margin_doubled"
+		android:layout_marginRight="@dimen/default_layout_margin_doubled"
 		android:src="@drawable/ic_email_white_24dp"
 		android:transitionName="@string/transition_reveal_contact"
 		app:layout_behavior="com.panwrona.myportfolio.customviews.support_layouts.ScrollFloatingActionButtonBehavior"

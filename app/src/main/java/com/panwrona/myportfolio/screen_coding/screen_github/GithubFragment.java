@@ -62,7 +62,7 @@ public class GithubFragment extends MvpFragment<GithubView, GithubPresenter> imp
 	@Override
 	public void showGithubReposError() {
 		if (getView() != null) {
-			Snackbar.make(getView(), "Couldn't load Github Repositories. Try again later...",
+			Snackbar.make(getView(), R.string.error_download_repos,
 				Snackbar.LENGTH_LONG).show();
 		}
 	}

@@ -23,4 +23,5 @@
     <dimen name="fragment_experience_header_size">72dp</dimen>
     <dimen name="fragment_experience_header_text">14sp</dimen>
     <dimen name="civ_border_dimen">1dp</dimen>
+    <dimen name="view_pager_indicator_dimen">24dp</dimen>
 </resources>

@@ -1,16 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools" android:orientation="vertical"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:gravity="center">
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
 
-	<TextView
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:textColor="@android:color/black"
-		android:text="@string/about_me"
-		fontPath="fonts/Roboto-Slab-Regular.ttf"
-		tools:ignore="MissingPrefix"/>
+		android:layout_height="@dimen/fragment_experience_header_size"
+		android:orientation="horizontal"
+		android:paddingRight="@dimen/default_layout_margin"
+		android:paddingLeft="@dimen/default_layout_margin"
+		android:paddingTop="@dimen/default_layout_margin">
+
+		<de.hdodenhof.circleimageview.CircleImageView
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:layout_marginRight="@dimen/default_layout_margin"
+			android:scaleType="centerCrop"
+			android:src="@drawable/pwr"
+			app:border_color="@color/secondary_text"
+			app:border_width="@dimen/civ_border_dimen" />
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="48dp"
+			android:gravity="center"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/wroclaw_university_of_technology"
+				android:textColor="@color/primary_text"
+				android:textSize="16sp" />
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/poland"
+				android:textColor="@color/secondary_text"
+				android:textSize="@dimen/fragment_experience_header_text" />
+
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<ImageView
+			android:layout_width="match_parent"
+			android:layout_height="172dp"
+			android:background="@drawable/experience_background"
+			android:scaleType="centerCrop" />
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="172dp"
+			android:background="@color/transparent_dark_primary" />
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="172dp"
+			android:gravity="center|left"
+			android:orientation="vertical"
+			android:paddingRight="@dimen/default_layout_margin"
+			android:paddingLeft="24dp">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="@dimen/default_layout_margin_halved"
+				android:drawablePadding="@dimen/default_layout_margin"
+				android:drawableLeft="@drawable/ic_student_white_24"
+				android:gravity="center|left"
+				android:text="Degree: Master of Computer Science"
+				android:textColor="@color/text_icon_color"
+				android:textSize="14sp" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="@dimen/default_layout_margin_halved"
+				android:drawablePadding="@dimen/default_layout_margin"
+				android:drawableLeft="@drawable/ic_event_white_24dp"
+				android:gravity="center|left"
+				android:text="March '14 ~ Now"
+				android:textColor="@color/text_icon_color"
+				android:textSize="14sp" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:drawablePadding="@dimen/default_layout_margin"
+				android:drawableLeft="@drawable/ic_assignment_white_24dp"
+				android:gravity="center|left"
+				android:text="Thesis: Analysis of the possibilities of using mobile devices to monitor stress test and workouts."
+				android:textColor="@color/text_icon_color"
+				android:textSize="14sp" />
+
+		</LinearLayout>
+	</FrameLayout>
+
+		<Button
+			android:id="@+id/fragment_education_btn_master_homepage"
+			fontPath="fonts/Roboto-Regular.ttf"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="?android:attr/selectableItemBackground"
+			android:gravity="center"
+			android:paddingEnd="@dimen/default_layout_margin_halved"
+			android:paddingStart="@dimen/default_layout_margin_halved"
+			android:text="@string/text_link_homepage"
+			android:textColor="@color/accent_color"
+			android:textSize="16sp"
+			tools:ignore="MissingPrefix" />
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="1dp"
+		android:background="@color/separator_transparent_line" />
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/fragment_experience_header_size"
+		android:orientation="horizontal"
+		android:paddingRight="@dimen/default_layout_margin"
+		android:paddingLeft="@dimen/default_layout_margin"
+		android:paddingTop="@dimen/default_layout_margin">
+
+		<de.hdodenhof.circleimageview.CircleImageView
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:layout_marginRight="@dimen/default_layout_margin"
+			android:scaleType="centerCrop"
+			android:src="@drawable/pwr"
+			app:border_color="@color/secondary_text"
+			app:border_width="@dimen/civ_border_dimen" />
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="48dp"
+			android:gravity="center"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/wroclaw_university_of_technology"
+				android:textColor="@color/primary_text"
+				android:textSize="16sp" />
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/poland"
+				android:textColor="@color/secondary_text"
+				android:textSize="@dimen/fragment_experience_header_text" />
+
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<FrameLayout
+			android:layout_width="match_parent"
+			android:layout_height="172dp"
+			android:background="@drawable/experience_background"
+			android:scaleType="centerCrop" />
+
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="172dp"
+			android:background="@color/transparent_dark_primary" />
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="172dp"
+			android:gravity="center|left"
+			android:orientation="vertical"
+			android:paddingRight="@dimen/default_layout_margin"
+			android:paddingLeft="24dp">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="@dimen/default_layout_margin_halved"
+				android:drawablePadding="@dimen/default_layout_margin"
+				android:drawableLeft="@drawable/ic_student_white_24"
+				android:gravity="center|left"
+				android:text="Degree: Engineer of Telecommunications"
+				android:textColor="@color/text_icon_color"
+				android:textSize="14sp" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="@dimen/default_layout_margin_halved"
+				android:drawablePadding="@dimen/default_layout_margin"
+				android:drawableLeft="@drawable/ic_event_white_24dp"
+				android:gravity="center|left"
+				android:text="October '10 ~ March '14"
+				android:textColor="@color/text_icon_color"
+				android:textSize="14sp" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:drawablePadding="@dimen/default_layout_margin"
+				android:drawableLeft="@drawable/ic_assignment_white_24dp"
+				android:gravity="center|left"
+				android:text="Thesis: Software application managing integrated sensor’s test module."
+				android:textColor="@color/text_icon_color"
+				android:textSize="14sp" />
+
+		</LinearLayout>
+
+	</FrameLayout>
+
+	<Button
+		android:id="@+id/fragment_education_btn_bachelor_homepage"
+		fontPath="fonts/Roboto-Regular.ttf"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:background="?android:attr/selectableItemBackground"
+		android:gravity="center"
+		android:padding="@dimen/default_layout_margin_halved"
+		android:text="@string/text_link_homepage"
+		android:textColor="@color/accent_color"
+		android:textSize="16sp"
+		tools:ignore="MissingPrefix" />
 
 </LinearLayout>

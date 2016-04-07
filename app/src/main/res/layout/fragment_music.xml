@@ -25,7 +25,7 @@
 			android:textColor="@color/text_icon_color"
 			android:textSize="40sp"
 			android:textAppearance="@style/TextAppearance.LobsterBold"
-			android:text="Music"/>
+			android:text="@string/music"/>
 
 		<View
 			android:layout_width="match_parent"
@@ -41,12 +41,12 @@
 	<TextView
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:paddingStart="@dimen/default_layout_margin"
-		android:paddingEnd="@dimen/default_layout_margin"
+		android:paddingLeft="@dimen/default_layout_margin"
+		android:paddingRight="@dimen/default_layout_margin"
 		android:paddingBottom="@dimen/default_layout_margin_doubled"
 		android:textColor="@color/text_icon_color"
-		android:textSize="16sp"
+		android:textSize="18sp"
 		android:gravity="center"
-		android:text="@string/passion_boards"/>
+		android:text="@string/passion_music"/>
 
 </LinearLayout>

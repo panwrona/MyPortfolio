@@ -7,7 +7,6 @@
 	android:layout_height="match_parent"
 	android:background="@color/dark_primary_color"
 	android:id="@+id/activity_main_cl_container"
-	android:visibility="invisible"
 	>
 
 		<LinearLayout
@@ -103,7 +102,7 @@
 			android:layout_width="56dp"
 			android:src="@drawable/ic_email_white_24dp"
 			android:transitionName="@string/transition_reveal_contact"
-			android:layout_marginEnd="@dimen/default_layout_margin"
+			android:layout_marginRight="@dimen/default_layout_margin"
 			app:layout_anchor="@id/activity_main_ll_container"
 			app:layout_anchorGravity="top|center_horizontal|right"
 			app:pressedTranslationZ="8dp"

@@ -6,7 +6,7 @@ import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
 import java.util.List;
 
-@Table(name = "Tools")
+@Table(name = "tools")
 public class Tool extends Model {
 
 	@Column(name = "name")

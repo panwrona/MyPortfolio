@@ -8,10 +8,12 @@ import butterknife.OnClick;
 import com.panwrona.myportfolio.R;
 import com.panwrona.myportfolio.customviews.ZoomOutPageTransformer;
 import com.panwrona.myportfolio.mvp.MvpActivity;
+import com.viewpagerindicator.CirclePageIndicator;
 
 public class PassionActivity extends MvpActivity<PassionActivityView, PassionActivityPresenter> implements PassionActivityView {
 
 	@Bind(R.id.activity_passion_vp_container) ViewPager mVpContainer;
+	@Bind(R.id.activity_passion_circle_pager_indicator) CirclePageIndicator mCirclePagerIndicator;
 
 	@Override
 	protected PassionActivityPresenter createPresenter() {
@@ -28,6 +30,7 @@ public class PassionActivity extends MvpActivity<PassionActivityView, PassionAct
 		super.onCreate(savedInstanceState);
 		mVpContainer.setAdapter(new PassionViewPagerAdapter(getSupportFragmentManager()));
 		mVpContainer.setPageTransformer(true, new ZoomOutPageTransformer());
+		mCirclePagerIndicator.setViewPager(mVpContainer);
 	}
 
 	@Override

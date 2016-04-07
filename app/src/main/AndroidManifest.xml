@@ -13,7 +13,7 @@
 
 		<meta-data
 			android:name="AA_DB_NAME"
-			android:value="mydb.db" />
+			android:value="MyPortfolioDb.db" />
 		<meta-data
 			android:name="AA_DB_VERSION"
 			android:value="1" />
@@ -49,6 +49,14 @@
 			android:name=".screen_contact.ContactActivity"
 			android:theme="@style/AppTheme.ContactActivity"
 			android:screenOrientation="portrait" />
-	</application>
+
+		<activity
+			android:name=".screen_news.TwitterNewsActivity"
+			android:theme="@style/AppTheme"
+			android:screenOrientation="portrait" />
+	    <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="7887c1c029a737ec4d13ba8792782d092531f2e7" />
+    </application>
 
 </manifest>
